@@ -138,7 +138,7 @@ void Clinklist<T,N>::destroy()
 	for(unsigned int i=0;i<head.getlength();i++)
 	{
 		if(i==0 || (i>0 && head[i]!=head[i-1] && tail[i]!=tail[i-1]))
-		destroy(i);
+		if(head[i] && tail[i]) destroy(i);
 	}
 	
 	clearbe();

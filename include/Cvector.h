@@ -14,8 +14,9 @@ class Cvector : public Carray_base<T>
 	~Cvector();
 	
 	unsigned int getn() const;
-	void add(const T &t,unsigned int index=0);
+	void insert(const T &t,unsigned int index);
 	void remove(unsigned int index=0);
+	void add(const T &t);
 	
 	Cvector& assign(unsigned int length);
 	
@@ -49,7 +50,7 @@ unsigned int Cvector<T>::getn() const
 }
 
 template <typename T>
-void Cvector<T>::add(const T &t,unsigned int index)
+void Cvector<T>::insert(const T &t,unsigned int index)
 {
 	
 		if(n+1>Cvector<T>::length)
@@ -84,9 +85,15 @@ void Cvector<T>::remove(unsigned int index)
 }
 
 template <typename T>
+void Cvector<T>::add(const T &t)
+{
+  insert(t,0);
+}
+
+template <typename T>
 void Cvector<T>::resize(unsigned int length)
 {
-	Cvector<T> tmp(length);
+	Carray<T> tmp(length);
 	unsigned int n=this->n;
 	
 	

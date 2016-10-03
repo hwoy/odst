@@ -1,7 +1,7 @@
 bin=linklist
-
-CXXFLAGS=-std=c++11 -g -Wall
-LDFLAGS=
+CXX=clang++
+CXXFLAGS=-std=c++11 -g -Wall -pedantic -stdlib=libc++
+LDFLAGS=-stdlib=libc++
 
 
 all: $(bin)

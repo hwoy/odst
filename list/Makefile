@@ -1,6 +1,6 @@
-bin=array
+bin=list
 CXX=clang++
-CXXFLAGS=-std=c++11 -g -Wall -pedantic -stdlib=libc++
+CXXFLAGS=-std=c++11 -g -Wall -stdlib=libc++
 LDFLAGS=-stdlib=libc++
 
 
