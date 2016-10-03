@@ -6,7 +6,7 @@ using namespace std;
 
 static void show(Clist<int> &list)
 {
-	for(int i=0;i<list.getn();i++)
+	for(unsigned int i=0;i<list.getn();i++)
 	  cout << list[i] << endl;
 
 }
