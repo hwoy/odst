@@ -33,6 +33,9 @@ int main()
 	cout << "List Element ::list.insert(10,1)\n" ;
 	show(list);
 
+	list.remove();
+	cout << "List Element ::list.remove()\n" ;
+	show(list);
 	
 	return 0;
 }
