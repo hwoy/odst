@@ -1,4 +1,3 @@
- CXX=clang++
 bin=array
 
 CXXFLAGS=-std=c++11 -g -Wall

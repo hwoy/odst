@@ -1,5 +1,5 @@
 #include "Carray.h"
-#include "Cvector.h"
+#include "Carray.h"
 
 #ifndef _CLINKLIST_H_
 #define _CLINKLIST_H_
@@ -35,8 +35,8 @@ void Cnode<U,N>::setall(Cnode<U,N> *t)
 template <typename T,unsigned int N>
 struct Clinklist
 {
-	Cvector<T*> head;
-	Cvector<T*> tail;
+	Carray<T*,N> head;
+	Carray<T*,N> tail;
 
 	Clinklist();
 	~Clinklist();
@@ -51,13 +51,13 @@ struct Clinklist
 	
 	protected:
 	void destroy(unsigned int index);
-	void assignbe(unsigned int n=N);
+	void clearbe();
 };
 
 template <typename T,unsigned int N>
 Clinklist<T,N>::Clinklist()
 {
-	assignbe(N);
+	clearbe();
 }
 
 template <typename T,unsigned int N>
@@ -135,21 +135,18 @@ template <typename T,unsigned int N>
 void Clinklist<T,N>::destroy()
 {
 	
-	for(unsigned int i=0;i<head.getn();i++)
+	for(unsigned int i=0;i<head.getlength();i++)
 	{
-		if(i==0 || (head[i]!=head[i-1] && tail[i]!=tail[i-1]))
+		if(i==0 || (i>0 && head[i]!=head[i-1] && tail[i]!=tail[i-1]))
 		destroy(i);
 	}
 	
-	assignbe(head.getlength());
+	clearbe();
 }
 
 template <typename T,unsigned int N>
-void Clinklist<T,N>::assignbe(unsigned int n)
+void Clinklist<T,N>::clearbe()
 {
-	
-	head.assign(n);
-	tail.assign(n);
 	
 	for(unsigned int i=0;i<head.getlength();i++)
 	{

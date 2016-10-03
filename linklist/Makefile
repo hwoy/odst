@@ -1,5 +1,3 @@
- 
-CXX=clang++
 bin=linklist
 
 CXXFLAGS=-std=c++11 -g -Wall
