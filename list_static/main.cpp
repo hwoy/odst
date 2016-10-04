@@ -4,7 +4,9 @@
 
 using namespace std;
 
-static void show(Clist_static<int,40> &list)
+typedef Clist_static<int,40> list_t;
+
+static void show(list_t &list)
 {
 	for(unsigned int i=0;i<list.getn();i++)
 	  cout << list[i] << endl;
@@ -13,7 +15,7 @@ static void show(Clist_static<int,40> &list)
 
 int main()
 {
-	Clist_static<int,40> list;
+	list_t list;
 	
 	for(int i=0;i<10;i++)
 	  list<<i;
