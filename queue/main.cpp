@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/Cstack.h"
+#include "../include/Cqueue.h"
 
 
 using namespace std;
@@ -8,19 +8,20 @@ using namespace std;
 
 int main()
 {
-	Cstack<int> stack;
+	Cqueue<int> queue;
 
 	for(int i=0;i<5;i++)
-	stack.push(i);
+	queue.push(i);
 	
-
-	while(stack.getn())
+	
+	while(queue.getn())
 	{
 	  int *s;
-	  s=stack.pop();
+	  s=queue.pop();
 	  cout << *s << endl;
 	  delete s;
 	}
+	
 	
 	
 	return 0;

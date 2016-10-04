@@ -37,6 +37,16 @@ int main()
 	cout << "List Element ::list.remove()\n" ;
 	show(list);
 	
+	cout << "List Element ::push_back\n" ;
+	list.destroy();
+	for(int i=0;i<10;i++)
+	  list.push(i);
+	
+	
+	for(int i=10;i<20;i++)
+	  list.push_back(i);	
+	  show(list);
+	
 	return 0;
 }
 

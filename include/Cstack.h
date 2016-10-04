@@ -7,32 +7,24 @@ template <typename T>
 class Cstack : public Cdynamicarray_base<T>
 {
 	public:
-
-	void push(const T &t);
-	T* pop();
 	
 	Cstack& operator<<(const T &t);
+  
+  	void push(const T &t);
+	T* pop();
 };
 
 
 template <typename T>
 void Cstack<T>::push(const T &t)
 {
-	Cstack<T>::insert(t,Cstack<T>::n);
+	Cdynamicarray_base<T>::push(t,Cstack<T>::n);
 }
 
 template <typename T>
 T* Cstack<T>::pop()
 {
-	T *t;
-	
-	if(!Cstack<T>::n) return nullptr;
-		
-	t=new T;
-	*t=Cstack<T>::t[Cstack<T>::n-1];
-	Cstack<T>::remove(Cstack<T>::n-1);
-	
-	return t;
+    return Cdynamicarray_base<T>::pop(Cstack<T>::n-1);
 }
 
 template <typename T>
