@@ -1,10 +1,10 @@
-#include "Cvector.h"
+#include "Cdynamicarray.h"
 #ifndef _CSTACK_H_
 #define _CSTACK_H_
 
 //===================================================== Cstack =====================================================
-template <typename T,unsigned int N=0>
-class Cstack : public Cvector<T,N>
+template <typename T>
+class Cstack : public Cdynamicarray_base<T>
 {
 	public:
 
@@ -15,28 +15,28 @@ class Cstack : public Cvector<T,N>
 };
 
 
-template <typename T,unsigned int N>
-void Cstack<T,N>::push(const T &t)
+template <typename T>
+void Cstack<T>::push(const T &t)
 {
-	Cstack<T,N>::add(t);
+	Cstack<T>::insert(t,Cstack<T>::n);
 }
 
-template <typename T,unsigned int N>
-T* Cstack<T,N>::pop()
+template <typename T>
+T* Cstack<T>::pop()
 {
 	T *t;
 	
-	if(!Cstack<T,N>::n) return nullptr;
+	if(!Cstack<T>::n) return nullptr;
 		
 	t=new T;
-	*t=Cstack<T,N>::t[0];
-	Cstack<T,N>::remove(0);
+	*t=Cstack<T>::t[Cstack<T>::n-1];
+	Cstack<T>::remove(Cstack<T>::n-1);
 	
 	return t;
 }
 
-template <typename T,unsigned int N>
-Cstack<T,N>& Cstack<T,N>::operator<<(const T &t)
+template <typename T>
+Cstack<T>& Cstack<T>::operator<<(const T &t)
 {
 	push(t);
 	return *this;
