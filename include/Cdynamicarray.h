@@ -24,7 +24,6 @@ class Cdynamicarray_base : public Carray_base<T>
 	protected:
 
 	Cdynamicarray_base& assign(unsigned int length);
-	
 	void resize(unsigned int length);
 	
 	void push(const T &t,unsigned int index);
