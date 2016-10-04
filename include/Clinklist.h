@@ -32,13 +32,14 @@ void Cnode<U,N>::setall(Cnode<U,N> *t)
 		this->t[i]=t;
 }
 
-
 //===================================================== Clinklist_base =====================================================
 template <typename T,unsigned int N>
 struct Clinklist_base
 {
-	Clist<T*> head;
-	Clist<T*> tail;
+	typedef Clist<T*> headtail_t;
+	
+	headtail_t head;
+	headtail_t tail;
 
 	Clinklist_base();
 	
@@ -144,19 +145,47 @@ void Clinklist_base<T,N>::clearbe()
 	}
 }
 
+//===================================================== stuct nodetype =====================================================
+template <typename T>
+struct nodetype
+{
+  typedef Cnode<T,1> singlylinklist;
+  typedef Cnode<T,2> doublylinklist;
+};
+
 //===================================================== Cdoublylinklist =====================================================
 template <typename T>
 struct Cdoublylinklist: public Clinklist_base<T,2>
 {
+  
 	~Cdoublylinklist();
 	
 	void Add(T *t);
 	T& New();
 	
+	T& Insert(T *t,unsigned int index);
+	T& Insert(unsigned int index);
+	
+	T& getNode(unsigned int) const;
+	
+	void Remove(T *t);
+	void Remove(unsigned int index);
+	
+	T* Split(T *t);
+	T* Split(unsigned int index);
+	
 	void Destroy();
 	
 	static const unsigned int next=0;
 	static const unsigned int prev=1;
+	static const unsigned int invalidnode=-1;
+	
+protected:
+  static void Joint(T *t1,T *t2)
+  {
+    if(t1) (*t1)[next]=t2;
+    if(t2) (*t2)[prev]=t1;
+  }
 	
 };
 
@@ -179,6 +208,93 @@ T& Cdoublylinklist<T>::New()
   T *t;
   Add(t=new T);
   return *t;
+}
+
+template <typename T>
+T& Cdoublylinklist<T>::getNode(unsigned int index) const
+{
+  T *tmp;
+  unsigned int i;
+  
+  for(i=0,tmp=Cdoublylinklist<T>::head[next];i<index;i++,tmp=(*tmp)[next])
+  {
+    if(!tmp) break;
+  }
+  
+  return *tmp;
+}
+
+template <typename T>
+T& Cdoublylinklist<T>::Insert(T *t,unsigned int index)
+{
+  T *tleft,*tright;
+  
+  tright=&getNode(index);
+  tleft=(*tright)[prev];
+  
+  Joint(tleft,t);
+  Joint(t,tright);
+  
+  if(tleft==nullptr)
+  {
+    Cdoublylinklist<T>::head[next]=t;
+    Cdoublylinklist<T>::head[prev]=t;
+  }
+  
+  return *t;
+}
+
+template <typename T>
+T& Cdoublylinklist<T>::Insert(unsigned int index)
+{
+  
+  return Insert(new T,index);
+}
+
+template <typename T>
+void Cdoublylinklist<T>::Remove(T *t)
+{
+  delete Split(t);
+}
+
+template <typename T>
+void Cdoublylinklist<T>::Remove(unsigned int index)
+{
+  Remove(&getNode(index));
+}
+
+template <typename T>
+T* Cdoublylinklist<T>::Split(T *t)
+{
+  T *tleft,*tright;
+  
+  tright=(*t)[next];
+  tleft=(*t)[prev];
+  
+  Joint(tleft,tright);
+  
+  if(tleft==nullptr)
+  {
+    Cdoublylinklist<T>::head[next]=tright;
+    Cdoublylinklist<T>::head[prev]=tright;
+  }
+  
+   if(tright==nullptr)
+  {
+    Cdoublylinklist<T>::tail[next]=tleft;
+    Cdoublylinklist<T>::tail[prev]=tleft;
+  }
+  
+  (*t)[next]=nullptr;
+  (*t)[prev]=nullptr;
+
+  return t;
+}
+
+template <typename T>
+T* Cdoublylinklist<T>::Split(unsigned int index)
+{
+  return Split(&getNode(index));
 }
 
 template <typename T>
