@@ -1,8 +1,6 @@
-bin=cirslinklist
+include ../gcc.mk
 
-CXX=g++
-CXXFLAGS=-std=c++11  -pedantic -g -Wall
-LDFLAGS=
+bin=cirslinklist
 
 .PHONY: all clean
 

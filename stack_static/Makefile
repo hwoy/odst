@@ -1,7 +1,7 @@
+include ../clang.mk
+
 bin=stack_static
-CXX=clang++
-CXXFLAGS=-std=c++11 -g -Wall -stdlib=libc++
-LDFLAGS=-stdlib=libc++
+
 
 .PHONY: all clean
 

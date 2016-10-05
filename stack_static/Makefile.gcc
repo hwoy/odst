@@ -1,7 +1,7 @@
-CXX=g++
+include ../gcc.mk
+
 bin=stack_static
-CXXFLAGS=-std=c++11 -g -Wall
-LDFLAGS=
+
 
 .PHONY: all clean
 

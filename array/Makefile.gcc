@@ -1,7 +1,7 @@
+include ../gcc.mk
+
 bin=array
-CXX=g++
-CXXFLAGS=-std=c++11 -g -Wall -pedantic
-LDFLAGS=
+
 
 .PHONY: all clean
 

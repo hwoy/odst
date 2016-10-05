@@ -1,7 +1,7 @@
+include ../clang.mk
+
 bin=queue
-CXX=clang++
-CXXFLAGS=-std=c++11 -pedantic -g -Wall -stdlib=libc++
-LDFLAGS=-stdlib=libc++
+
 
 .PHONY: all clean
 

@@ -1,7 +1,8 @@
-CXX=g++
+include ../gcc.mk
+
+
 bin=stack
-CXXFLAGS=-std=c++11 -pedantic -g -Wall
-LDFLAGS=
+
 
 
 all: $(bin)

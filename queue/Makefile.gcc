@@ -1,7 +1,7 @@
-CXX=g++
+include ../gcc.mk
+
 bin=queue
-CXXFLAGS=-std=c++11 -pedantic -g -Wall
-LDFLAGS=
+
 
 .PHONY: all clean
 

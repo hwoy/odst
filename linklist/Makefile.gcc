@@ -1,8 +1,7 @@
+include ../gcc.mk
+
 bin=linklist
 
-CXX=g++
-CXXFLAGS=-std=c++11  -pedantic -g -Wall
-LDFLAGS=
 
 .PHONY: all clean
 
