@@ -53,6 +53,8 @@ struct Clinklist_base
 	protected:
 	void Destroy(headtail_t &ht,unsigned int index);
 	void clearbe();
+	T& getNode(const headtail_t &ht,unsigned int direct,unsigned int index) const;
+	unsigned int getIndex(const headtail_t &ht,unsigned int direct,const T *t) const;
 };
 
 template <typename T,unsigned int N>
@@ -145,6 +147,34 @@ void Clinklist_base<T,N>::clearbe()
 	}
 }
 
+template <typename T,unsigned int N>
+T& Clinklist_base<T,N>::getNode(const headtail_t &ht,unsigned int direct,unsigned int index) const
+{
+  T *tmp;
+  unsigned int i;
+  
+  for(i=0,tmp=ht[direct];i<index;i++,tmp=(*tmp)[direct])
+  {
+    if(!tmp) break;
+  }
+  
+  return *tmp;
+}
+
+template <typename T,unsigned int N>
+unsigned int Clinklist_base<T,N>::getIndex(const headtail_t &ht,unsigned int direct,const T *t) const
+{
+  T *tmp;
+  unsigned int i;
+  
+  for(i=0,tmp=ht[direct];tmp!=t;i++,tmp=(*tmp)[direct])
+  {
+    if(!tmp) { i=-1;break;}
+  }
+  
+  return i;
+}
+
 //===================================================== stuct nodetype =====================================================
 template <typename T>
 struct nodetype
@@ -167,6 +197,7 @@ struct Cdoublylinklist: public Clinklist_base<T,2>
 	T& Insert(unsigned int index);
 	
 	T& getNode(unsigned int) const;
+	unsigned int getIndex(const T *t) const;
 	
 	void Remove(T *t);
 	void Remove(unsigned int index);
@@ -213,15 +244,13 @@ T& Cdoublylinklist<T>::New()
 template <typename T>
 T& Cdoublylinklist<T>::getNode(unsigned int index) const
 {
-  T *tmp;
-  unsigned int i;
-  
-  for(i=0,tmp=Cdoublylinklist<T>::head[next];i<index;i++,tmp=(*tmp)[next])
-  {
-    if(!tmp) break;
-  }
-  
-  return *tmp;
+  return Clinklist_base<T,2>::getNode(Cdoublylinklist<T>::head,next,index);
+}
+
+template <typename T>
+unsigned int Cdoublylinklist<T>::getIndex(const T *t) const
+{
+  return Clinklist_base<T,2>::getIndex(Cdoublylinklist<T>::head,next,t);
 }
 
 template <typename T>
@@ -308,9 +337,7 @@ void Cdoublylinklist<T>::Destroy()
 template <typename T>
 struct Csinglylinklist: public Clinklist_base<T,1>
 {
-	unsigned int direct;
 	
-	Csinglylinklist();
 	~Csinglylinklist();
 	
 	void Add(T *t);
@@ -336,29 +363,23 @@ struct Csinglylinklist: public Clinklist_base<T,1>
 protected:
   void Joint(T *t1,T *t2)
   {
-    if(t1) (*t1)[direct]=t2;
+    if(t1) (*t1)[direction]=t2;
   }
 	
 };
 
 
-template <typename T>
-Csinglylinklist<T>::Csinglylinklist()
-{
-	direct=direction;
-}
-
 
 template <typename T>
 Csinglylinklist<T>::~Csinglylinklist()
 {
-	Clinklist_base<T,1>::Destroy(Csinglylinklist::head,direct);
+	Clinklist_base<T,1>::Destroy(Csinglylinklist::head,direction);
 }
 
 template <typename T>
 void Csinglylinklist<T>::Add(T *t)
 {
-	Csinglylinklist<T>::Addnext(t,direct);
+	Csinglylinklist<T>::Addnext(t,direction);
 }
 
 template <typename T>
@@ -372,29 +393,13 @@ T& Csinglylinklist<T>::New()
 template <typename T>
 T& Csinglylinklist<T>::getNode(unsigned int index) const
 {
-  T *tmp;
-  unsigned int i;
-  
-  for(i=0,tmp=Csinglylinklist<T>::head[0];i<index;i++,tmp=(*tmp)[direct])
-  {
-    if(!tmp) break;
-  }
-  
-  return *tmp;
+  return Clinklist_base<T,1>::getNode(Csinglylinklist<T>::head,direction,index);
 }
 
 template <typename T>
 unsigned int Csinglylinklist<T>::getIndex(const T *t) const
 {
-  T *tmp;
-  unsigned int i;
-  
-  for(i=0,tmp=Csinglylinklist<T>::head[0];tmp!=t;i++,tmp=(*tmp)[direct])
-  {
-    if(!tmp) { i=-1;break;}
-  }
-  
-  return i;
+  return Clinklist_base<T,1>::getIndex(Csinglylinklist<T>::head,direction,t);
 }
 
 template <typename T>
@@ -430,23 +435,23 @@ T* Csinglylinklist<T>::Split(T *t)
 {
   T *tleft,*tright;
   
-  tleft=(t==Csinglylinklist<T>::head[0])?nullptr:&getNode(getIndex(t)-1);
-  tright=(t==Csinglylinklist<T>::tail[0])?nullptr:(*t)[direction];
+  tleft=(t==Csinglylinklist<T>::head[direction])?nullptr:&getNode(getIndex(t)-1);
+  tright=(t==Csinglylinklist<T>::tail[direction])?nullptr:(*t)[direction];
   
   
   Joint(tleft,tright);
   
   if(tleft==nullptr)
   {
-    Csinglylinklist<T>::head[0]=tright;
+    Csinglylinklist<T>::head[direction]=tright;
   }
   
    if(tright==nullptr)
   {
-    Csinglylinklist<T>::tail[0]=tleft;
+    Csinglylinklist<T>::tail[direction]=tleft;
   }
 
-  (*t)[direct]=nullptr;
+  (*t)[direction]=nullptr;
 
   return t;
 }
@@ -472,7 +477,7 @@ void Csinglylinklist<T>::Remove(unsigned int index)
 template <typename T>
 void Csinglylinklist<T>::Destroy()
 {
-	if(Csinglylinklist<T>::head[0] && Csinglylinklist<T>::tail[0]) Clinklist_base<T,1>::Destroy(Clinklist_base<T,1>::head,direction);
+	if(Csinglylinklist<T>::head[direction] && Csinglylinklist<T>::tail[direction]) Clinklist_base<T,1>::Destroy(Clinklist_base<T,1>::head,direction);
 	Csinglylinklist<T>::clearbe();
 }
 #endif
