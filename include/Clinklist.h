@@ -51,7 +51,7 @@ struct Clinklist_base
 	
 	
 	protected:
-	void Destroy(unsigned int index);
+	void Destroy(headtail_t &ht,unsigned int index);
 	void clearbe();
 };
 
@@ -121,11 +121,11 @@ T& Clinklist_base<T,N>::Newprev(unsigned int index)
 }
 
 template <typename T,unsigned int N>
-void Clinklist_base<T,N>::Destroy(unsigned int index)
+void Clinklist_base<T,N>::Destroy(headtail_t &ht,unsigned int index)
 {
 	T *temp1,*temp2;
 	
-	for(temp1=head[index];temp1;)
+	for(temp1=ht[index];temp1;)
 	{
 		temp2=temp1;
 		temp1=(*temp1)[index];
@@ -300,8 +300,179 @@ T* Cdoublylinklist<T>::Split(unsigned int index)
 template <typename T>
 void Cdoublylinklist<T>::Destroy()
 {
-	if(Cdoublylinklist<T>::head[next] && Cdoublylinklist<T>::tail[next]) Clinklist_base<T,2>::Destroy(next);
+	if(Cdoublylinklist<T>::head[next] && Cdoublylinklist<T>::tail[next]) Clinklist_base<T,2>::Destroy(Clinklist_base<T,2>::head,next);
 	Cdoublylinklist<T>::clearbe();
 }
 
+//===================================================== Csinglylinklist =====================================================
+template <typename T>
+struct Csinglylinklist: public Clinklist_base<T,1>
+{
+	unsigned int direct;
+	
+	Csinglylinklist();
+	~Csinglylinklist();
+	
+	void Add(T *t);
+	T& New();
+	
+	T& getNode(unsigned int index) const;
+	unsigned int getIndex(const T *t) const;
+	
+	T& Insert(T *t,unsigned int index);
+	T& Insert(unsigned int index);
+	
+	void Remove(T *t);
+	void Remove(unsigned int index);
+	
+	T* Split(T *t);
+	T* Split(unsigned int index);
+	
+	void Destroy();
+	
+	static const unsigned int direction=0;
+	
+	
+protected:
+  void Joint(T *t1,T *t2)
+  {
+    if(t1) (*t1)[direct]=t2;
+  }
+	
+};
+
+
+template <typename T>
+Csinglylinklist<T>::Csinglylinklist()
+{
+	direct=direction;
+}
+
+
+template <typename T>
+Csinglylinklist<T>::~Csinglylinklist()
+{
+	Clinklist_base<T,1>::Destroy(Csinglylinklist::head,direct);
+}
+
+template <typename T>
+void Csinglylinklist<T>::Add(T *t)
+{
+	Csinglylinklist<T>::Addnext(t,direct);
+}
+
+template <typename T>
+T& Csinglylinklist<T>::New()
+{
+	T *t;
+	Add(t=new T);
+	return *t;
+}
+
+template <typename T>
+T& Csinglylinklist<T>::getNode(unsigned int index) const
+{
+  T *tmp;
+  unsigned int i;
+  
+  for(i=0,tmp=Csinglylinklist<T>::head[0];i<index;i++,tmp=(*tmp)[direct])
+  {
+    if(!tmp) break;
+  }
+  
+  return *tmp;
+}
+
+template <typename T>
+unsigned int Csinglylinklist<T>::getIndex(const T *t) const
+{
+  T *tmp;
+  unsigned int i;
+  
+  for(i=0,tmp=Csinglylinklist<T>::head[0];tmp!=t;i++,tmp=(*tmp)[direct])
+  {
+    if(!tmp) { i=-1;break;}
+  }
+  
+  return i;
+}
+
+template <typename T>
+T& Csinglylinklist<T>::Insert(T *t,unsigned int index)
+{
+  T *tleft,*tright;
+  
+  tright=&getNode(index);
+  
+  if(tright==Csinglylinklist<T>::head[0])
+  {
+	  Joint(t,tright);
+	  Csinglylinklist<T>::head[0]=t;
+  }
+  else
+  {
+	tleft=&getNode(index-1);
+	Joint(tleft,t);
+	Joint(t,tright);
+  }
+  
+  return *t;
+}
+
+template <typename T>
+T& Csinglylinklist<T>::Insert(unsigned int index)
+{
+	return Insert(new T,index);
+}
+
+template <typename T>
+T* Csinglylinklist<T>::Split(T *t)
+{
+  T *tleft,*tright;
+  
+  tleft=(t==Csinglylinklist<T>::head[0])?nullptr:&getNode(getIndex(t)-1);
+  tright=(t==Csinglylinklist<T>::tail[0])?nullptr:(*t)[direction];
+  
+  
+  Joint(tleft,tright);
+  
+  if(tleft==nullptr)
+  {
+    Csinglylinklist<T>::head[0]=tright;
+  }
+  
+   if(tright==nullptr)
+  {
+    Csinglylinklist<T>::tail[0]=tleft;
+  }
+
+  (*t)[direct]=nullptr;
+
+  return t;
+}
+
+template <typename T>
+T* Csinglylinklist<T>::Split(unsigned int index)
+{
+	return Split(&getNode(index));
+}
+
+template <typename T>
+void Csinglylinklist<T>::Remove(T *t)
+{
+  delete Split(t);
+}
+
+template <typename T>
+void Csinglylinklist<T>::Remove(unsigned int index)
+{
+  Remove(&getNode(index));
+}
+
+template <typename T>
+void Csinglylinklist<T>::Destroy()
+{
+	if(Csinglylinklist<T>::head[0] && Csinglylinklist<T>::tail[0]) Clinklist_base<T,1>::Destroy(Clinklist_base<T,1>::head,direction);
+	Csinglylinklist<T>::clearbe();
+}
 #endif

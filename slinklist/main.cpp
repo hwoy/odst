@@ -4,19 +4,19 @@
 #define NEXT linklist_t::next
 #define PREV linklist_t::prev
 
-typedef nodetype<int>::doublylinklist node_t;
-typedef Cdoublylinklist<node_t> linklist_t;
+typedef nodetype<int>::singlylinklist node_t;
+typedef Csinglylinklist<node_t> linklist_t;
 typedef linklist_t::headtail_t headtail_t;
 
 using namespace std;
 
 
-void show(headtail_t  &ht,unsigned int index)
+void show(linklist_t  &ll)
 {
 	node_t *temp1;
 	int i;
 	
-	for(i=0,temp1=ht[index];temp1;temp1=(*temp1)[index],i++)
+	for(i=0,temp1=ll.head[0];temp1;temp1=(*temp1)[0],i++)
 	{
 		cout<< temp1->data << endl;
 	}	
@@ -35,45 +35,33 @@ int main()
 	
 	cout << "Forward\n";
 	
-	show(linklist.head,NEXT);
-	
-	cout << "Backward\n";
-	
-	show(linklist.tail,PREV);
-	
-	
-	cout << endl;
-	
-	for(i=0;i<10;i++)
-	cout << "linklist.getNode(" << i << ") = " << linklist.getNode(i).data << endl;
+	show(linklist);
 	
 	linklist.Insert(1).data=12345;
 	cout << "linklist.Insert(1).data=12345\n";
-	show(linklist.head,NEXT);
+	show(linklist);
 
 	linklist.Insert(0).data=45678;
 	cout << "linklist.Insert(0).data=45678\n";
-	show(linklist.head,NEXT);
+	show(linklist);
 	
 	linklist.Insert(11).data=90123;
 	cout << "linklist.Insert(11).data=90123\n";
-	show(linklist.head,NEXT);
-	cout << "Backward\n";	
-	show(linklist.tail,PREV);
-	
+	show(linklist);
+
 	linklist.Remove(12);
 	cout << "linklist.Remove(12)\n";
-	show(linklist.head,NEXT);
-	cout << "Backward\n";	
-	show(linklist.tail,PREV);
+	show(linklist);
+
 	
 	linklist.Remove((unsigned int)0);
 	cout << "linklist.Remove(0)\n";
-	show(linklist.head,NEXT);
-	cout << "Backward\n";	
-	show(linklist.tail,PREV);
-	
-	
+	show(linklist);
+
+	linklist.Remove((unsigned int)0);
+	cout << "linklist.Remove(0)\n";
+	show(linklist);
+
 	linklist.Destroy();
 	for(i=0;i<10;i++)
 	{
@@ -88,23 +76,13 @@ int main()
 	
 	cout << "linklist Forward\n";
 	
-	show(linklist.head,NEXT);
-	
-	cout << "linklist Backward\n";
-	
-	show(linklist.tail,PREV);
+	show(linklist);
 	
 	
 	cout << "ll2 Forward\n";
 	
-	show(ll2.head,NEXT);
+	show(ll2);
 	
-	cout << "ll2 Backward\n";
-	
-	show(ll2.tail,PREV);
-	
-	
-
 	return 0;
 }
 
