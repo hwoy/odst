@@ -19,7 +19,7 @@ class Cstaticarray_base : public Carray_base<T>
 	
 	
 	void destroy();
-	Cstaticarray_base& assign(unsigned int length);
+	Cstaticarray_base& assign(unsigned int length=N);
 	
 	
 	protected:

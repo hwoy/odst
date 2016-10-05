@@ -1,9 +1,9 @@
 .PHONY: all clean \
 cirlinklist cirslinklist linklist list \
-list_static queue queue_static slinklist stack stack_static
+list_static queue queue_static slinklist stack stack_static example
 
 all: cirlinklist cirslinklist linklist list \
-list_static queue queue_static slinklist stack stack_static
+list_static queue queue_static slinklist stack stack_static example
 
 cirlinklist:
 	make -C cirlinklist
@@ -25,6 +25,8 @@ stack:
 	make -C stack
 stack_static:
 	make -C stack_static
+example:
+	make -C example
 
 clean:
 	make -C cirlinklist clean ; \
@@ -37,5 +39,6 @@ clean:
 	make -C slinklist clean ; \
 	make -C stack clean ; \
 	make -C stack_static clean ; \
+	make -C example clean
 	
 
