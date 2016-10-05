@@ -40,7 +40,7 @@ int main(void)
 		i=random()%101;
 		dec2base(i,2,list);
 		show(i,list);
-		list.assign();
+		list.setn(0);
 	}
 	
 	return 0;

@@ -21,6 +21,8 @@ class Cstaticarray_base : public Carray_base<T>
 	void destroy();
 	Cstaticarray_base& assign(unsigned int length=N);
 	
+	void setn(unsigned int n);
+	
 	
 	protected:
 
@@ -128,6 +130,11 @@ T* Cstaticarray_base<T,N>::pop(unsigned int index)
 }
 
 
+template <typename T,unsigned int N>
+void Cstaticarray_base<T,N>::setn(unsigned int n)
+{
+	this->n=n;
+}
 
 #endif
 
