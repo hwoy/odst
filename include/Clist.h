@@ -1,27 +1,26 @@
-#include "Cdynamicarray.h"
 #ifndef _CLIST_H_
 #define _CLIST_H_
 
-//===================================================== Clist =====================================================
-template <typename T>
-class Clist : public Cdynamicarray_base<T>
+//===================================================== Clist_interface =====================================================
+template <typename T,typename U>
+class Clist_interface : public T
 {
 
 	
 	public:
 
 	
-	Clist& operator<<(const T &t);
+	Clist_interface& operator<<(const U &u);
 	
-	void add(const T &t);
+	void add(const U &u);
 	void remove(unsigned int index);
 	void remove();
 	
-	void push(const T &t);
-	T* pop();
+	void push(const U &u);
+	U* pop();
 
-	void push_back(const T &t);
-	T* pop_back();
+	void push_back(const U &u);
+	U* pop_back();
 	
 		
 	
@@ -29,57 +28,56 @@ class Clist : public Cdynamicarray_base<T>
 
 
 
-template <typename T>
-void Clist<T>::add(const T &t)
+template <typename T,typename U>
+void Clist_interface<T,U>::add(const U &u)
 {
-  Clist<T>::insert(t,Clist<T>::n);
+  T::insert(u,T::n);
 }
 
 
-template <typename T>
-void Clist<T>::remove(unsigned int index)
+template <typename T,typename U>
+void Clist_interface<T,U>::remove(unsigned int index)
 {
-  Cdynamicarray_base<T>::remove(index);
+  T::remove(index);
 }
 
-template <typename T>
-void Clist<T>::remove()
+template <typename T,typename U>
+void Clist_interface<T,U>::remove()
 {
-  Cdynamicarray_base<T>::remove(Clist<T>::n-1);
+  T::remove(T::n-1);
 }
 
 
-template <typename T>
-Clist<T>& Clist<T>::operator<<(const T &t)
+template <typename T,typename U>
+Clist_interface<T,U>& Clist_interface<T,U>::operator<<(const U &u)
 {
-  add(t);
+  add(u);
   return *this;
 }
 
-template <typename T>
-void Clist<T>::push(const T &t)
+template <typename T,typename U>
+void Clist_interface<T,U>::push(const U &u)
 {
-  Cdynamicarray_base<T>::push(t,Clist<T>::n);
+  T::push(u,T::n);
 }
 
-template <typename T>
-T* Clist<T>::pop()
+template <typename T,typename U>
+U* Clist_interface<T,U>::pop()
 {
-  return Cdynamicarray_base<T>::pop(Clist<T>::n-1);
+  return T::pop(T::n-1);
 }
 
-template <typename T>
-void Clist<T>::push_back(const T &t)
+template <typename T,typename U>
+void Clist_interface<T,U>::push_back(const U &u)
 {
-  Cdynamicarray_base<T>::push(t,0);
+  T::push(u,0);
 }
 
-template <typename T>
-T* Clist<T>::pop_back()
+template <typename T,typename U>
+U* Clist_interface<T,U>::pop_back()
 {
-  return Cdynamicarray_base<T>::pop(0);
+  return T::pop(0);
 }
-
 #endif
 
 

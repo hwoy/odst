@@ -1,40 +1,40 @@
-#include "Cdynamicarray.h"
 #ifndef _CQUEUE_H_
 #define _CQUEUE_H_
 
-//===================================================== Cqueue =====================================================
-template <typename T>
-class Cqueue : public Cdynamicarray_base<T>
+//===================================================== Cqueue_interface =====================================================
+
+
+template <typename T,typename U>
+class Cqueue_interface : public T
 {
 	public:
 
-	void push(const T &t);
-	T* pop();
+	void push(const U &u);
+	U* pop();
 	
-	Cqueue& operator<<(const T &t);
+	Cqueue_interface& operator<<(const U &u);
 };
 
 
-template <typename T>
-void Cqueue<T>::push(const T &t)
+template <typename T,typename U>
+void Cqueue_interface<T,U>::push(const U &u)
 {
-	Cdynamicarray_base<T>::push(t,Cqueue<T>::n);
+	T::push(u,Cqueue_interface<T,U>::n);
 }
 
-template <typename T>
-T* Cqueue<T>::pop()
+template <typename T,typename U>
+U* Cqueue_interface<T,U>::pop()
 {
 	
-	return Cdynamicarray_base<T>::pop(0);
+	return T::pop(0);
 }
 
-template <typename T>
-Cqueue<T>& Cqueue<T>::operator<<(const T &t)
+template <typename T,typename U>
+Cqueue_interface<T,U>& Cqueue_interface<T,U>::operator<<(const U &u)
 {
-	push(t);
+	push(u);
 	return *this;
 }
-
 
 #endif
 

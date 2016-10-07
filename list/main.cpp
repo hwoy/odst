@@ -1,10 +1,13 @@
 #include <iostream>
+#include "../include/Cdynamicarray.h"
 #include "../include/Clist.h"
 
 
 using namespace std;
 
-static void show(Clist<int> &list)
+typedef Clist_interface<Cdynamicarray_base<int>,int> list_t;
+
+static void show(list_t &list)
 {
 	for(unsigned int i=0;i<list.getn();i++)
 	  cout << list[i] << endl;
@@ -13,7 +16,7 @@ static void show(Clist<int> &list)
 
 int main()
 {
-	Clist<int> list;
+	list_t list;
 	
 	for(int i=0;i<10;i++)
 	  list<<i;

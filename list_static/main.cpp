@@ -1,10 +1,12 @@
 #include <iostream>
-#include "../include/Clist_static.h"
+#include "../include/Cstaticarray.h"
+#include "../include/Clist.h"
 
 
 using namespace std;
 
-typedef Clist_static<int,40> list_t;
+typedef Clist_interface<Cstaticarray_base<int,40>,int> list_t;
+
 
 static void show(list_t &list)
 {

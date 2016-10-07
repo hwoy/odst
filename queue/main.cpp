@@ -1,14 +1,15 @@
 #include <iostream>
+#include "../include/Cdynamicarray.h"
 #include "../include/Cqueue.h"
 
 
 using namespace std;
 
-
+typedef Cqueue_interface<Cdynamicarray_base<int>,int> queue_t;
 
 int main()
 {
-	Cqueue<int> queue;
+	queue_t queue;
 
 	for(int i=0;i<5;i++)
 	queue.push(i);

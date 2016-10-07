@@ -1,14 +1,15 @@
 #include <iostream>
-#include "../include/Cstack_static.h"
+#include "../include/Cstaticarray.h"
+#include "../include/Cstack.h"
 
 
 using namespace std;
 
-
+typedef Cstack_interface<Cstaticarray_base<int,10>,int> stack_t;
 
 int main()
 {
-	Cstack_static<int,10> stack;
+	stack_t stack;
 
 	for(int i=0;i<stack.getlength();i++)
 	stack.push(i);

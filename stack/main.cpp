@@ -1,14 +1,16 @@
 #include <iostream>
+#include "../include/Cdynamicarray.h"
 #include "../include/Cstack.h"
 
 
 using namespace std;
 
+typedef Cstack_interface<Cdynamicarray_base<int>,int> stack_t;
 
 
 int main()
 {
-	Cstack<int> stack;
+	stack_t stack;
 
 	for(int i=0;i<5;i++)
 	stack.push(i);

@@ -1,39 +1,37 @@
-#include "Cdynamicarray.h"
 #ifndef _CSTACK_H_
 #define _CSTACK_H_
 
-//===================================================== Cstack =====================================================
-template <typename T>
-class Cstack : public Cdynamicarray_base<T>
+//===================================================== Cstack_interface =====================================================
+template <typename T,typename U>
+class Cstack_interface : public T
 {
 	public:
 	
-	Cstack& operator<<(const T &t);
+	Cstack_interface& operator<<(const U &u);
   
-  	void push(const T &t);
-	T* pop();
+  	void push(const U &u);
+	U* pop();
 };
 
 
-template <typename T>
-void Cstack<T>::push(const T &t)
+template <typename T,typename U>
+void Cstack_interface<T,U>::push(const U &u)
 {
-	Cdynamicarray_base<T>::push(t,Cstack<T>::n);
+	T::push(u,Cstack_interface<T,U>::n);
 }
 
-template <typename T>
-T* Cstack<T>::pop()
+template <typename T,typename U>
+U* Cstack_interface<T,U>::pop()
 {
-    return Cdynamicarray_base<T>::pop(Cstack<T>::n-1);
+    return T::pop(Cstack_interface<T,U>::n-1);
 }
 
-template <typename T>
-Cstack<T>& Cstack<T>::operator<<(const T &t)
+template <typename T,typename U>
+Cstack_interface<T,U>& Cstack_interface<T,U>::operator<<(const U &u)
 {
-	push(t);
+	push(u);
 	return *this;
 }
-
 
 #endif
 

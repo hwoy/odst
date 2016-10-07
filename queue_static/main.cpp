@@ -1,14 +1,15 @@
 #include <iostream>
-#include "../include/Cqueue_static.h"
+#include "../include/Cstaticarray.h"
+#include "../include/Cqueue.h"
 
 
 using namespace std;
 
-
+typedef Cqueue_interface<Cstaticarray_base<int,10>,int> queue_t;
 
 int main()
 {
-	Cqueue_static<int,10> queue;
+	queue_t queue;
 
 	for(int i=0;i<queue.getlength();i++)
 	queue.push(i);

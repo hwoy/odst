@@ -1,9 +1,10 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
-#include "../include/Clist_static.h"
+#include "../include/Cstaticarray.h"
+#include "../include/Clist.h"
 
-typedef Clist_static<unsigned int,16> list_t;
+typedef Clist_interface<Cstaticarray_base<unsigned int,16>,unsigned int> list_t;
 
 static void dec2base(unsigned int num,unsigned int base,list_t &list)
 {

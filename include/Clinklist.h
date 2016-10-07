@@ -1,3 +1,4 @@
+#include "Cdynamicarray.h"
 #include "Clist.h"
 
 
@@ -36,7 +37,7 @@ void Cnode<U,N>::setall(Cnode<U,N> *t)
 template <typename T,unsigned int N>
 struct Clinklist_base
 {
-	typedef Clist<T*> headtail_t;
+	typedef Clist_interface<Cdynamicarray_base<T*>,T*> headtail_t;
 	
 	headtail_t head;
 	headtail_t tail;

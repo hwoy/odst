@@ -10,8 +10,8 @@ all: $(bin)
 $(bin): main.o
 	$(CXX) $(LDFLAGS) -o $(bin) main.o
 
-main.o: main.cpp ../include/Cstack.h ../include/Cdynamicarray.h \
- ../include/Carray.h
+main.o: main.cpp ../include/Cdynamicarray.h ../include/Carray.h \
+ ../include/Cstack.h
 
 clean:
 	rm -f *.o $(bin)
