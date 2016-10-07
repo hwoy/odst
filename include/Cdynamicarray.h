@@ -19,7 +19,7 @@ class Cdynamicarray_base : public Carray_base<T>
 	void remove(unsigned int index);			//interface
 	
 	
-	void destroy();
+	void destroy();								//destroy
 	
 	
 	protected:

@@ -28,6 +28,8 @@ int main()
 
 	linklist_t linklist,ll2;
 	
+	ll2.Insert(new node_t,0);
+	
 	for(i=0;i<10;i++)
 	{
 	  linklist.New().data=i;

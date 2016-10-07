@@ -17,13 +17,13 @@ class Cstack_interface : public T
 template <typename T,typename U>
 void Cstack_interface<T,U>::push(const U &u)
 {
-	T::insert(u,Cstack_interface<T,U>::n);
+	T::insert(u,Cstack_interface<T,U>::getn());
 }
 
 template <typename T,typename U>
 U* Cstack_interface<T,U>::pop()
 {
-    return T::split(Cstack_interface<T,U>::n-1);
+    return T::split(Cstack_interface<T,U>::getn()-1);
 }
 
 template <typename T,typename U>

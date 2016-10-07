@@ -1,9 +1,13 @@
 .PHONY: all clean \
 cirlinklist cirslinklist linklist list \
-list_static queue queue_static slinklist stack stack_static example
+list_static queue queue_static slinklist stack stack_static example \
+list_dlinklist list_slinklist stack_dlinklist stack_slinklist \
+queue_dlinklist queue_slinklist 
 
 all: cirlinklist cirslinklist linklist list \
-list_static queue queue_static slinklist stack stack_static example
+list_static queue queue_static slinklist stack stack_static example \
+list_dlinklist list_slinklist stack_dlinklist stack_slinklist \
+queue_dlinklist queue_slinklist 
 
 cirlinklist:
 	make -C cirlinklist -f Makefile.gcc
@@ -27,6 +31,20 @@ stack_static:
 	make -C stack_static -f Makefile.gcc
 example:
 	make -C example -f Makefile.gcc
+example:
+	make -C example
+list_dlinklist:
+	make -C list_dlinklist -f Makefile.gcc
+list_slinklist:
+	make -C list_slinklist -f Makefile.gcc
+stack_dlinklist:
+	make -C stack_dlinklist -f Makefile.gcc
+stack_slinklist:
+	make -C stack_slinklist -f Makefile.gcc
+queue_dlinklist:
+	make -C queue_dlinklist -f Makefile.gcc
+queue_slinklist:
+	make -C queue_slinklist -f Makefile.gcc
 
 clean:
 	make -C cirlinklist  -f Makefile.gcc clean ; \
@@ -40,5 +58,11 @@ clean:
 	make -C stack  -f Makefile.gcc clean ; \
 	make -C stack_static  -f Makefile.gcc clean ; \
 	make -C example clean -f Makefile.gcc clean
+	make -C list_dlinklist  -f Makefile.gcc clean ; \
+	make -C list_slinklist   -f Makefile.gcc clean ; \
+	make -C stack_dlinklist   -f Makefile.gcc clean ; \
+	make -C stack_slinklist   -f Makefile.gcc clean ; \
+	make -C queue_dlinklist  -f Makefile.gcc clean ; \
+	make -C queue_slinklist   -f Makefile.gcc clean
 	
 

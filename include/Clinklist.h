@@ -259,7 +259,15 @@ T& Cdoublylinklist<T>::Insert(T *t,unsigned int index)
 {
   T *tleft,*tright;
   
-  tright=&getNode(index);
+
+  if(!(tright=&getNode(index)))
+  {
+	  Add(t);
+  }
+  
+  else
+  {
+  
   tleft=(*tright)[prev];
   
   Joint(tleft,t);
@@ -270,6 +278,9 @@ T& Cdoublylinklist<T>::Insert(T *t,unsigned int index)
     Cdoublylinklist<T>::head[next]=t;
     Cdoublylinklist<T>::head[prev]=t;
   }
+  
+}
+  
   
   return *t;
 }

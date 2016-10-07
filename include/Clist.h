@@ -31,7 +31,7 @@ class Clist_interface : public T
 template <typename T,typename U>
 void Clist_interface<T,U>::add(const U &u)
 {
-  T::insert(u,T::n);
+  T::insert(u,T::getn());
 }
 
 
@@ -44,7 +44,7 @@ void Clist_interface<T,U>::remove(unsigned int index)
 template <typename T,typename U>
 void Clist_interface<T,U>::remove()
 {
-  T::remove(T::n-1);
+  T::remove(T::getn()-1);
 }
 
 
@@ -58,13 +58,13 @@ Clist_interface<T,U>& Clist_interface<T,U>::operator<<(const U &u)
 template <typename T,typename U>
 void Clist_interface<T,U>::push(const U &u)
 {
-  T::insert(u,T::n);
+  T::insert(u,T::getn());
 }
 
 template <typename T,typename U>
 U* Clist_interface<T,U>::pop()
 {
-  return T::split(T::n-1);
+  return T::split(T::getn()-1);
 }
 
 template <typename T,typename U>
