@@ -58,25 +58,25 @@ Clist_interface<T,U>& Clist_interface<T,U>::operator<<(const U &u)
 template <typename T,typename U>
 void Clist_interface<T,U>::push(const U &u)
 {
-  T::push(u,T::n);
+  T::insert(u,T::n);
 }
 
 template <typename T,typename U>
 U* Clist_interface<T,U>::pop()
 {
-  return T::pop(T::n-1);
+  return T::split(T::n-1);
 }
 
 template <typename T,typename U>
 void Clist_interface<T,U>::push_back(const U &u)
 {
-  T::push(u,0);
+  T::insert(u,0);
 }
 
 template <typename T,typename U>
 U* Clist_interface<T,U>::pop_back()
 {
-  return T::pop(0);
+  return T::split(0);
 }
 #endif
 

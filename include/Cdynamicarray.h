@@ -13,9 +13,10 @@ class Cdynamicarray_base : public Carray_base<T>
 	Cdynamicarray_base();
 	~Cdynamicarray_base();
 	
-	unsigned int getn() const;
-	void insert(const T &t,unsigned int index);
-	void remove(unsigned int index);	
+	unsigned int getn() const;					//interface
+	
+	void insert(const T &t,unsigned int index); //interface
+	void remove(unsigned int index);			//interface
 	
 	
 	void destroy();
@@ -26,8 +27,7 @@ class Cdynamicarray_base : public Carray_base<T>
 	Cdynamicarray_base& assign(unsigned int length);
 	void resize(unsigned int length);
 	
-	void push(const T &t,unsigned int index);
-	T* pop(unsigned int index);
+	T* split(unsigned int index);				//interface
 	
 };
 
@@ -130,14 +130,9 @@ Cdynamicarray_base<T>& Cdynamicarray_base<T>::assign(unsigned int length)
 	return *this;
 }
 
-template <typename T>
-void Cdynamicarray_base<T>::push(const T &t,unsigned int index)
-{
-	insert(t,index);
-}
 
 template <typename T>
-T* Cdynamicarray_base<T>::pop(unsigned int index)
+T* Cdynamicarray_base<T>::split(unsigned int index)
 {
 	T *t;
 	

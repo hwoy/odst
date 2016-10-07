@@ -14,21 +14,22 @@ class Cstaticarray_base : public Carray_base<T>
 	~Cstaticarray_base();
 	
 	unsigned int getn() const;
-	void insert(const T &t,unsigned int index);
-	void remove(unsigned int index);	
+	void setn(unsigned int n);
+	
+	
+	void insert(const T &t,unsigned int index);		//interface
+	void remove(unsigned int index);				//interface	
 	
 	
 	void destroy();
 	Cstaticarray_base& assign(unsigned int length=N);
 	
-	void setn(unsigned int n);
 	
 	
 	protected:
 
 	
-	void push(const T &t,unsigned int index);
-	T* pop(unsigned int index);
+	T* split(unsigned int index);					//interface
 	
 };
 
@@ -109,14 +110,9 @@ Cstaticarray_base<T,N>& Cstaticarray_base<T,N>::assign(unsigned int length)
 	return *this;
 }
 
-template <typename T,unsigned int N>
-void Cstaticarray_base<T,N>::push(const T &t,unsigned int index)
-{
-	insert(t,index);
-}
 
 template <typename T,unsigned int N>
-T* Cstaticarray_base<T,N>::pop(unsigned int index)
+T* Cstaticarray_base<T,N>::split(unsigned int index)
 {
 	T *t;
 	

@@ -14,7 +14,7 @@ class Carray_base
 	
 	Carray_base();
 	
-	T& operator[](unsigned int index) const;
+	T& operator[](unsigned int index) const;	//interface
 	
 	unsigned int getlength() const;
 	
