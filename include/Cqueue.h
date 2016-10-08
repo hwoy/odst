@@ -19,7 +19,7 @@ class Cqueue_interface : public T
 template <typename T,typename U>
 void Cqueue_interface<T,U>::push(const U &u)
 {
-	T::insert(u,Cqueue_interface<T,U>::n);
+	T::insert(u,Cqueue_interface<T,U>::getn());
 }
 
 template <typename T,typename U>

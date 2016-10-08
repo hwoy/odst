@@ -24,6 +24,8 @@ class Clist_interface : public T
 	void push_back(const U &u);
 	U* pop_back();
 	
+	void insert(const U &u ,unsigned int index);
+	
 };
 
 
@@ -83,6 +85,12 @@ template <typename T,typename U>
 U* Clist_interface<T,U>::pop_back()
 {
   return T::split(0);
+}
+
+template <typename T,typename U>
+void Clist_interface<T,U>::insert(const U &u ,unsigned int index)
+{
+T::insert(u,index);
 }
 
 
