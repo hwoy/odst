@@ -4,7 +4,7 @@
 #include "../include/Cstaticarray.h"
 #include "../include/Clist.h"
 
-typedef Clist_interface<Cstaticarray_base<unsigned int,16>,unsigned int> list_t;
+typedef Clist_interface<Cstaticarray<unsigned int,16>,unsigned int> list_t;
 
 static void dec2base(unsigned int num,unsigned int base,list_t &list)
 {

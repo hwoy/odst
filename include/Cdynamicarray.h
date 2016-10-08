@@ -2,16 +2,16 @@
 #ifndef _CDYNAMICARRAY_H_
 #define _CDYNAMICARRAY_H_
 
-//===================================================== Cdynamicarray_base =====================================================
+//===================================================== Cdynamicarray =====================================================
 template <typename T>
-class Cdynamicarray_base : public Carray_base<T>
+class Cdynamicarray : public Carray_base<T>
 {
 	protected:
 	unsigned int n;
 	
 	public:
-	Cdynamicarray_base();
-	~Cdynamicarray_base();
+	Cdynamicarray();
+	~Cdynamicarray();
 	
 	unsigned int getn() const;					//interface
 	
@@ -19,75 +19,75 @@ class Cdynamicarray_base : public Carray_base<T>
 	void remove(unsigned int index);			//interface
 	
 	
-	void destroy();								//destroy
+	void destroy();								//interface
 	
+	T* split(unsigned int index);				//interface
+	Cdynamicarray& assign(unsigned int length); //interface
 	
 	protected:
 
-	Cdynamicarray_base& assign(unsigned int length);
 	void resize(unsigned int length);
 	
-	T* split(unsigned int index);				//interface
 	
 };
 
 template <typename T>
-Cdynamicarray_base<T>::Cdynamicarray_base()
+Cdynamicarray<T>::Cdynamicarray()
 {
 	n=0;
 }
 
 template <typename T>
-Cdynamicarray_base<T>::~Cdynamicarray_base()
+Cdynamicarray<T>::~Cdynamicarray()
 {
 	destroy();
 }
 
 
 template <typename T>
-unsigned int Cdynamicarray_base<T>::getn() const
+unsigned int Cdynamicarray<T>::getn() const
 {
 	return n;
 }
 
 
 template <typename T>
-void Cdynamicarray_base<T>::remove(unsigned int index)
+void Cdynamicarray<T>::remove(unsigned int index)
 {
 	if(!n) return;
 	
 	for(unsigned int i=index;i+1<n;i++)
 	{
-		Cdynamicarray_base<T>::t[i]=Cdynamicarray_base<T>::t[i+1];
+		Cdynamicarray<T>::t[i]=Cdynamicarray<T>::t[i+1];
 	}
 
 	n--;
 		
-	if(Cdynamicarray_base<T>::length >=3*n) resize((n+1)<<2);
+	if(Cdynamicarray<T>::length >=3*n) resize((n+1)<<2);
 	
 }
 
 template <typename T>
-void Cdynamicarray_base<T>::insert(const T &t,unsigned int index)
+void Cdynamicarray<T>::insert(const T &t,unsigned int index)
 {
 	
-		if(n+1>Cdynamicarray_base<T>::length)
+		if(n+1>Cdynamicarray<T>::length)
 			resize((n+1)<<1);
 			
 				for(unsigned int i=n;i>index;i--)
 				{
-					Cdynamicarray_base<T>::t[i]=Cdynamicarray_base<T>::t[i-1];
+					Cdynamicarray<T>::t[i]=Cdynamicarray<T>::t[i-1];
 				}
 		
 
 		
-		Cdynamicarray_base<T>::t[index]=t;
+		Cdynamicarray<T>::t[index]=t;
 		n++;
 	
 }
 
 template <typename T>
-void Cdynamicarray_base<T>::resize(unsigned int length)
+void Cdynamicarray<T>::resize(unsigned int length)
 {
 	Carray<T> tmp(length);
 	unsigned int n=this->n;
@@ -95,7 +95,7 @@ void Cdynamicarray_base<T>::resize(unsigned int length)
 	
 	for(unsigned int i=0;i<n;i++)
 	{
-		tmp[i]=Cdynamicarray_base<T>::t[i];
+		tmp[i]=Cdynamicarray<T>::t[i];
 	}
 	
 	assign(length);
@@ -103,18 +103,18 @@ void Cdynamicarray_base<T>::resize(unsigned int length)
 	
 	for(unsigned int i=0;i<n;i++)
 	{
-		Cdynamicarray_base<T>::t[i]=tmp[i];
+		Cdynamicarray<T>::t[i]=tmp[i];
 	}	
 }
 
 template <typename T>
-void Cdynamicarray_base<T>::destroy()
+void Cdynamicarray<T>::destroy()
 {
-	if(Cdynamicarray_base<T>::t)
+	if(Cdynamicarray<T>::t)
 	{
-		delete[] Cdynamicarray_base<T>::t;
-		Cdynamicarray_base<T>::t=nullptr;
-		Cdynamicarray_base<T>::length=0;
+		delete[] Cdynamicarray<T>::t;
+		Cdynamicarray<T>::t=nullptr;
+		Cdynamicarray<T>::length=0;
 		n=0;
 	}
 	
@@ -122,24 +122,24 @@ void Cdynamicarray_base<T>::destroy()
 
 
 template <typename T>
-Cdynamicarray_base<T>& Cdynamicarray_base<T>::assign(unsigned int length)
+Cdynamicarray<T>& Cdynamicarray<T>::assign(unsigned int length)
 {
 	destroy();
-	Cdynamicarray_base<T>::t=new T[this->length=length];
+	Cdynamicarray<T>::t=new T[this->length=length];
 	
 	return *this;
 }
 
 
 template <typename T>
-T* Cdynamicarray_base<T>::split(unsigned int index)
+T* Cdynamicarray<T>::split(unsigned int index)
 {
 	T *t;
 	
 	if(!n) return nullptr;
 		
 	t=new T;
-	*t=Cdynamicarray_base<T>::t[index];
+	*t=Cdynamicarray<T>::t[index];
 	remove(index);
 	
 	return t;

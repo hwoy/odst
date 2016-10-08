@@ -5,7 +5,7 @@
 
 using namespace std;
 
-typedef Cqueue_interface<Cstaticarray_base<int,10>,int> queue_t;
+typedef Cqueue_interface<Cstaticarray<int,10>,int> queue_t;
 
 int main()
 {

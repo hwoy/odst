@@ -5,7 +5,7 @@
 
 using namespace std;
 
-typedef Clist_interface<Cstaticarray_base<int,40>,int> list_t;
+typedef Clist_interface<Cstaticarray<int,40>,int> list_t;
 
 
 static void show(list_t &list)

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-typedef Clist_interface<Cdynamicarray_base<int>,int> list_t;
+typedef Clist_interface<Cdynamicarray<int>,int> list_t;
 
 static void show(list_t &list)
 {

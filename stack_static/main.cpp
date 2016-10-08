@@ -5,7 +5,7 @@
 
 using namespace std;
 
-typedef Cstack_interface<Cstaticarray_base<int,10>,int> stack_t;
+typedef Cstack_interface<Cstaticarray<int,10>,int> stack_t;
 
 int main()
 {

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-typedef Cstack_interface<Cdynamicarray_base<int>,int> stack_t;
+typedef Cstack_interface<Cdynamicarray<int>,int> stack_t;
 
 
 int main()

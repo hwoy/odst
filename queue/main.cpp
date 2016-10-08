@@ -5,7 +5,7 @@
 
 using namespace std;
 
-typedef Cqueue_interface<Cdynamicarray_base<int>,int> queue_t;
+typedef Cqueue_interface<Cdynamicarray<int>,int> queue_t;
 
 int main()
 {
