@@ -12,7 +12,7 @@ static void dec2base(unsigned int num,unsigned int base,list_t &list)
 	i=num;
 	do
 	{
-		list << (i%base);
+		list.push_back(i%base);
 	}while(i/=base);
 }
 
@@ -21,7 +21,7 @@ static void show(unsigned int num,list_t &list)
 	
 	std::cout << num << " = ";
 	
-	for(unsigned int i=list.getn();i--;)
+	for(unsigned int i=0;i<list.getn();i++)
 	{
 		std::cout << list[i] << " ";
 	}
