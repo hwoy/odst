@@ -1,3 +1,21 @@
  
 .directory
 *.o
+
+cirlinklist/cirlinklist
+cirslinklist/cirslinklist
+example/dec2bin
+linklist/linklist
+list/list
+list_dlinklist/list_dll
+list_slinklist/list_sll
+list_static/list_static
+queue/queue
+queue_dlinklist/queue_dll
+queue_slinklist/queue_sll
+queue_static/queue_static
+slinklist/slinklist
+stack/stack
+stack_dlinklist/stack_dll
+stack_slinklist/stack_sll
+stack_static/stack_static
