@@ -85,6 +85,8 @@ int main()
 	
 	show(ll2);
 	
+	cout << "Index 5 =" << ll2.getNode(ll2.getIndex(&ll2.getNode(5))).data << endl;
+	
 	return 0;
 }
 

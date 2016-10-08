@@ -87,6 +87,11 @@ int main()
 	
 	cout << "ll2 Forward\n";
 	
+	
 	show(ll2);
+	
+	cout << "ll2 Index 4 =" << ll2.getNode(ll2.getIndex(&ll2.getNode(4))).data << endl;
+	cout << "linklist Index 4 =" << linklist.getNode(linklist.getIndex(&linklist.getNode(4))).data << endl;
+	
 }
 
