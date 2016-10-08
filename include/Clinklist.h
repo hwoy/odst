@@ -2,8 +2,8 @@
 #include "Clist.h"
 
 
-#ifndef _CLINKLIST_H_
-#define _CLINKLIST_H_
+#ifndef _ODST_CLINKLIST_H_
+#define _ODST_CLINKLIST_H_
 
 //===================================================== Cnode =====================================================
 

@@ -1,5 +1,5 @@
-#ifndef _CARRAY_H_
-#define _CARRAY_H_
+#ifndef _ODST_CARRAY_H_
+#define _ODST_CARRAY_H_
 
 //===================================================== Carray_base =====================================================
 

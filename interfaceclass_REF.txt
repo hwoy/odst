@@ -18,7 +18,7 @@ struct class_interface
 	DATA_T& getobj(unsigned int index) const;
 
 	
-	class_interface& assign(unsigned int length);
+	void assign(unsigned int length);
 	
 };
 

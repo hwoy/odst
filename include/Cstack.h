@@ -1,5 +1,5 @@
-#ifndef _CSTACK_H_
-#define _CSTACK_H_
+#ifndef _ODST_CSTACK_H_
+#define _ODST_CSTACK_H_
 
 //===================================================== Cstack_interface =====================================================
 template <typename T,typename U>

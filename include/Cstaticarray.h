@@ -1,6 +1,6 @@
 #include "Carray.h"
-#ifndef _CSTATAICARRAY_H_
-#define _CSTATAICARRAY_H_
+#ifndef _ODST_CSTATAICARRAY_H_
+#define _ODST_CSTATAICARRAY_H_
 
 //===================================================== Cdstaticarray_base =====================================================
 template <typename T,unsigned int N>

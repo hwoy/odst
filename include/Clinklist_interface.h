@@ -1,6 +1,6 @@
 
-#ifndef _CLINKLIST_INTERFACE_H_
-#define _CLINKLIST_INTERFACE_H_
+#ifndef _ODST_CLINKLIST_INTERFACE_H_
+#define _ODST_CLINKLIST_INTERFACE_H_
 
 //===================================================== Clinklist_interface =====================================================
 
@@ -55,7 +55,7 @@ struct Clinklist_interface : public T
 		return T::getNode(index).data;
 	}
 	
-	Clinklist_interface& assign(unsigned int length)
+	void assign(unsigned int length)
 	{
 		T::Destroy();
 		for(unsigned int i=0;i<length;i++)
@@ -63,7 +63,6 @@ struct Clinklist_interface : public T
 			T::New();
 		}
 		
-		return *this;
 	}
 	
 	

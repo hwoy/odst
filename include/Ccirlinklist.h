@@ -1,8 +1,8 @@
 #include "Clinklist.h"
 
 
-#ifndef _CCIRLINKLIST_H_
-#define _CCIRLINKLIST_H_
+#ifndef _ODST_CCIRLINKLIST_H_
+#define _ODST_CCIRLINKLIST_H_
 
 
 //===================================================== Ccirsinglylinklist =====================================================

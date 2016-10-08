@@ -1,5 +1,5 @@
-#ifndef _CQUEUE_H_
-#define _CQUEUE_H_
+#ifndef _ODST_CQUEUE_H_
+#define _ODST_CQUEUE_H_
 
 //===================================================== Cqueue_interface =====================================================
 

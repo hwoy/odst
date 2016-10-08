@@ -1,6 +1,6 @@
 #include "Carray.h"
-#ifndef _CDYNAMICARRAY_H_
-#define _CDYNAMICARRAY_H_
+#ifndef _ODST_CDYNAMICARRAY_H_
+#define _ODST_CDYNAMICARRAY_H_
 
 //===================================================== Cdynamicarray =====================================================
 template <typename T>

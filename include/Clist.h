@@ -1,5 +1,5 @@
-#ifndef _CLIST_H_
-#define _CLIST_H_
+#ifndef _ODST_CLIST_H_
+#define _ODST_CLIST_H_
 
 //===================================================== Clist_interface =====================================================
 template <typename T,typename U>
