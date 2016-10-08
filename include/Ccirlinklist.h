@@ -29,10 +29,20 @@ struct Ccirsinglylinklist: public Csinglylinklist<T>
 	
 	void Destroy();
 	
+	void deJoint(T *t,unsigned int index,unsigned int direction);
+	
+	unsigned int countNode() const;
+	
 	protected:
 	static const unsigned int direction=0;
 };
 
+template <typename T>
+void Ccirsinglylinklist<T>::deJoint(T *t,unsigned int index,unsigned int direction)
+{
+	if(t)
+	(*t)[direction]=nullptr;
+}
 
 template <typename T>
 Ccirsinglylinklist<T>::~Ccirsinglylinklist()
@@ -44,7 +54,7 @@ Ccirsinglylinklist<T>::~Ccirsinglylinklist()
 template <typename T>
 void Ccirsinglylinklist<T>::Destroy()
 {
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=nullptr;
+	deJoint(Ccirsinglylinklist<T>::tail[0],0,direction);
 	
 	Csinglylinklist<T>::Destroy();
 	Ccirsinglylinklist<T>::clearbe();
@@ -68,11 +78,17 @@ T& Ccirsinglylinklist<T>::New()
 template <typename T>
 T& Ccirsinglylinklist<T>::Insert(T *t,unsigned int index)
 {
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=nullptr;
+	if(!Ccirsinglylinklist<T>::head[0] && !Ccirsinglylinklist<T>::tail[0])
+	Add(t);
+	
+	else
+	{
+	deJoint(Ccirsinglylinklist<T>::tail[0],0,direction);
 	
 	Csinglylinklist<T>::Insert(t,index);
 	
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=Ccirsinglylinklist<T>::head[direction];
+	(*(Ccirsinglylinklist<T>::tail[0]))[direction]=Ccirsinglylinklist<T>::head[0];
+	}
 	
 	return *t;
 }
@@ -86,7 +102,7 @@ T& Ccirsinglylinklist<T>::Insert(unsigned int index)
 template <typename T>
 void Ccirsinglylinklist<T>::Remove(T *t)
 {
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=nullptr;
+	deJoint(Ccirsinglylinklist<T>::tail[0],0,direction);
 	
 	Csinglylinklist<T>::Remove(t);
 	
@@ -96,7 +112,7 @@ void Ccirsinglylinklist<T>::Remove(T *t)
 template <typename T>
 void Ccirsinglylinklist<T>::Remove(unsigned int index)
 {
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=nullptr;
+	deJoint(Ccirsinglylinklist<T>::tail[0],0,direction);
 	
 	Csinglylinklist<T>::Remove(index);
 	
@@ -106,7 +122,7 @@ void Ccirsinglylinklist<T>::Remove(unsigned int index)
 template <typename T>
 T* Ccirsinglylinklist<T>::Split(T *t)
 {
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=nullptr;
+	deJoint(Ccirsinglylinklist<T>::tail[0],0,direction);
 	
 	Csinglylinklist<T>::Split(t);
 	
@@ -119,7 +135,7 @@ template <typename T>
 T* Ccirsinglylinklist<T>::Split(unsigned int index)
 {
 	T *t;
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=nullptr;
+	deJoint(Ccirsinglylinklist<T>::tail[0],0,direction);
 	
 	t=Csinglylinklist<T>::Split(index);
 	
@@ -131,14 +147,17 @@ T* Ccirsinglylinklist<T>::Split(unsigned int index)
 template <typename T>
 T& Ccirsinglylinklist<T>::getNode(unsigned int index) const
 {
-	T *t;
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=nullptr;
+	T *temp1;
+	unsigned int i;
+
 	
-	t=&Csinglylinklist<T>::getNode(index);
+	for(i=0,temp1=Ccirsinglylinklist<T>::head[0];i<index;i++,temp1=(*temp1)[direction])
+	{
+		if(temp1==Ccirsinglylinklist<T>::tail[0]) return *(temp1=nullptr);
+		
+	}
 	
-	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=Ccirsinglylinklist<T>::head[direction];
-	
-	return *t;
+	return *temp1;
 }
 
 template <typename T>
@@ -152,6 +171,19 @@ unsigned int Ccirsinglylinklist<T>::getIndex(const T *t) const
 	(*(Ccirsinglylinklist<T>::tail[direction]))[direction]=Ccirsinglylinklist<T>::head[direction];
 	
 	return i;
+}
+
+template <typename T>
+unsigned int Ccirsinglylinklist<T>::countNode() const
+{
+	T *temp1;
+	unsigned int i;
+	
+	if(!Ccirsinglylinklist<T>::head[0] && !Ccirsinglylinklist<T>::tail[0]) return 0;
+	
+	for(i=0,temp1=Ccirsinglylinklist<T>::head[0];temp1!=Ccirsinglylinklist<T>::tail[0];i++,temp1=(*temp1)[direction]);
+	
+	return i+1;	
 }
 
 //===================================================== Ccirdoublylinklist =====================================================

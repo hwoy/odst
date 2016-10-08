@@ -10,12 +10,7 @@ struct Clinklist_interface : public T
 {
 	unsigned int getn() const
 	{
-		V *v;
-		unsigned int n;
-		
-		for(n=0,v=T::head[0];v;v=(*v)[0],n++);
-		
-		return n;
+		return T::countNode();
 	}
 	
 	void insert(const U &u,unsigned int index)

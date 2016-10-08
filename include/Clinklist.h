@@ -56,6 +56,7 @@ struct Clinklist_base
 	void clearbe();
 	T& getNode(const headtail_t &ht,unsigned int direct,unsigned int index) const;
 	unsigned int getIndex(const headtail_t &ht,unsigned int direct,const T *t) const;
+	unsigned int countNode(const headtail_t &ht,unsigned int direct,unsigned int index) const;
 };
 
 template <typename T,unsigned int N>
@@ -176,6 +177,19 @@ unsigned int Clinklist_base<T,N>::getIndex(const headtail_t &ht,unsigned int dir
   return i;
 }
 
+template <typename T,unsigned int N>
+unsigned int Clinklist_base<T,N>::countNode(const headtail_t &ht,unsigned int direct,unsigned int index) const
+{
+  T *tmp;
+  unsigned int i;
+  
+  for(i=0,tmp=ht[index];tmp;i++,tmp=(*tmp)[direct]);
+
+  
+  return i;
+}
+
+
 //===================================================== stuct nodetype =====================================================
 template <typename T>
 struct nodetype
@@ -207,6 +221,8 @@ struct Cdoublylinklist: public Clinklist_base<T,2>
 	T* Split(unsigned int index);
 	
 	void Destroy();
+	
+	unsigned int countNode() const;
 	
 	static const unsigned int next=0;
 	static const unsigned int prev=1;
@@ -345,6 +361,13 @@ void Cdoublylinklist<T>::Destroy()
 	Cdoublylinklist<T>::clearbe();
 }
 
+template <typename T>
+unsigned int Cdoublylinklist<T>::countNode() const
+{
+  return Clinklist_base<T,2>::countNode(Cdoublylinklist<T>::head,next,0);
+}
+
+
 //===================================================== Csinglylinklist =====================================================
 template <typename T>
 struct Csinglylinklist: public Clinklist_base<T,1>
@@ -368,6 +391,7 @@ struct Csinglylinklist: public Clinklist_base<T,1>
 	T* Split(unsigned int index);
 	
 	void Destroy();
+	unsigned int countNode() const;
 	
 	static const unsigned int direction=0;
 	
@@ -419,7 +443,13 @@ T& Csinglylinklist<T>::Insert(T *t,unsigned int index)
 {
   T *tleft,*tright;
   
-  tright=&getNode(index);
+    if(!(tright=&getNode(index)))
+  {
+	  Add(t);
+  }
+  
+  else
+  {
   
   if(tright==Csinglylinklist<T>::head[0])
   {
@@ -432,6 +462,7 @@ T& Csinglylinklist<T>::Insert(T *t,unsigned int index)
 	Joint(tleft,t);
 	Joint(t,tright);
   }
+	}
   
   return *t;
 }
@@ -491,5 +522,11 @@ void Csinglylinklist<T>::Destroy()
 {
 	if(Csinglylinklist<T>::head[direction] && Csinglylinklist<T>::tail[direction]) Clinklist_base<T,1>::Destroy(Clinklist_base<T,1>::head,direction);
 	Csinglylinklist<T>::clearbe();
+}
+
+template <typename T>
+unsigned int Csinglylinklist<T>::countNode() const
+{
+  return Clinklist_base<T,1>::countNode(Csinglylinklist<T>::head,direction,0);
 }
 #endif
