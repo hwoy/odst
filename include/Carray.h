@@ -53,7 +53,7 @@ class Carray : public Carray_base<T>
 	Carray& operator=(unsigned int length);
 	
 	
-	Carray& assign(unsigned int length=N);
+	Carray& assign(unsigned int length);
 	void destroy();
 };
 
