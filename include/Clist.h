@@ -1,16 +1,16 @@
-#ifndef _ODST_CLIST_H_
-#define _ODST_CLIST_H_
+#ifndef _ODST_CVECTOR_H_
+#define _ODST_CVECTOR_H_
 
-//===================================================== Clist_interface =====================================================
+//===================================================== Cvector_interface =====================================================
 template <typename T,typename U>
-class Clist_interface : public T
+class Cvector_interface : public T
 {
 
 	
 	public:
 
 	
-	Clist_interface& operator<<(const U &u);
+	Cvector_interface& operator<<(const U &u);
 	U& operator[](unsigned int index) const;
 	
 	
@@ -31,64 +31,64 @@ class Clist_interface : public T
 
 
 template <typename T,typename U>
-void Clist_interface<T,U>::add(const U &u)
+void Cvector_interface<T,U>::add(const U &u)
 {
   T::insert(u,T::getn());
 }
 
 
 template <typename T,typename U>
-void Clist_interface<T,U>::remove(unsigned int index)
+void Cvector_interface<T,U>::remove(unsigned int index)
 {
   T::remove(index);
 }
 
 template <typename T,typename U>
-void Clist_interface<T,U>::remove()
+void Cvector_interface<T,U>::remove()
 {
   T::remove(T::getn()-1);
 }
 
 
 template <typename T,typename U>
-Clist_interface<T,U>& Clist_interface<T,U>::operator<<(const U &u)
+Cvector_interface<T,U>& Cvector_interface<T,U>::operator<<(const U &u)
 {
   add(u);
   return *this;
 }
 
 template <typename T,typename U>
-U& Clist_interface<T,U>::operator[](unsigned int index) const
+U& Cvector_interface<T,U>::operator[](unsigned int index) const
 {
   return T::getobj(index);
 }
 
 template <typename T,typename U>
-void Clist_interface<T,U>::push(const U &u)
+void Cvector_interface<T,U>::push(const U &u)
 {
   T::insert(u,T::getn());
 }
 
 template <typename T,typename U>
-U* Clist_interface<T,U>::pop()
+U* Cvector_interface<T,U>::pop()
 {
   return T::split(T::getn()-1);
 }
 
 template <typename T,typename U>
-void Clist_interface<T,U>::push_back(const U &u)
+void Cvector_interface<T,U>::push_back(const U &u)
 {
   T::insert(u,0);
 }
 
 template <typename T,typename U>
-U* Clist_interface<T,U>::pop_back()
+U* Cvector_interface<T,U>::pop_back()
 {
   return T::split(0);
 }
 
 template <typename T,typename U>
-void Clist_interface<T,U>::insert(const U &u ,unsigned int index)
+void Cvector_interface<T,U>::insert(const U &u ,unsigned int index)
 {
 T::insert(u,index);
 }

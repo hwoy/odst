@@ -5,10 +5,10 @@
 
 using namespace std;
 
-typedef Clist_interface<Cstaticarray<int,40>,int> list_t;
+typedef Cvector_interface<Cstaticarray<int,40>,int> vector_t;
 
 
-static void show(list_t &list)
+static void show(vector_t &list)
 {
 	for(unsigned int i=0;i<list.getn();i++)
 	  cout << list[i] << endl;
@@ -17,7 +17,7 @@ static void show(list_t &list)
 
 int main()
 {
-	list_t list;
+	vector_t list;
 	
 	for(int i=0;i<10;i++)
 	  list<<i;

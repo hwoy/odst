@@ -9,7 +9,7 @@ using namespace std;
 typedef Cnode<int,1> node_t;
 typedef Csinglylinklist<node_t> linklist_t;
 typedef Clinklist_interface<linklist_t,node_t,int> linklist_if_t;
-typedef Clist_interface<linklist_if_t, int> queue_t;
+typedef Cvector_interface<linklist_if_t, int> queue_t;
 int main()
 {
 	queue_t queue;
