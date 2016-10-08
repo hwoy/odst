@@ -10,7 +10,7 @@ all: $(bin)
 $(bin): main.o
 	$(CXX) $(LDFLAGS) -o $(bin) main.o
 
-main.o: main.cpp ../include/Clinklist.h ../include/Clist.h \
+main.o: main.cpp ../include/Clinklist.h ../include/Cvector.h \
  ../include/Cdynamicarray.h ../include/Carray.h
 
 clean:

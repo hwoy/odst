@@ -2,11 +2,11 @@
 #include <cstdlib>
 #include <time.h>
 #include "../include/Cstaticarray.h"
-#include "../include/Clist.h"
+#include "../include/Cvector.h"
 
-typedef Cvector_interface<Cstaticarray<unsigned int,16>,unsigned int> list_t;
+typedef Cvector_interface<Cstaticarray<unsigned int,16>,unsigned int> vector_t;
 
-static void dec2base(unsigned int num,unsigned int base,list_t &list)
+static void dec2base(unsigned int num,unsigned int base,vector_t &list)
 {
 	unsigned int i;
 	i=num;
@@ -16,7 +16,7 @@ static void dec2base(unsigned int num,unsigned int base,list_t &list)
 	}while(i/=base);
 }
 
-static void show(unsigned int num,list_t &list)
+static void show(unsigned int num,vector_t &list)
 {
 	
 	std::cout << num << " = ";
@@ -32,7 +32,7 @@ static void show(unsigned int num,list_t &list)
 int main(void)
 {
 	unsigned int i,j;
-	list_t list;
+	vector_t list;
 	
 	std::srand(time(nullptr));
 	

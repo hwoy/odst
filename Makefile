@@ -1,13 +1,13 @@
 .PHONY: all clean \
-cirlinklist cirslinklist linklist list \
-list_static queue queue_static slinklist stack stack_static example \
-list_dlinklist list_slinklist stack_dlinklist stack_slinklist \
-queue_dlinklist queue_slinklist list_cirdlinklist list_cirslinklist
+cirlinklist cirslinklist linklist vector \
+vector_static queue queue_static slinklist stack stack_static example \
+vector_dlinklist vector_slinklist stack_dlinklist stack_slinklist \
+queue_dlinklist queue_slinklist vector_cirdlinklist vector_cirslinklist
 
-all: cirlinklist cirslinklist linklist list \
-list_static queue queue_static slinklist stack stack_static example \
-list_dlinklist list_slinklist stack_dlinklist stack_slinklist \
-queue_dlinklist queue_slinklist list_cirdlinklist list_cirslinklist 
+all: cirlinklist cirslinklist linklist vector \
+vector_static queue queue_static slinklist stack stack_static example \
+vector_dlinklist vector_slinklist stack_dlinklist stack_slinklist \
+queue_dlinklist queue_slinklist vector_cirdlinklist vector_cirslinklist 
 
 
 cirlinklist:
@@ -16,10 +16,10 @@ cirslinklist:
 	make -C cirslinklist
 linklist:
 	make -C linklist
-list:
-	make -C list
-list_static:
-	make -C list_static
+vector:
+	make -C vector
+vector_static:
+	make -C vector_static
 queue:
 	make -C queue
 queue_static:
@@ -32,10 +32,10 @@ stack_static:
 	make -C stack_static
 example:
 	make -C example
-list_dlinklist:
-	make -C list_dlinklist
-list_slinklist:
-	make -C list_slinklist
+vector_dlinklist:
+	make -C vector_dlinklist
+vector_slinklist:
+	make -C vector_slinklist
 stack_dlinklist:
 	make -C stack_dlinklist
 stack_slinklist:
@@ -44,30 +44,30 @@ queue_dlinklist:
 	make -C queue_dlinklist
 queue_slinklist:
 	make -C queue_slinklist
-list_cirdlinklist:
-	make -C list_cirdlinklist
-list_cirslinklist:
-	make -C list_cirslinklist
+vector_cirdlinklist:
+	make -C vector_cirdlinklist
+vector_cirslinklist:
+	make -C vector_cirslinklist
 
 clean:
 	make -C cirlinklist clean ; \
 	make -C cirslinklist clean ; \
 	make -C linklist clean ; \
-	make -C list clean ; \
-	make -C list_static clean ; \
+	make -C vector clean ; \
+	make -C vector_static clean ; \
 	make -C queue clean ; \
 	make -C queue_static clean ; \
 	make -C slinklist clean ; \
 	make -C stack clean ; \
 	make -C stack_static clean ; \
 	make -C example clean; \
-	make -C list_dlinklist clean; \
-	make -C list_slinklist clean; \
+	make -C vector_dlinklist clean; \
+	make -C vector_slinklist clean; \
 	make -C stack_dlinklist clean; \
 	make -C stack_slinklist clean; \
 	make -C queue_dlinklist clean; \
 	make -C queue_slinklist clean; \
-	make -C list_cirdlinklist clean; \
-	make -C list_cirslinklist clean
+	make -C vector_cirdlinklist clean; \
+	make -C vector_cirslinklist clean
 	
 

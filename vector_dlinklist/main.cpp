@@ -1,12 +1,15 @@
 #include <iostream>
-#include "../include/Cstaticarray.h"
-#include "../include/Clist.h"
+#include "../include/Clinklist_interface.h"
+#include "../include/Clinklist.h"
+#include "../include/Cvector.h"
 
 
 using namespace std;
 
-typedef Cvector_interface<Cstaticarray<int,40>,int> vector_t;
-
+typedef Cnode<int,2> node_t;
+typedef Cdoublylinklist<node_t> linklist_t;
+typedef Clinklist_interface<linklist_t,node_t,int> linklist_if_t;
+typedef Cvector_interface<linklist_if_t, int> vector_t;
 
 static void show(vector_t &list)
 {
@@ -20,7 +23,7 @@ int main()
 	vector_t list;
 	
 	for(int i=0;i<10;i++)
-	  list<<i;
+	  list.add(i);
 	
 	cout << "List Element\n" ;
 	show(list);
@@ -42,7 +45,7 @@ int main()
 	show(list);
 	
 	cout << "List Element ::push_back\n" ;
-	list.assign(30);
+	list.destroy();
 	for(int i=0;i<10;i++)
 	  list.push(i);
 	

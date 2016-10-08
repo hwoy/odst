@@ -1,11 +1,12 @@
 #include <iostream>
-#include "../include/Cdynamicarray.h"
-#include "../include/Clist.h"
+#include "../include/Cstaticarray.h"
+#include "../include/Cvector.h"
 
 
 using namespace std;
 
-typedef Cvector_interface<Cdynamicarray<int>,int> vector_t;
+typedef Cvector_interface<Cstaticarray<int,40>,int> vector_t;
+
 
 static void show(vector_t &list)
 {
@@ -41,7 +42,7 @@ int main()
 	show(list);
 	
 	cout << "List Element ::push_back\n" ;
-	list.destroy();
+	list.assign(30);
 	for(int i=0;i<10;i++)
 	  list.push(i);
 	

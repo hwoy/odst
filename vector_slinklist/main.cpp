@@ -1,15 +1,15 @@
 #include <iostream>
 #include "../include/Clinklist_interface.h"
-#include "../include/Ccirlinklist.h"
-#include "../include/Clist.h"
+#include "../include/Clinklist.h"
+#include "../include/Cvector.h"
 
 
 using namespace std;
 
 typedef Cnode<int,1> node_t;
-typedef Ccirsinglylinklist<node_t> linkvector_t;
-typedef Clinklist_interface<linkvector_t,node_t,int> linkvector_if_t;
-typedef Cvector_interface<linkvector_if_t, int> vector_t;
+typedef Csinglylinklist<node_t> linklist_t;
+typedef Clinklist_interface<linklist_t,node_t,int> linklist_if_t;
+typedef Cvector_interface<linklist_if_t, int> vector_t;
 
 static void show(vector_t &list)
 {
