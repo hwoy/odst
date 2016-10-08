@@ -1,6 +1,8 @@
  
 .directory
 *.o
+~*
+*~
 
 cirlinklist/cirlinklist
 cirslinklist/cirslinklist
