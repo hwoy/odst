@@ -55,6 +55,17 @@ struct Clinklist_interface : public T
 		return T::getNode(index).data;
 	}
 	
+	Clinklist_interface& assign(unsigned int length)
+	{
+		T::Destroy();
+		for(unsigned int i=0;i<length;i++)
+		{
+			T::New();
+		}
+		
+		return *this;
+	}
+	
 	
 };
 
