@@ -50,7 +50,7 @@ struct Clinklist_interface : public T
 		return u;
 	}
 	
-	U& operator[](unsigned int index) const
+	U& getobj(unsigned int index) const
 	{
 		return T::getNode(index).data;
 	}

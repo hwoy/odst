@@ -11,6 +11,8 @@ class Clist_interface : public T
 
 	
 	Clist_interface& operator<<(const U &u);
+	U& operator[](unsigned int index) const;
+	
 	
 	void add(const U &u);
 	void remove(unsigned int index);
@@ -21,8 +23,6 @@ class Clist_interface : public T
 
 	void push_back(const U &u);
 	U* pop_back();
-	
-		
 	
 };
 
@@ -56,6 +56,12 @@ Clist_interface<T,U>& Clist_interface<T,U>::operator<<(const U &u)
 }
 
 template <typename T,typename U>
+U& Clist_interface<T,U>::operator[](unsigned int index) const
+{
+  return T::getobj(index);
+}
+
+template <typename T,typename U>
 void Clist_interface<T,U>::push(const U &u)
 {
   T::insert(u,T::getn());
@@ -78,6 +84,8 @@ U* Clist_interface<T,U>::pop_back()
 {
   return T::split(0);
 }
+
+
 #endif
 
 

@@ -14,7 +14,8 @@ class Carray_base
 	
 	Carray_base();
 	
-	T& operator[](unsigned int index) const;	//interface
+	T& operator[](unsigned int index) const;
+	T& getobj(unsigned int index) const;	//interface
 	
 	unsigned int getlength() const;
 	
@@ -35,6 +36,12 @@ T& Carray_base<T>::operator[](unsigned int index) const
 }
 
 template <typename T>
+T& Carray_base<T>::getobj(unsigned int index) const
+{
+	return t[index];
+}
+
+template <typename T>
 unsigned int Carray_base<T>::getlength() const
 {
 	return length;
@@ -50,10 +57,10 @@ class Carray : public Carray_base<T>
 	Carray(unsigned int length=N);
 	~Carray();
 	
-	Carray& operator=(unsigned int length);
+	void operator=(unsigned int length);
 	
 	
-	Carray& assign(unsigned int length);
+	void assign(unsigned int length);
 	void destroy();
 };
 
@@ -73,19 +80,18 @@ Carray<T,N>::~Carray()
 
 
 template <typename T,unsigned int N>
-Carray<T,N>& Carray<T,N>::operator=(unsigned int length)
+void Carray<T,N>::operator=(unsigned int length)
 {
-	return assign(length);
+	assign(length);
 }
 
 
 template <typename T,unsigned int N>
-Carray<T,N>& Carray<T,N>::assign(unsigned int length)
+void Carray<T,N>::assign(unsigned int length)
 {
 	destroy();
 	Carray<T,N>::t=new T[this->length=length];
 	
-	return *this;
 }
 
 template <typename T,unsigned int N>
