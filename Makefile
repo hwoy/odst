@@ -2,12 +2,12 @@
 cirlinklist cirslinklist linklist list \
 list_static queue queue_static slinklist stack stack_static example \
 list_dlinklist list_slinklist stack_dlinklist stack_slinklist \
-queue_dlinklist queue_slinklist 
+queue_dlinklist queue_slinklist list_cirdlinklist list_cirslinklist
 
 all: cirlinklist cirslinklist linklist list \
 list_static queue queue_static slinklist stack stack_static example \
 list_dlinklist list_slinklist stack_dlinklist stack_slinklist \
-queue_dlinklist queue_slinklist 
+queue_dlinklist queue_slinklist list_cirdlinklist list_cirslinklist 
 
 
 cirlinklist:
@@ -44,6 +44,10 @@ queue_dlinklist:
 	make -C queue_dlinklist
 queue_slinklist:
 	make -C queue_slinklist
+list_cirdlinklist:
+	make -C list_cirdlinklist
+list_cirslinklist:
+	make -C list_cirslinklist
 
 clean:
 	make -C cirlinklist clean ; \
@@ -62,6 +66,8 @@ clean:
 	make -C stack_dlinklist clean; \
 	make -C stack_slinklist clean; \
 	make -C queue_dlinklist clean; \
-	make -C queue_slinklist clean
+	make -C queue_slinklist clean; \
+	make -C list_cirdlinklist clean; \
+	make -C list_cirslinklist clean
 	
 

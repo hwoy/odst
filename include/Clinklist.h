@@ -49,6 +49,8 @@ struct Clinklist_base
 	T& Addprev(T *t,unsigned int index);
 	T& Newprev(unsigned int index);
 	
+	bool isEmpty() const;
+	
 	
 	
 	protected:
@@ -58,6 +60,18 @@ struct Clinklist_base
 	unsigned int getIndex(const headtail_t &ht,unsigned int direct,const T *t) const;
 	unsigned int countNode(const headtail_t &ht,unsigned int direct,unsigned int index) const;
 };
+
+template <typename T,unsigned int N>
+bool Clinklist_base<T,N>::isEmpty() const
+{
+	for(unsigned int i=0;i<head.getn();i++)
+	{
+		if(head[i] || tail[i]) return false;
+	}
+	
+	return true;
+}
+
 
 template <typename T,unsigned int N>
 Clinklist_base<T,N>::Clinklist_base()
