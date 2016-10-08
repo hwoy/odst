@@ -45,6 +45,11 @@ queue_dlinklist:
 	make -C queue_dlinklist -f Makefile.gcc
 queue_slinklist:
 	make -C queue_slinklist -f Makefile.gcc
+list_cirdlinklist:
+	make -C list_cirdlinklist -f Makefile.gcc
+list_cirslinklist:
+	make -C list_cirslinklist -f Makefile.gcc
+
 
 clean:
 	make -C cirlinklist  -f Makefile.gcc clean ; \
@@ -63,6 +68,6 @@ clean:
 	make -C stack_dlinklist   -f Makefile.gcc clean ; \
 	make -C stack_slinklist   -f Makefile.gcc clean ; \
 	make -C queue_dlinklist  -f Makefile.gcc clean ; \
-	make -C queue_slinklist   -f Makefile.gcc clean
-	
-
+	make -C queue_slinklist   -f Makefile.gcc clean; \
+	make -C list_cirdlinklist -f Makefile.gcc clean; \
+	make -C list_cirslinklist -f Makefile.gcc clean
