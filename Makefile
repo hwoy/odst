@@ -51,9 +51,9 @@ vector_cirdlinklist:
 vector_cirslinklist:
 	make -C vector_cirslinklist
 deque:
-	make -C deque -f Makefile.gcc
+	make -C deque
 deque_static:
-	make -C deque_static -f Makefile.gcc
+	make -C deque_static
 
 
 
@@ -77,6 +77,6 @@ clean:
 	make -C queue_slinklist clean; \
 	make -C vector_cirdlinklist clean; \
 	make -C vector_cirslinklist clean
-	make -C deque -f Makefile.gcc clean; \
-	make -C deque_static -f Makefile.gcc clean	
+	make -C deque clean; \
+	make -C deque_static clean	
 

@@ -9,18 +9,11 @@ class Cstaticarray : public Carray_iterator_base<T>
 	
 	public:
 	Cstaticarray(unsigned int lenght=N);
-	~Cstaticarray();
 	
-	unsigned int getn() const;						//interface
-	void setn(unsigned int n);
 	
 	
 	void insert(const T &t,unsigned int index);		//interface
 	void remove(unsigned int index);				//interface	
-	
-	
-	void destroy();									//interface
-	Cstaticarray& assign(unsigned int length); //interface
 	
 	
 	T* split(unsigned int index);					//interface
@@ -30,21 +23,9 @@ class Cstaticarray : public Carray_iterator_base<T>
 template <typename T,unsigned int N>
 Cstaticarray<T,N>::Cstaticarray(unsigned int lenght)
 {
-	assign(lenght);
+	Cstaticarray<T,N>::assign(lenght);
 }
 
-template <typename T,unsigned int N>
-Cstaticarray<T,N>::~Cstaticarray()
-{
-	destroy();
-}
-
-
-template <typename T,unsigned int N>
-unsigned int Cstaticarray<T,N>::getn() const
-{
-	return Cstaticarray<T,N>::n;
-}
 
 
 template <typename T,unsigned int N>
@@ -80,28 +61,6 @@ void Cstaticarray<T,N>::insert(const T &t,unsigned int index)
 }
 
 
-template <typename T,unsigned int N>
-void Cstaticarray<T,N>::destroy()
-{
-	if(Cstaticarray<T,N>::t)
-	{
-		delete[] Cstaticarray<T,N>::t;
-		Cstaticarray<T,N>::t=nullptr;
-		Cstaticarray<T,N>::length=0;
-		Cstaticarray<T,N>::n=0;
-	}
-	
-}
-
-
-template <typename T,unsigned int N>
-Cstaticarray<T,N>& Cstaticarray<T,N>::assign(unsigned int length)
-{
-	destroy();
-	Cstaticarray<T,N>::t=new T[this->length=length];
-	
-	return *this;
-}
 
 
 template <typename T,unsigned int N>
@@ -118,12 +77,6 @@ T* Cstaticarray<T,N>::split(unsigned int index)
 	return t;
 }
 
-
-template <typename T,unsigned int N>
-void Cstaticarray<T,N>::setn(unsigned int n)
-{
-	this->n=n;
-}
 
 #endif
 

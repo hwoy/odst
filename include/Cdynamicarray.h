@@ -7,19 +7,14 @@ template <typename T>
 class Cdynamicarray : public Carray_iterator_base<T>
 {
 	
-	public:
-	~Cdynamicarray();
-	
-	unsigned int getn() const;					//interface
+	public:	
 	
 	void insert(const T &t,unsigned int index); //interface
 	void remove(unsigned int index);			//interface
 	
 	
-	void destroy();								//interface
 	
 	T* split(unsigned int index);				//interface
-	Cdynamicarray& assign(unsigned int length); //interface
 	
 	protected:
 
@@ -28,19 +23,6 @@ class Cdynamicarray : public Carray_iterator_base<T>
 	
 };
 
-
-template <typename T>
-Cdynamicarray<T>::~Cdynamicarray()
-{
-	destroy();
-}
-
-
-template <typename T>
-unsigned int Cdynamicarray<T>::getn() const
-{
-	return Cdynamicarray::n;
-}
 
 
 template <typename T>
@@ -90,7 +72,7 @@ void Cdynamicarray<T>::resize(unsigned int length)
 		tmp[i]=Cdynamicarray<T>::t[i];
 	}
 	
-	assign(length);
+	Cdynamicarray<T>::assign(length);
 	this->n=n;
 	
 	for(unsigned int i=0;i<n;i++)
@@ -99,28 +81,7 @@ void Cdynamicarray<T>::resize(unsigned int length)
 	}	
 }
 
-template <typename T>
-void Cdynamicarray<T>::destroy()
-{
-	if(Cdynamicarray<T>::t)
-	{
-		delete[] Cdynamicarray<T>::t;
-		Cdynamicarray<T>::t=nullptr;
-		Cdynamicarray<T>::length=0;
-		Cdynamicarray::n=0;
-	}
-	
-}
 
-
-template <typename T>
-Cdynamicarray<T>& Cdynamicarray<T>::assign(unsigned int length)
-{
-	destroy();
-	Cdynamicarray<T>::t=new T[this->length=length];
-	
-	return *this;
-}
 
 
 template <typename T>

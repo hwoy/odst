@@ -55,6 +55,8 @@ class Carray_iterator_base: public Carray_base<T>
 	unsigned int n;
 	
 	public:
+		
+	/*		for iterator					*/
 	Carray_iterator_base():n(0){}
 	
 	constexpr const T *begin() const
@@ -69,6 +71,42 @@ class Carray_iterator_base: public Carray_base<T>
 	{
 		return n;
 	}
+	
+	/*			for dynamic and static				*/
+	
+	~Carray_iterator_base()
+	{
+		destroy();
+	}
+
+	
+	void destroy()
+{
+	if(Carray_iterator_base::t)
+	{
+		delete[] Carray_iterator_base::t;
+		Carray_iterator_base::t=nullptr;
+		Carray_iterator_base::length=0;
+		n=0;
+	}
+}
+	
+	void assign(unsigned int length)
+	{
+		destroy();
+		Carray_iterator_base::t=new T[this->length=length];
+	
+	}
+	
+	unsigned int getn() const
+{
+	return n;
+}
+	
+void setn(unsigned int n)
+{
+	this->n=n;
+}
 	
 };
 
