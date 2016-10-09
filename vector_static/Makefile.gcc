@@ -1,7 +1,6 @@
 include ../gcc.mk
 
-CXX=g++
-
+bin=vector_static
 
 .PHONY: all clean
 

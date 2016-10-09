@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "../include/Cdynamicarray.h"
 #include "../include/Cvector.h"
 
@@ -7,48 +8,64 @@ using namespace std;
 
 typedef Cvector_interface<Cdynamicarray<int>,int> vector_t;
 
-static void show(vector_t &list)
+static void show(vector_t &vector)
 {
-	for(unsigned int i=0;i<list.getn();i++)
-	  cout << list[i] << endl;
+	for(unsigned int i=0;i<vector.getn();i++)
+	  cout << vector[i] << endl;
 
 }
 
 int main()
 {
-	vector_t list;
+	vector_t vector;
 	
 	for(int i=0;i<10;i++)
-	  list<<i;
+	  vector<<i;
 	
 	cout << "List Element\n" ;
-	show(list);
+	show(vector);
 	
-	list.remove(5);
-	cout << "List Element ::list.remove(5)\n" ;
-	show(list);
+	vector.remove(5);
+	cout << "List Element ::vector.remove(5)\n" ;
+	show(vector);
 	
-	list << 100 << 200;
-	cout << "List Element ::list << 100 << 200\n" ;
-	show(list);
+	vector << 100 << 200;
+	cout << "List Element ::vector << 100 << 200\n" ;
+	show(vector);
 	
-	list.insert(10,1);
-	cout << "List Element ::list.insert(10,1)\n" ;
-	show(list);
+	vector.insert(10,1);
+	cout << "List Element ::vector.insert(10,1)\n" ;
+	show(vector);
 
-	list.remove();
-	cout << "List Element ::list.remove()\n" ;
-	show(list);
+	vector.remove();
+	cout << "List Element ::vector.remove()\n" ;
+	show(vector);
 	
 	cout << "List Element ::push_back\n" ;
-	list.destroy();
+	vector.destroy();
 	for(int i=0;i<10;i++)
-	  list.push(i);
+	  vector.push(i);
 	
 	
 	for(int i=10;i<20;i++)
-	  list.push_back(i);	
-	  show(list);
+	  vector.push_back(i);	
+	  show(vector);
+	  
+	  
+	 vector.destroy();
+	 for(int i=0;i<10;i++)
+			vector<<i;
+			
+	vector << 1 << 1 << 2 << 1;
+	
+	cout << "List Element\n" ;
+	show(vector);
+	
+	cout << "count if n=1 = " << count(vector.begin(),vector.end(),1) << endl;
+	
+	
+	
+	
 	
 	return 0;
 }

@@ -47,6 +47,30 @@ unsigned int Carray_base<T>::getlength() const
 	return length;
 }
 
+//===================================================== Carray_iterator =====================================================
+template <typename T>
+class Carray_iterator_base: public Carray_base<T>
+{
+	protected:
+	unsigned int n;
+	
+	public:
+	Carray_iterator_base():n(0){}
+	
+	constexpr const T *begin() const
+	{
+		return Carray_iterator_base::t;
+	}
+	constexpr const T *end() const
+	{
+		return Carray_iterator_base::t+n;
+	}
+	constexpr int size() const
+	{
+		return n;
+	}
+	
+};
 
 //===================================================== Carray =====================================================
 template <typename T,unsigned int N=0>

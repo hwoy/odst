@@ -4,13 +4,10 @@
 
 //===================================================== Cdynamicarray =====================================================
 template <typename T>
-class Cdynamicarray : public Carray_base<T>
+class Cdynamicarray : public Carray_iterator_base<T>
 {
-	protected:
-	unsigned int n;
 	
 	public:
-	Cdynamicarray();
 	~Cdynamicarray();
 	
 	unsigned int getn() const;					//interface
@@ -31,11 +28,6 @@ class Cdynamicarray : public Carray_base<T>
 	
 };
 
-template <typename T>
-Cdynamicarray<T>::Cdynamicarray()
-{
-	n=0;
-}
 
 template <typename T>
 Cdynamicarray<T>::~Cdynamicarray()
@@ -47,23 +39,23 @@ Cdynamicarray<T>::~Cdynamicarray()
 template <typename T>
 unsigned int Cdynamicarray<T>::getn() const
 {
-	return n;
+	return Cdynamicarray::n;
 }
 
 
 template <typename T>
 void Cdynamicarray<T>::remove(unsigned int index)
 {
-	if(!n) return;
+	if(!Cdynamicarray::n) return;
 	
-	for(unsigned int i=index;i+1<n;i++)
+	for(unsigned int i=index;i+1<Cdynamicarray::n;i++)
 	{
 		Cdynamicarray<T>::t[i]=Cdynamicarray<T>::t[i+1];
 	}
 
-	n--;
+	Cdynamicarray::n--;
 		
-	if(Cdynamicarray<T>::length >=3*n) resize((n+1)<<2);
+	if(Cdynamicarray<T>::length >=3*Cdynamicarray::n) resize((Cdynamicarray::n+1)<<2);
 	
 }
 
@@ -71,10 +63,10 @@ template <typename T>
 void Cdynamicarray<T>::insert(const T &t,unsigned int index)
 {
 	
-		if(n+1>Cdynamicarray<T>::length)
-			resize((n+1)<<1);
+		if(Cdynamicarray<T>::n+1>Cdynamicarray<T>::length)
+			resize((Cdynamicarray::n+1)<<1);
 			
-				for(unsigned int i=n;i>index;i--)
+				for(unsigned int i=Cdynamicarray::n;i>index;i--)
 				{
 					Cdynamicarray<T>::t[i]=Cdynamicarray<T>::t[i-1];
 				}
@@ -82,7 +74,7 @@ void Cdynamicarray<T>::insert(const T &t,unsigned int index)
 
 		
 		Cdynamicarray<T>::t[index]=t;
-		n++;
+		Cdynamicarray::n++;
 	
 }
 
@@ -115,7 +107,7 @@ void Cdynamicarray<T>::destroy()
 		delete[] Cdynamicarray<T>::t;
 		Cdynamicarray<T>::t=nullptr;
 		Cdynamicarray<T>::length=0;
-		n=0;
+		Cdynamicarray::n=0;
 	}
 	
 }
@@ -136,7 +128,7 @@ T* Cdynamicarray<T>::split(unsigned int index)
 {
 	T *t;
 	
-	if(!n) return nullptr;
+	if(!Cdynamicarray::n) return nullptr;
 		
 	t=new T;
 	*t=Cdynamicarray<T>::t[index];

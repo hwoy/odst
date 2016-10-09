@@ -4,10 +4,8 @@
 
 //===================================================== Cdstaticarray_base =====================================================
 template <typename T,unsigned int N>
-class Cstaticarray : public Carray_base<T>
+class Cstaticarray : public Carray_iterator_base<T>
 {
-	protected:
-	unsigned int n;
 	
 	public:
 	Cstaticarray(unsigned int lenght=N);
@@ -33,7 +31,6 @@ template <typename T,unsigned int N>
 Cstaticarray<T,N>::Cstaticarray(unsigned int lenght)
 {
 	assign(lenght);
-	n=0;
 }
 
 template <typename T,unsigned int N>
@@ -46,21 +43,21 @@ Cstaticarray<T,N>::~Cstaticarray()
 template <typename T,unsigned int N>
 unsigned int Cstaticarray<T,N>::getn() const
 {
-	return n;
+	return Cstaticarray<T,N>::n;
 }
 
 
 template <typename T,unsigned int N>
 void Cstaticarray<T,N>::remove(unsigned int index)
 {
-	if(!n) return;
+	if(!Cstaticarray<T,N>::n) return;
 	
-	for(unsigned int i=index;i+1<n;i++)
+	for(unsigned int i=index;i+1<Cstaticarray<T,N>::n;i++)
 	{
 		Cstaticarray<T,N>::t[i]=Cstaticarray<T,N>::t[i+1];
 	}
 
-	n--;
+	Cstaticarray<T,N>::n--;
 
 	
 }
@@ -70,7 +67,7 @@ void Cstaticarray<T,N>::insert(const T &t,unsigned int index)
 {
 	
 			
-				for(unsigned int i=n;i>index;i--)
+				for(unsigned int i=Cstaticarray<T,N>::n;i>index;i--)
 				{
 					Cstaticarray<T,N>::t[i]=Cstaticarray<T,N>::t[i-1];
 				}
@@ -78,7 +75,7 @@ void Cstaticarray<T,N>::insert(const T &t,unsigned int index)
 
 		
 		Cstaticarray<T,N>::t[index]=t;
-		n++;
+		Cstaticarray<T,N>::n++;
 	
 }
 
@@ -91,7 +88,7 @@ void Cstaticarray<T,N>::destroy()
 		delete[] Cstaticarray<T,N>::t;
 		Cstaticarray<T,N>::t=nullptr;
 		Cstaticarray<T,N>::length=0;
-		n=0;
+		Cstaticarray<T,N>::n=0;
 	}
 	
 }
@@ -112,7 +109,7 @@ T* Cstaticarray<T,N>::split(unsigned int index)
 {
 	T *t;
 	
-	if(!n) return nullptr;
+	if(!Cstaticarray<T,N>::n) return nullptr;
 		
 	t=new T;
 	*t=Cstaticarray<T,N>::t[index];

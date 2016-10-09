@@ -1,7 +1,7 @@
 include ../gcc.mk
 
 
-bin=list_cdll
+bin=vector_cdll
 
 
 .PHONY: all clean

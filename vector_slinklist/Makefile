@@ -1,6 +1,6 @@
 include ../clang.mk
 
-bin=list_sll
+bin=vector_sll
 
 
 .PHONY: all clean
