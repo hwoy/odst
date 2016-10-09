@@ -21,7 +21,7 @@ class Cdeque_interface : public T
 template <typename T,typename U>
 void Cdeque_interface<T,U>::push_front(const U &u)
 {
-	T::insert(u,Cdeque_interface<T,U>::getn());
+	T::insert(u,T::getn());
 }
 template <typename T,typename U>
 void Cdeque_interface<T,U>::push_back(const U &u)
@@ -39,7 +39,7 @@ template <typename T,typename U>
 U* Cdeque_interface<T,U>::pop_front()
 {
 	
-	return T::split(Cdeque_interface<T,U>::getn()-1);
+	return T::split(T::getn()-1);
 }
 
 

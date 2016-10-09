@@ -24,6 +24,9 @@ class Cvector_interface : public T
 	void push_back(const U &u);
 	U* pop_back();
 	
+	void push_front(const U &u);
+	U* pop_front();
+	
 	void insert(const U &u ,unsigned int index);
 	
 };
@@ -66,13 +69,13 @@ U& Cvector_interface<T,U>::operator[](unsigned int index) const
 template <typename T,typename U>
 void Cvector_interface<T,U>::push(const U &u)
 {
-  T::insert(u,T::getn());
+  push_front(u);
 }
 
 template <typename T,typename U>
 U* Cvector_interface<T,U>::pop()
 {
-  return T::split(T::getn()-1);
+  return pop_front();
 }
 
 template <typename T,typename U>
@@ -85,6 +88,18 @@ template <typename T,typename U>
 U* Cvector_interface<T,U>::pop_back()
 {
   return T::split(0);
+}
+
+template <typename T,typename U>
+void Cvector_interface<T,U>::push_front(const U &u)
+{
+  T::insert(u,T::getn());
+}
+
+template <typename T,typename U>
+U* Cvector_interface<T,U>::pop_front()
+{
+  return T::split(T::getn()-1);
 }
 
 template <typename T,typename U>
