@@ -26,9 +26,11 @@ class Cset_interface : public T
 	/*		Core Methodes		*/
 	
 	unsigned int pack();
+	unsigned int setunion(const Cset_interface &set);
+	unsigned int setintersect(const Cset_interface &set);
 	
 	
-	private:
+	protected:
 	unsigned int find(unsigned int begin,unsigned int end,U &u) const;
 	
 };
@@ -96,15 +98,69 @@ unsigned int Cset_interface<T,U>::pack()
 	
 	for(unsigned int i=0;i<T::getn();i++)
 	{
-		unsigned int j;
 		
-		for(unsigned int k=1;(j=find(i+k,T::getn(),T::getobj(i)))!=-1;k++)
+		for(unsigned int j=i+1;j<T::getn();)
 		{
-			remove(i+k+j);
+			if(T::getobj(i)==T::getobj(j))
+			{
+				remove(j);
+				count++;
+				continue;
+			}
+			j++;
+			
+		}
+
+	}
+	
+	return count;
+}
+
+template <typename T,typename U>
+unsigned int Cset_interface<T,U>::setunion(const Cset_interface<T,U> &set)
+{
+	unsigned int count;
+	count=0;
+	
+	for(unsigned int i=0;i<set.getn();i++)
+	{
+		if(find(0,T::getn(),set.getobj(i))==-1)
+		{
+			add(set.getobj(i));
 			count++;
 		}
 
 	}
+	
+	return count;
+}
+
+template <typename T,typename U>
+unsigned int Cset_interface<T,U>::setintersect(const Cset_interface<T,U> &set)
+{
+	Cset_interface<T,U> tmp;
+	unsigned int count=0;
+	
+	for(unsigned int i=0;i<T::getn();i++)
+	{
+		for(unsigned int j=0;j<set.getn();j++)
+		{
+			if(T::getobj(i)==set.getobj(j))
+			{
+				tmp << T::getobj(i);
+				count ++;
+				break;
+			}
+		}
+	}
+	
+	while(T::getn())
+	remove(0);
+		
+	for(unsigned int i=0;i<tmp.getn();i++)
+	add(tmp.getobj(i));
+
+
 	
 	return count;
 }
