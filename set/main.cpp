@@ -2,6 +2,7 @@
 
 #include "../include/Cdynamicarray.h"
 #include "../include/Cset.h"
+#include "../include/Cutil.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ static void show(set_t &set)
 	 cout << i << ": " << set[i] << endl;
 
 }
+
 
 int main()
 {
@@ -54,7 +56,15 @@ int main()
 	cout << "SET1 List Elements:sub\n";
 	show(set);
 	
+	cout << "Max of set =" << set[findm(set,0,set.getn(),_max<int>)] << endl;
+	cout << "Min of set =" << set[findm(set,0,set.getn(),_min<int>)] << endl;
 	
+	cout << "SET2" << endl;
+	show(set2);
+	
+	arrang(set2,0,set2.getn(),_min<int>);
+	cout << "SET2 Arranged " << endl;
+	show(set2);
 	
 	
 	

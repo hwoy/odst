@@ -1,18 +1,8 @@
 #ifndef _ODST_CSET_H_
 #define _ODST_CSET_H_
 
-template <typename T,typename U>
-unsigned int find(const T &t,unsigned int begin,unsigned int end,const U &u)
-{
-	unsigned int i;
-	
-	for(i=0;begin+i<end;i++)
-	{
-		if(u==t.getobj(begin+i)) break;
-	}
+#include "Cutil.h"
 
-	return begin+i==end?-1:i;
-}
 
 //===================================================== Cset_interface =====================================================
 template <typename T,typename U>
@@ -123,7 +113,7 @@ unsigned int Cset_interface<T,U>::_union(const Cset_interface<T,U> &set)
 	
 	for(unsigned int i=0;i<set.getn();i++)
 	{
-		if(::find(*this,0,T::getn(),set.getobj(i))==-1)
+		if(::find(*this,0,T::getn(),set.getobj(i))==-1U)
 		{
 			add(set.getobj(i));
 			count++;
@@ -141,7 +131,7 @@ unsigned int Cset_interface<T,U>::intersect(const Cset_interface<T,U> &set)
 		
 	for(unsigned int i=T::getn(); i>0;i--)
 	{
-		if(::find(set,0,set.getn(),T::getobj(i-1))==-1)
+		if(::find(set,0,set.getn(),T::getobj(i-1))==-1U)
 		{
 			remove(i-1);
 			count++;
@@ -177,7 +167,7 @@ unsigned int Cset_interface<T,U>::sub(const Cset_interface<T,U> &set)
 		
 	for(unsigned int i=T::getn(); i>0;i--)
 	{
-		if(::find(set,0,set.getn(),T::getobj(i-1))!=-1)
+		if(::find(set,0,set.getn(),T::getobj(i-1))!=-1U)
 		{
 			remove(i-1);
 			count++;

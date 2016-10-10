@@ -49,7 +49,7 @@ struct Clinklist_interface : public T
 	{
 		return T::getNode(index).data;
 	}
-	
+
 	void assign(unsigned int length)
 	{
 		T::Destroy();
