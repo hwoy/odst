@@ -22,8 +22,7 @@ int main()
 	
 	set << 1 << 5 << 2 << 3 << 1 << 2 <<5 << 4 << 4 << 4;
 	
-	set2 << 100;
-	//set2 << 20 << 1 << 10 << 2 << 30 << 20 << 30;
+	set2 << 20 << 1 << 10 << 2 << 30 << 20 << 30;
 	
 	cout << "SET1 List Elements\n";
 	show(set);
@@ -31,15 +30,12 @@ int main()
 	cout << "SET2 List Elements\n";
 	show(set2);
 	
-	i=set.setunion(set2);
+	i=set._union(set2);
 	cout << "SET1 List Elements:Union\n";
 	show(set);
 	cout << "SET1 N of Union = " << i << endl;
 	
-	set2.assign(1);
-	set2 << 400;
-	
-	i=set.setintersect(set2);
+	i=set.intersect(set2);
 	cout << "SET1 List Elements:Intersect\n";
 	show(set);
 	cout << "SET1 N of Intersect = " << i << endl;	

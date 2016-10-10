@@ -28,10 +28,11 @@ class Cset_interface : public T
 	/*		Core Methodes		*/
 	
 	unsigned int pack();
-	unsigned int setunion(const Cset_interface &set);
-	unsigned int setintersect(const Cset_interface &set);
+	unsigned int _union(const Cset_interface &set);
+	unsigned int intersect(const Cset_interface &set);
+	bool issubset(const Cset_interface &set) const;
 	
-	
+	protected:
 	unsigned int find(unsigned int begin,unsigned int end,U &u) const;
 	
 };
@@ -118,7 +119,7 @@ unsigned int Cset_interface<T,U>::pack()
 }
 
 template <typename T,typename U>
-unsigned int Cset_interface<T,U>::setunion(const Cset_interface<T,U> &set)
+unsigned int Cset_interface<T,U>::_union(const Cset_interface<T,U> &set)
 {
 	unsigned int count;
 	count=0;
@@ -137,11 +138,10 @@ unsigned int Cset_interface<T,U>::setunion(const Cset_interface<T,U> &set)
 }
 
 template <typename T,typename U>
-unsigned int Cset_interface<T,U>::setintersect(const Cset_interface<T,U> &set)
+unsigned int Cset_interface<T,U>::intersect(const Cset_interface<T,U> &set)
 {
 	Cvector_interface<Cdynamicarray<unsigned int>,unsigned int> tmp;
 	unsigned int count=0;
-	
 	for(unsigned int i=0;i<T::getn();i++)
 	{
 		for(unsigned int j=0;j<set.getn();j++)
@@ -172,6 +172,23 @@ unsigned int Cset_interface<T,U>::setintersect(const Cset_interface<T,U> &set)
 
 	
 	return count;
+}
+
+template <typename T,typename U>
+bool Cset_interface<T,U>::issubset(const Cset_interface &set) const
+{
+	for(unsigned int j=0;j<set.getn();j++)
+	{
+		for(unsigned int i=0;i<T::getn();i++)
+		{
+			if(!(T::getobj(i)==set.getobj(j)))
+			{
+				return false;
+			}
+		}
+	}
+	
+	return true;	
 }
 
 
