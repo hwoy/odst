@@ -1,6 +1,8 @@
 #ifndef _ODST_CSET_H_
 #define _ODST_CSET_H_
 
+#include "../include/Cdynamicarray.h"
+#include "../include/Cvector.h"
 //===================================================== Cset_interface =====================================================
 template <typename T,typename U>
 class Cset_interface : public T
@@ -30,7 +32,6 @@ class Cset_interface : public T
 	unsigned int setintersect(const Cset_interface &set);
 	
 	
-	protected:
 	unsigned int find(unsigned int begin,unsigned int end,U &u) const;
 	
 };
@@ -138,7 +139,7 @@ unsigned int Cset_interface<T,U>::setunion(const Cset_interface<T,U> &set)
 template <typename T,typename U>
 unsigned int Cset_interface<T,U>::setintersect(const Cset_interface<T,U> &set)
 {
-	Cset_interface<T,U> tmp;
+	Cvector_interface<Cdynamicarray<unsigned int>,unsigned int> tmp;
 	unsigned int count=0;
 	
 	for(unsigned int i=0;i<T::getn();i++)
@@ -147,18 +148,26 @@ unsigned int Cset_interface<T,U>::setintersect(const Cset_interface<T,U> &set)
 		{
 			if(T::getobj(i)==set.getobj(j))
 			{
-				tmp << T::getobj(i);
-				count ++;
+				tmp << i;
 				break;
 			}
 		}
 	}
-	
-	while(T::getn())
-	remove(0);
+
 		
-	for(unsigned int i=0;i<tmp.getn();i++)
-	add(tmp.getobj(i));
+	for(unsigned int i=T::getn(); i>0;i--)
+	{
+		unsigned int j;
+		for(j=tmp.getn(); j>0;j--)
+			{
+				if((i-1)==tmp.getobj(j-1)) break;
+			}
+			if(j==0 || tmp.getn()==0)
+				{
+					remove(i-1);
+					count++;
+				}
+	}
 
 
 	
