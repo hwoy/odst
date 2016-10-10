@@ -1,12 +1,16 @@
 #include <iostream>
 
-#include "../include/Cdynamicarray.h"
+#include "../include/Clinklist_interface.h"
+#include "../include/Clinklist.h"
 #include "../include/Cset.h"
 
 using namespace std;
 
 
-typedef Cset_interface<Cdynamicarray<int>,int> set_t;
+typedef Cnode<int,2> node_t;
+typedef Cdoublylinklist<node_t> linklist_t;
+typedef Clinklist_interface<linklist_t,node_t,int> linklist_if_t;
+typedef Cset_interface<linklist_if_t, int> set_t;
 
 static void show(set_t &set)
 {
