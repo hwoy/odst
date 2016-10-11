@@ -4,31 +4,31 @@
 ~*
 *~
 
-cirlinklist/cirlinklist
-cirslinklist/cirslinklist
+testing/cirlinklist/cirlinklist
+testing/cirslinklist/cirslinklist
 
-example/dec2bin
+testing/example/dec2bin
 
-linklist/linklist
+testing/linklist/linklist
 
-vector/vector
-vector_dlinklist/vector_dll
-vector_slinklist/vector_sll
-vector_static/vector_static
+testing/vector/vector
+testing/vector_dlinklist/vector_dll
+testing/vector_slinklist/vector_sll
+testing/vector_static/vector_static
 
-queue/queue
-queue_dlinklist/queue_dll
-queue_slinklist/queue_sll
-queue_static/queue_static
+testing/queue/queue
+testing/queue_dlinklist/queue_dll
+testing/queue_slinklist/queue_sll
+testing/queue_static/queue_static
 
-slinklist/slinklist
+testing/slinklist/slinklist
 
-stack/stack
-stack_dlinklist/stack_dll
-stack_slinklist/stack_sll
-stack_static/stack_static
+testing/stack/stack
+testing/stack_dlinklist/stack_dll
+testing/stack_slinklist/stack_sll
+testing/stack_static/stack_static
 
-set/set
-set_dlinklist/set_dlinklist
+testing/set/set
+testing/set_dlinklist/set_dlinklist
 
-util/util
+testing/util/util
