@@ -32,6 +32,11 @@ struct Clinklist_interface : public T
 		T::Destroy();
 	}
 	
+	int clear()
+	{
+		T::Destroy();
+	}
+	
 	U* split(unsigned int index)
 	{
 		U *u;

@@ -20,6 +20,8 @@ struct class_interface
 	
 	void assign(unsigned int length);
 	
+	int clear();
+	
 };
 
 

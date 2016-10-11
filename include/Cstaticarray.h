@@ -14,11 +14,19 @@ class Cstaticarray : public Carray_iterator_base<T>
 	
 	void insert(const T &t,unsigned int index);		//interface
 	void remove(unsigned int index);				//interface	
+	int clear();									//interface
 	
 	
 	T* split(unsigned int index);					//interface
 	
 };
+
+template <typename T,unsigned int N>
+int Cstaticarray<T,N>::clear()
+{
+	Cstaticarray<T,N>::n=0;
+	return 1;
+}
 
 template <typename T,unsigned int N>
 Cstaticarray<T,N>::Cstaticarray(unsigned int lenght)

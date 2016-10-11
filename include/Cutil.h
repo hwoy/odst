@@ -11,6 +11,32 @@ void _swap(T *a,T *b)
 	*a=tmp;
 }
 
+template <typename T>
+void add(T &a,const T &b)
+{
+	for(unsigned int i=0;i<b.getn();i++)
+	a.add(b[i]);	
+}
+
+template <typename T>
+void copy(T &a,const T &b)
+{
+	a.clear();
+	add<T>(a,b);
+}
+
+template <typename T,typename U,typename V>
+void countif(const T &a,const U &b,V v)
+{
+	unsigned int count=0;
+	for(unsigned int i=0;i<a.getn();i++)
+	{
+		if(v(b,a[i])) count++;
+	}
+	
+	return count;
+}
+
 template <typename T,typename U>
 unsigned int find(const T &t,unsigned int begin,unsigned int end,const U &u)
 {
@@ -61,13 +87,13 @@ auto _lammin = [](auto &a,auto &b) {return a<b;};
 */
 
 template <typename T>
-bool _max(const T &a,const T &b)
+constexpr bool _max(const T &a,const T &b)
 {
 	return (a>b);
 }
 
 template <typename T>
-bool _min(const T &a,const T &b)
+constexpr bool _min(const T &a,const T &b)
 {
 	return (a<b);
 }

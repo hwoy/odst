@@ -15,6 +15,7 @@ class Cdynamicarray : public Carray_iterator_base<T>
 	
 	
 	T* split(unsigned int index);				//interface
+	int clear();								//interface
 	
 	protected:
 
@@ -24,6 +25,12 @@ class Cdynamicarray : public Carray_iterator_base<T>
 };
 
 
+template <typename T>
+int Cdynamicarray<T>::clear()
+{
+	Cdynamicarray<T>::destroy();
+	return 0;
+}
 
 template <typename T>
 void Cdynamicarray<T>::remove(unsigned int index)

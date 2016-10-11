@@ -1,4 +1,5 @@
 #include <iostream>
+#include <initializer_list>
 
 #include "../include/Cdynamicarray.h"
 #include "../include/Cset.h"
@@ -7,7 +8,27 @@
 using namespace std;
 
 
-typedef Cset_interface<Cdynamicarray<int>,int> set_t;
+typedef Cset_interface<Cdynamicarray<int>,int> _set_t;
+
+class set_t:public _set_t
+{
+	public:
+	set_t(){}
+	
+	set_t(const initializer_list<int> l)
+	{
+		for(auto i:l)
+		add(i);
+	}
+	
+	set_t& operator=(const initializer_list<int> l)
+	{
+		clear();
+		for(auto i:l)
+		add(i);
+		return *this;
+	}
+};
 
 static void show(set_t &set)
 {
@@ -22,7 +43,7 @@ int main()
 	unsigned int i;
 	set_t set,set2,set3;
 	
-	set << 1 << 5 << 2 << 3 << 1 << 2 <<5 << 4 << 4 << 4;
+	set ={ 1 , 5 ,2 ,3 , 1 , 2 ,5 , 4 , 4 , 4};
 	
 	set2 << 20 << 1 << 10 << 2 << 30 << 20 << 30;
 	
