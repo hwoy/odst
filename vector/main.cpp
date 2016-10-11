@@ -7,14 +7,7 @@
 using namespace std;
 
 typedef Cvector_interface<Cdynamicarray<int>,int> vector_t;
-/*
-static void show(vector_t &vector)
-{
-	for(unsigned int i=0;i<vector.getn();i++)
-	  cout << vector[i] << endl;
 
-}
-*/
 static void show(vector_t &vector)
 {
 	for(auto i:vector)

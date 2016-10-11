@@ -11,27 +11,27 @@ void _swap(T *a,T *b)
 	*a=tmp;
 }
 
-template <typename T>
-void add(T &a,const T &b)
+template <typename T,typename U>
+void add(T &a,const U &b)
 {
 	for(unsigned int i=0;i<b.getn();i++)
 	a.add(b[i]);	
 }
 
-template <typename T>
-void copy(T &a,const T &b)
+template <typename T,typename U>
+void copy(T &a,const U &b)
 {
 	a.clear();
-	add<T>(a,b);
+	add<T,U>(a,b);
 }
 
 template <typename T,typename U,typename V>
-void countif(const T &a,const U &b,V v)
+unsigned int countif(const T &a,const U &b,V v)
 {
 	unsigned int count=0;
 	for(unsigned int i=0;i<a.getn();i++)
 	{
-		if(v(b,a[i])) count++;
+		if(v(a[i],b)) count++;
 	}
 	
 	return count;
@@ -82,9 +82,43 @@ void arrang(const T &t,unsigned int begin,unsigned int end,U u)
 }
 
 /* ISO C++14 auto parameter lamda express
-auto _lammax = [](auto &a,auto &b) {return a>b;};
-auto _lammin = [](auto &a,auto &b) {return a<b;};
+auto _lagt = [](auto &a,auto &b) {return a>b;};
+auto _lagte = [](auto &a,auto &b) {return a>=b;};
+auto _lamlt = [](auto &a,auto &b) {return a<b;};
+auto _lamlte = [](auto &a,auto &b) {return a<=b;};
+auto _lameq = [](auto &a,auto &b) {return a==b;};
 */
+
+template <typename T>
+constexpr bool _gt(const T &a,const T &b)
+{
+	return (a>b);
+}
+
+template <typename T>
+constexpr bool _gte(const T &a,const T &b)
+{
+	return (a>=b);
+}
+
+template <typename T>
+constexpr bool _lt(const T &a,const T &b)
+{
+	return (a<b);
+}
+
+template <typename T>
+constexpr bool _lte(const T &a,const T &b)
+{
+	return (a<=b);
+}
+
+template <typename T>
+constexpr bool _eq(const T &a,const T &b)
+{
+	return (a==b);
+}
+
 
 template <typename T>
 constexpr bool _max(const T &a,const T &b)

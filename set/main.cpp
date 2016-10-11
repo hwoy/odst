@@ -15,13 +15,13 @@ class set_t:public _set_t
 	public:
 	set_t(){}
 	
-	set_t(const initializer_list<int> l)
+	set_t(const initializer_list<int> &l)
 	{
 		for(auto i:l)
 		add(i);
 	}
 	
-	set_t& operator=(const initializer_list<int> l)
+	set_t& operator=(const initializer_list<int> &l)
 	{
 		clear();
 		for(auto i:l)
@@ -32,8 +32,8 @@ class set_t:public _set_t
 
 static void show(set_t &set)
 {
-	for(unsigned int i=0;i<set.getn();i++)
-	 cout << i << ": " << set[i] << endl;
+	for(auto i:set)
+	 cout << i << ": " << i << endl;
 
 }
 
@@ -68,7 +68,7 @@ int main()
 	show(set);
 	cout << "SET1 N of Deletion = " << i << endl;
 	
-	set3 << 10 <<2 << 100 << 200;
+	set3 ={ 10 ,2 ,100 ,200};
 	
 	cout << "SET3 List Elements\n";
 	show(set3);

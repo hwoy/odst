@@ -3,13 +3,13 @@ cirlinklist cirslinklist linklist vector \
 vector_static queue queue_static slinklist stack stack_static example \
 vector_dlinklist vector_slinklist stack_dlinklist stack_slinklist \
 queue_dlinklist queue_slinklist vector_cirdlinklist vector_cirslinklist \
-deque deque_static set set_dlinklist
+deque deque_static set set_dlinklist util
 
 all: cirlinklist cirslinklist linklist vector \
 vector_static queue queue_static slinklist stack stack_static example \
 vector_dlinklist vector_slinklist stack_dlinklist stack_slinklist \
 queue_dlinklist queue_slinklist vector_cirdlinklist vector_cirslinklist \
-deque deque_static set set_dlinklist
+deque deque_static set set_dlinklist util
 
 
 cirlinklist:
@@ -58,7 +58,8 @@ set:
 	make -C set
 set_dlinklist:
 	make -C set_dlinklist
-
+util:
+	make -C util
 
 
 clean:
@@ -84,5 +85,6 @@ clean:
 	make -C deque clean; \
 	make -C deque_static clean ; \
 	make -C set clean ; \
-	make -C set_dlinklist clean
+	make -C set_dlinklist clean ;\
+	make -C util clean
 
