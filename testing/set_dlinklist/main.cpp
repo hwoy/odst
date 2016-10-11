@@ -13,7 +13,7 @@ typedef Cdoublylinklist<node_t> linklist_t;
 typedef Clinklist_interface<linklist_t,node_t,int> linklist_if_t;
 typedef Cset_interface<linklist_if_t, int> set_t;
 
-static void show(set_t &set)
+static void show(const set_t &set)
 {
 	for(unsigned int i=0;i<set.getn();i++)
 	 cout << i << ": " << set[i] << endl;

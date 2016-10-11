@@ -8,7 +8,7 @@ using namespace std;
 typedef Cvector_interface<Cstaticarray<int,40>,int> vector_t;
 
 
-static void show(vector_t &list)
+static void show(const vector_t &list)
 {
 	for(unsigned int i=0;i<list.getn();i++)
 	  cout << list[i] << endl;

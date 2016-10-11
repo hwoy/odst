@@ -11,7 +11,7 @@ typedef Csinglylinklist<node_t> linklist_t;
 typedef Clinklist_interface<linklist_t,node_t,int> linklist_if_t;
 typedef Cvector_interface<linklist_if_t, int> vector_t;
 
-static void show(vector_t &list)
+static void show(const vector_t &list)
 {
 	for(unsigned int i=0;i<list.getn();i++)
 	  cout << list[i] << endl;

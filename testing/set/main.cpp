@@ -30,7 +30,7 @@ class set_t:public _set_t
 	}
 };
 
-static void show(set_t &set)
+static void show(const set_t &set)
 {
 	for(auto i:set)
 	 cout << i << ": " << i << endl;

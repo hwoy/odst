@@ -11,7 +11,7 @@ typedef linklist_t::headtail_t headtail_t;
 using namespace std;
 
 
-void show(headtail_t  &ht,unsigned int index)
+void show(const headtail_t  &ht,unsigned int index)
 {
 	node_t *temp1;
 	int i;

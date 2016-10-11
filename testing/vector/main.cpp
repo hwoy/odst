@@ -8,7 +8,7 @@ using namespace std;
 
 typedef Cvector_interface<Cdynamicarray<int>,int> vector_t;
 
-static void show(vector_t &vector)
+static void show(const vector_t &vector)
 {
 	for(auto i:vector)
 	  cout << i << endl;

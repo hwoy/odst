@@ -16,7 +16,7 @@ static void dec2base(unsigned int num,unsigned int base,vector_t &list)
 	}while(i/=base);
 }
 
-static void show(unsigned int num,vector_t &list)
+static void show(unsigned int num,const vector_t &list)
 {
 	
 	std::cout << num << " = ";
