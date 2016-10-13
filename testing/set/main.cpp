@@ -32,8 +32,9 @@ class set_t:public _set_t
 
 static void show(const set_t &set)
 {
+	unsigned int j=0;
 	for(auto i:set)
-	 cout << i << ": " << i << endl;
+	 cout << j++ << ": " << i << endl;
 
 }
 
@@ -86,6 +87,15 @@ int main()
 	arrang(set2,0,set2.getn(),_min<int>);
 	cout << "SET2 Arranged " << endl;
 	show(set2);
+	
+	set.clear();
+	set = {2,1,2,1,20,10};
+	
+	cout << (set.equal(set2)?"set==set2":"set!=set2") << endl;
+	
+	set << 30 << 30 << 30;
+	
+	cout << (set.equal(set2)?"set==set2":"set!=set2") << endl;
 	
 	
 	

@@ -1,4 +1,5 @@
 CC=gcc
 CXX=g++
-CXXFLAGS=-std=c++11 -g -Wall -pedantic
+INCLUDE=../../include
+CXXFLAGS=-std=c++11 -g -Wall -pedantic -I$(INCLUDE)
 LDFLAGS=

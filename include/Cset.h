@@ -33,6 +33,7 @@ class Cset_interface : public T
 	unsigned int intersect(const Cset_interface &set);
 	unsigned int sub(const Cset_interface &set);
 	bool issubset(const Cset_interface &set) const;
+	bool equal(const Cset_interface &setconst ) const;
 	
 	
 };
@@ -177,6 +178,33 @@ unsigned int Cset_interface<T,U>::sub(const Cset_interface<T,U> &set)
 
 	
 	return count;
+}
+
+template <typename T,typename U>
+bool Cset_interface<T,U>::equal(const Cset_interface &set) const
+{
+	Cset_interface<T,U> a,b;
+	bool isequal;
+	::copy(a,*this);
+	::copy(b,set);
+	
+	a.pack();
+	b.pack();
+	
+	if(a.getn() != b.getn()) return false;
+	
+	for(unsigned int i=0;i<a.getn();i++)
+	{
+		isequal=false;
+		for(unsigned int j=0;j<b.getn();j++)
+		{
+			if(a[i]==b[j])
+				isequal=true;
+		}
+		if(!isequal) return false;
+	}
+	
+	return isequal;
 }
 
 
