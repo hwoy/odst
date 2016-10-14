@@ -1,7 +1,7 @@
-# ODS<<_T_>>++
+# ODS<*T*>++
 
 
-ODS<<_T_>>++ (A.K.A Open Data Structure Template for C++) is a set of C++ template of data structure, provides
+ODS<*T*>++ (A.K.A Open Data Structure Template for C++) is a set of C++ template of data structure, provides
 
   - Array
   - Linklist
