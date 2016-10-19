@@ -204,7 +204,7 @@ bool Cset_interface<T,U>::equal(const Cset_interface &set) const
 		if(!isequal) return false;
 	}
 	
-	return isequal;
+	return true;
 }
 
 
