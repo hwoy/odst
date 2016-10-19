@@ -183,23 +183,32 @@ unsigned int Cset_interface<T,U>::sub(const Cset_interface<T,U> &set)
 template <typename T,typename U>
 bool Cset_interface<T,U>::equal(const Cset_interface &set) const
 {
-	Cset_interface<T,U> a,b;
 	bool isequal;
-	::copy(a,*this);
-	::copy(b,set);
 	
-	a.pack();
-	b.pack();
-	
-	if(a.getn() != b.getn()) return false;
-	
-	for(unsigned int i=0;i<a.getn();i++)
+	for(unsigned int i=0;i<T::getn();i++)
 	{
 		isequal=false;
-		for(unsigned int j=0;j<b.getn();j++)
+		for(unsigned int j=0;j<set.getn();j++)
 		{
-			if(a[i]==b[j])
+			if(T::getobj(i)==set[j])
+			{
 				isequal=true;
+				break;
+			}
+		}
+		if(!isequal) return false;
+	}
+	
+	for(unsigned int j=0;j<set.getn();j++)
+	{
+		isequal=false;
+		for(unsigned int i=0;i<T::getn();i++)
+		{
+			if(T::getobj(i)==set[j])
+			{
+				isequal=true;
+				break;
+			}
 		}
 		if(!isequal) return false;
 	}
