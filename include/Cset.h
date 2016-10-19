@@ -147,15 +147,20 @@ unsigned int Cset_interface<T,U>::intersect(const Cset_interface<T,U> &set)
 template <typename T,typename U>
 bool Cset_interface<T,U>::issubset(const Cset_interface &set) const
 {
+	bool isequal;
+	
 	for(unsigned int j=0;j<set.getn();j++)
 	{
+		isequal=false;
 		for(unsigned int i=0;i<T::getn();i++)
 		{
-			if(!(T::getobj(i)==set.getobj(j)))
+			if(T::getobj(i)==set[j])
 			{
-				return false;
+				isequal=true;
+				break;
 			}
 		}
+		if(!isequal) return false;
 	}
 	
 	return true;	
@@ -183,35 +188,8 @@ unsigned int Cset_interface<T,U>::sub(const Cset_interface<T,U> &set)
 template <typename T,typename U>
 bool Cset_interface<T,U>::equal(const Cset_interface &set) const
 {
-	bool isequal;
-	
-	for(unsigned int i=0;i<T::getn();i++)
-	{
-		isequal=false;
-		for(unsigned int j=0;j<set.getn();j++)
-		{
-			if(T::getobj(i)==set[j])
-			{
-				isequal=true;
-				break;
-			}
-		}
-		if(!isequal) return false;
-	}
-	
-	for(unsigned int j=0;j<set.getn();j++)
-	{
-		isequal=false;
-		for(unsigned int i=0;i<T::getn();i++)
-		{
-			if(T::getobj(i)==set[j])
-			{
-				isequal=true;
-				break;
-			}
-		}
-		if(!isequal) return false;
-	}
+	if(!issubset(set) || !set.issubset(*this))
+		return false;
 	
 	return true;
 }

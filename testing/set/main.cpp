@@ -97,6 +97,14 @@ int main()
 	
 	cout << (set.equal(set2)?"set==set2":"set!=set2") << endl;
 	
+	set << 0;
+	
+	cout << (set.issubset(set2)?"set2 is subset of set":"set2 is not subset of set") << endl;
+	
+	set2 << -1;
+	
+	cout << (set.issubset(set2)?"set2 is subset of set":"set2 is not subset of set") << endl;
+	
 	
 	
 	
