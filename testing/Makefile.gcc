@@ -34,7 +34,7 @@ stack_static:
 example:
 	make -C example -f Makefile.gcc
 example:
-	make -C example
+	make -C example -f Makefile.gcc
 vector_dlinklist:
 	make -C vector_dlinklist -f Makefile.gcc
 vector_slinklist:

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <Carray.h>
 
 
@@ -16,6 +17,8 @@ int main()
 	{
 	  cout << array[i] << endl;
 	}
+	
+	cout << "count if < 3 =" << count_if(array.begin(),array.end(),[](int i) {return i<3;}) << endl;
 
 	
 	return 0;

@@ -4,7 +4,7 @@
 
 //===================================================== Cdynamicarray =====================================================
 template <typename T>
-class Cdynamicarray : public Carray_iterator_base<T>
+class Cdynamicarray : public Carray_iterator_n<T>
 {
 	
 	public:	

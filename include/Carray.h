@@ -47,29 +47,19 @@ unsigned int Carray_base<T>::getlength() const
 	return length;
 }
 
-//===================================================== Carray_iterator =====================================================
+//===================================================== Carray_iterator_base =====================================================
 template <typename T>
 class Carray_iterator_base: public Carray_base<T>
 {
-	protected:
-	unsigned int n;
 	
 	public:
 		
 	/*		for iterator					*/
-	Carray_iterator_base():n(0){}
+
 	
 	constexpr const T *begin() const
 	{
 		return Carray_iterator_base::t;
-	}
-	constexpr const T *end() const
-	{
-		return Carray_iterator_base::t+n;
-	}
-	constexpr int size() const
-	{
-		return n;
 	}
 	
 	/*			for dynamic and static				*/
@@ -82,13 +72,10 @@ class Carray_iterator_base: public Carray_base<T>
 	
 	void destroy()
 {
-	if(Carray_iterator_base::t)
-	{
 		delete[] Carray_iterator_base::t;
 		Carray_iterator_base::t=nullptr;
 		Carray_iterator_base::length=0;
-		n=0;
-	}
+
 }
 	
 	void assign(unsigned int length)
@@ -97,6 +84,40 @@ class Carray_iterator_base: public Carray_base<T>
 		Carray_iterator_base::t=new T[this->length=length];
 	
 	}
+	
+	
+	
+};
+
+//===================================================== Carray_iterator_dynamic =====================================================
+template <typename T>
+class Carray_iterator_n: public Carray_iterator_base<T>
+{
+	protected:
+	unsigned int n;
+	
+	public:
+		
+	/*		for iterator					*/
+	Carray_iterator_n():n(0){}
+	
+	constexpr const T *end() const
+	{
+		return Carray_iterator_n::t+n;
+	}
+	constexpr int size() const
+	{
+		return n;
+	}
+	
+
+	
+	void destroy()
+{
+	Carray_iterator_base<T>::destroy();
+	n=0;
+}
+	
 	
 	unsigned int getn() const
 {
@@ -109,64 +130,38 @@ void setn(unsigned int n)
 }
 	
 };
+//===================================================== Carray_iterator_length =====================================================
+template <typename T>
+class Carray_iterator_length: public Carray_iterator_base<T>
+{
+	public:
+	constexpr const T *end() const
+	{
+		return  Carray_iterator_length::t+ Carray_iterator_length::length;
+	}
+	constexpr int size() const
+	{
+		return  Carray_iterator_length::length;
+	}
+};
 
 //===================================================== Carray =====================================================
 template <typename T,unsigned int N=0>
-class Carray : public Carray_base<T>
+class Carray : public Carray_iterator_length<T>
 {
 	
 	public:
 	Carray(unsigned int length=N);
-	~Carray();
-	
-	void operator=(unsigned int length);
 	
 	
-	void assign(unsigned int length);
-	void destroy();
 };
 
 
 template <typename T,unsigned int N>
 Carray<T,N>::Carray(unsigned int length)
 {
-	assign(length);
+	Carray<T,N>::assign(length);
 }
-
-template <typename T,unsigned int N>
-Carray<T,N>::~Carray()
-{
-	destroy();
-}
-
-
-
-template <typename T,unsigned int N>
-void Carray<T,N>::operator=(unsigned int length)
-{
-	assign(length);
-}
-
-
-template <typename T,unsigned int N>
-void Carray<T,N>::assign(unsigned int length)
-{
-	destroy();
-	Carray<T,N>::t=new T[this->length=length];
-	
-}
-
-template <typename T,unsigned int N>
-void Carray<T,N>::destroy()
-{
-	if(Carray<T,N>::t)
-	{
-		delete[] Carray<T,N>::t;
-		Carray<T,N>::t=nullptr;
-		Carray<T,N>::length=0;
-	}
-}
-
 
 #endif
 

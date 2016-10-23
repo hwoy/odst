@@ -38,7 +38,7 @@ int main(void)
 	
 	for(j=0;j<10;j++)
 	{
-		i=random()%101;
+		i=rand()%101;
 		dec2base(i,2,list);
 		show(i,list);
 		list.setn(0);
