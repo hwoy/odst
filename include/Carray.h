@@ -54,15 +54,11 @@ class Carray_iterator_base: public Carray_base<T>
 	
 	public:
 		
-	/*		for iterator					*/
-
-	
-	constexpr const T *begin() const
+	T *begin() const
 	{
 		return Carray_iterator_base::t;
 	}
 	
-	/*			for dynamic and static				*/
 	
 	~Carray_iterator_base()
 	{
@@ -89,7 +85,7 @@ class Carray_iterator_base: public Carray_base<T>
 	
 };
 
-//===================================================== Carray_iterator_dynamic =====================================================
+//===================================================== Carray_iterator_n =====================================================
 template <typename T>
 class Carray_iterator_n: public Carray_iterator_base<T>
 {
@@ -98,10 +94,9 @@ class Carray_iterator_n: public Carray_iterator_base<T>
 	
 	public:
 		
-	/*		for iterator					*/
 	Carray_iterator_n():n(0){}
 	
-	constexpr const T *end() const
+	T *end() const
 	{
 		return Carray_iterator_n::t+n;
 	}
@@ -135,7 +130,7 @@ template <typename T>
 class Carray_iterator_length: public Carray_iterator_base<T>
 {
 	public:
-	constexpr const T *end() const
+	T *end() const
 	{
 		return  Carray_iterator_length::t+ Carray_iterator_length::length;
 	}
