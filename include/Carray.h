@@ -1,6 +1,6 @@
 #ifndef _ODST_CARRAY_H_
 #define _ODST_CARRAY_H_
-
+#include "Citerator.h"
 //===================================================== Carray_base =====================================================
 
 template <typename T>
@@ -47,20 +47,22 @@ unsigned int Carray_base<T>::getlength() const
 	return length;
 }
 
-//===================================================== Carray_iterator_base =====================================================
+//===================================================== Carray_Citerator_base =====================================================
 template <typename T>
-class Carray_iterator_base: public Carray_base<T>
+class Carray_Citerator_base: public Carray_base<T>
 {
 	
 	public:
+	
+	typedef Citerator<T> iterator;
 		
-	T *begin() const
+	Citerator<T> begin() const
 	{
-		return Carray_iterator_base::t;
+		return Citerator<T>(Carray_Citerator_base::t);
 	}
 	
 	
-	~Carray_iterator_base()
+	~Carray_Citerator_base()
 	{
 		destroy();
 	}
@@ -68,16 +70,16 @@ class Carray_iterator_base: public Carray_base<T>
 	
 	void destroy()
 {
-		delete[] Carray_iterator_base::t;
-		Carray_iterator_base::t=nullptr;
-		Carray_iterator_base::length=0;
+		delete[] Carray_Citerator_base::t;
+		Carray_Citerator_base::t=nullptr;
+		Carray_Citerator_base::length=0;
 
 }
 	
 	void assign(unsigned int length)
 	{
 		destroy();
-		Carray_iterator_base::t=new T[this->length=length];
+		Carray_Citerator_base::t=new T[this->length=length];
 	
 	}
 	
@@ -85,20 +87,20 @@ class Carray_iterator_base: public Carray_base<T>
 	
 };
 
-//===================================================== Carray_iterator_n =====================================================
+//===================================================== Carray_Citerator_n =====================================================
 template <typename T>
-class Carray_iterator_n: public Carray_iterator_base<T>
+class Carray_Citerator_n: public Carray_Citerator_base<T>
 {
 	protected:
 	unsigned int n;
 	
 	public:
 		
-	Carray_iterator_n():n(0){}
+	Carray_Citerator_n():n(0){}
 	
-	T *end() const
+	Citerator<T> end() const
 	{
-		return Carray_iterator_n::t+n;
+		return Citerator<T>(Carray_Citerator_n::t+n);
 	}
 	constexpr int size() const
 	{
@@ -109,7 +111,7 @@ class Carray_iterator_n: public Carray_iterator_base<T>
 	
 	void destroy()
 {
-	Carray_iterator_base<T>::destroy();
+	Carray_Citerator_base<T>::destroy();
 	n=0;
 }
 	
@@ -125,24 +127,24 @@ void setn(unsigned int n)
 }
 	
 };
-//===================================================== Carray_iterator_length =====================================================
+//===================================================== Carray_Citerator_length =====================================================
 template <typename T>
-class Carray_iterator_length: public Carray_iterator_base<T>
+class Carray_Citerator_length: public Carray_Citerator_base<T>
 {
 	public:
-	T *end() const
+	Citerator<T> end() const
 	{
-		return  Carray_iterator_length::t+ Carray_iterator_length::length;
+		return  Citerator<T>(Carray_Citerator_length::t+ Carray_Citerator_length::length);
 	}
 	constexpr int size() const
 	{
-		return  Carray_iterator_length::length;
+		return  Carray_Citerator_length::length;
 	}
 };
 
 //===================================================== Carray =====================================================
 template <typename T,unsigned int N=0>
-class Carray : public Carray_iterator_length<T>
+class Carray : public Carray_Citerator_length<T>
 {
 	
 	public:

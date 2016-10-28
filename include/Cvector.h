@@ -1,16 +1,16 @@
 #ifndef _ODST_CVECTOR_H_
 #define _ODST_CVECTOR_H_
-
-//===================================================== Cvector_interface =====================================================
-template <typename T,typename U>
-class Cvector_interface : public T
+#include "Cdynamicarray.h"
+//===================================================== Cvector =====================================================
+template <typename U,typename T=Cdynamicarray<U> >
+class Cvector : public T
 {
 
 	
 	public:
 
 	
-	Cvector_interface& operator<<(const U &u);
+	Cvector& operator<<(const U &u);
 	U& operator[](unsigned int index) const;
 	
 	
@@ -33,77 +33,77 @@ class Cvector_interface : public T
 
 
 
-template <typename T,typename U>
-void Cvector_interface<T,U>::add(const U &u)
+template <typename U,typename T>
+void Cvector<U,T>::add(const U &u)
 {
   T::insert(u,T::getn());
 }
 
 
-template <typename T,typename U>
-void Cvector_interface<T,U>::remove(unsigned int index)
+template <typename U,typename T>
+void Cvector<U,T>::remove(unsigned int index)
 {
   T::remove(index);
 }
 
-template <typename T,typename U>
-void Cvector_interface<T,U>::remove()
+template <typename U,typename T>
+void Cvector<U,T>::remove()
 {
   T::remove(T::getn()-1);
 }
 
 
-template <typename T,typename U>
-Cvector_interface<T,U>& Cvector_interface<T,U>::operator<<(const U &u)
+template <typename U,typename T>
+Cvector<U,T>& Cvector<U,T>::operator<<(const U &u)
 {
   add(u);
   return *this;
 }
 
-template <typename T,typename U>
-U& Cvector_interface<T,U>::operator[](unsigned int index) const
+template <typename U,typename T>
+U& Cvector<U,T>::operator[](unsigned int index) const
 {
   return T::getobj(index);
 }
 
-template <typename T,typename U>
-void Cvector_interface<T,U>::push(const U &u)
+template <typename U,typename T>
+void Cvector<U,T>::push(const U &u)
 {
   push_front(u);
 }
 
-template <typename T,typename U>
-U* Cvector_interface<T,U>::pop()
+template <typename U,typename T>
+U* Cvector<U,T>::pop()
 {
   return pop_front();
 }
 
-template <typename T,typename U>
-void Cvector_interface<T,U>::push_back(const U &u)
+template <typename U,typename T>
+void Cvector<U,T>::push_back(const U &u)
 {
   T::insert(u,0);
 }
 
-template <typename T,typename U>
-U* Cvector_interface<T,U>::pop_back()
+template <typename U,typename T>
+U* Cvector<U,T>::pop_back()
 {
   return T::split(0);
 }
 
-template <typename T,typename U>
-void Cvector_interface<T,U>::push_front(const U &u)
+template <typename U,typename T>
+void Cvector<U,T>::push_front(const U &u)
 {
   T::insert(u,T::getn());
 }
 
-template <typename T,typename U>
-U* Cvector_interface<T,U>::pop_front()
+template <typename U,typename T>
+U* Cvector<U,T>::pop_front()
 {
   return T::split(T::getn()-1);
 }
 
-template <typename T,typename U>
-void Cvector_interface<T,U>::insert(const U &u ,unsigned int index)
+template <typename U,typename T>
+void Cvector<U,T>::insert(const U &u ,unsigned int index)
 {
 T::insert(u,index);
 }

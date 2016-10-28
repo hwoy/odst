@@ -1,11 +1,10 @@
 #include <iostream>
-#include <Cdynamicarray.h>
 #include <Cdeque.h>
 
 
 using namespace std;
 
-typedef Cdeque_interface<Cdynamicarray<int>,int> deque_t;
+typedef Cdeque<int> deque_t;
 
 void show(deque_t &queue,unsigned int i)
 {

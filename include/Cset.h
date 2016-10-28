@@ -1,19 +1,19 @@
 #ifndef _ODST_CSET_H_
 #define _ODST_CSET_H_
-
+#include "Cdynamicarray.h"
 #include "Cutil.h"
 
 
 //===================================================== Cset_interface =====================================================
-template <typename T,typename U>
-class Cset_interface : public T
+template <typename U,typename T=Cdynamicarray<U> >
+class Cset : public T
 {
 
 	
 	public:
 
 	
-	Cset_interface& operator<<(const U &u);
+	Cset& operator<<(const U &u);
 	U& operator[](unsigned int index) const;
 	
 	
@@ -29,59 +29,59 @@ class Cset_interface : public T
 	/*		Core Methodes		*/
 	
 	unsigned int pack();
-	unsigned int _union(const Cset_interface &set);
-	unsigned int intersect(const Cset_interface &set);
-	unsigned int sub(const Cset_interface &set);
-	bool issubset(const Cset_interface &set) const;
-	bool equal(const Cset_interface &setconst ) const;
+	unsigned int _union(const Cset &set);
+	unsigned int intersect(const Cset &set);
+	unsigned int sub(const Cset &set);
+	bool issubset(const Cset &set) const;
+	bool equal(const Cset &setconst ) const;
 	
 	
 };
 
 
 
-template <typename T,typename U>
-void Cset_interface<T,U>::add(const U &u)
+template <typename U,typename T>
+void Cset<U,T>::add(const U &u)
 {
   T::insert(u,T::getn());
 }
 
 
-template <typename T,typename U>
-void Cset_interface<T,U>::remove(unsigned int index)
+template <typename U,typename T>
+void Cset<U,T>::remove(unsigned int index)
 {
   T::remove(index);
 }
 
-template <typename T,typename U>
-void Cset_interface<T,U>::remove()
+template <typename U,typename T>
+void Cset<U,T>::remove()
 {
   T::remove(T::getn()-1);
 }
 
 
-template <typename T,typename U>
-Cset_interface<T,U>& Cset_interface<T,U>::operator<<(const U &u)
+template <typename U,typename T>
+Cset<U,T>& Cset<U,T>::operator<<(const U &u)
 {
   add(u);
   return *this;
 }
 
-template <typename T,typename U>
-U& Cset_interface<T,U>::operator[](unsigned int index) const
+template <typename U,typename T>
+U& Cset<U,T>::operator[](unsigned int index) const
 {
   return T::getobj(index);
 }
 
-template <typename T,typename U>
-void Cset_interface<T,U>::insert(const U &u ,unsigned int index)
+template <typename U,typename T>
+void Cset<U,T>::insert(const U &u ,unsigned int index)
 {
 T::insert(u,index);
 }
 
 
-template <typename T,typename U>
-unsigned int Cset_interface<T,U>::pack()
+template <typename U,typename T>
+unsigned int Cset<U,T>::pack()
 {
 	unsigned int count;
 	count=0;
@@ -106,8 +106,8 @@ unsigned int Cset_interface<T,U>::pack()
 	return count;
 }
 
-template <typename T,typename U>
-unsigned int Cset_interface<T,U>::_union(const Cset_interface<T,U> &set)
+template <typename U,typename T>
+unsigned int Cset<U,T>::_union(const Cset<U,T> &set)
 {
 	unsigned int count;
 	count=0;
@@ -125,8 +125,8 @@ unsigned int Cset_interface<T,U>::_union(const Cset_interface<T,U> &set)
 	return count;
 }
 
-template <typename T,typename U>
-unsigned int Cset_interface<T,U>::intersect(const Cset_interface<T,U> &set)
+template <typename U,typename T>
+unsigned int Cset<U,T>::intersect(const Cset<U,T> &set)
 {
 	unsigned int count=0;
 		
@@ -144,8 +144,8 @@ unsigned int Cset_interface<T,U>::intersect(const Cset_interface<T,U> &set)
 	return count;
 }
 
-template <typename T,typename U>
-bool Cset_interface<T,U>::issubset(const Cset_interface &set) const
+template <typename U,typename T>
+bool Cset<U,T>::issubset(const Cset &set) const
 {
 	bool isequal;
 	
@@ -166,8 +166,8 @@ bool Cset_interface<T,U>::issubset(const Cset_interface &set) const
 	return true;	
 }
 
-template <typename T,typename U>
-unsigned int Cset_interface<T,U>::sub(const Cset_interface<T,U> &set)
+template <typename U,typename T>
+unsigned int Cset<U,T>::sub(const Cset<U,T> &set)
 {
 	unsigned int count=0;
 		
@@ -185,8 +185,8 @@ unsigned int Cset_interface<T,U>::sub(const Cset_interface<T,U> &set)
 	return count;
 }
 
-template <typename T,typename U>
-bool Cset_interface<T,U>::equal(const Cset_interface &set) const
+template <typename U,typename T>
+bool Cset<U,T>::equal(const Cset &set) const
 {
 	if(!issubset(set) || !set.issubset(*this))
 		return false;

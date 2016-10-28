@@ -1,11 +1,10 @@
 #include <iostream>
-#include <Cdynamicarray.h>
 #include <Cstack.h>
 
 
 using namespace std;
 
-typedef Cstack_interface<Cdynamicarray<int>,int> stack_t;
+typedef Cstack<int> stack_t;
 
 
 int main()

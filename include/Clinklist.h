@@ -37,7 +37,7 @@ void Cnode<U,N>::setall(Cnode<U,N> *t)
 template <typename T,unsigned int N>
 struct Clinklist_base
 {
-	typedef Cvector_interface<Cdynamicarray<T*>,T*> headtail_t;
+	typedef Cvector<T*> headtail_t;
 	
 	headtail_t head;
 	headtail_t tail;

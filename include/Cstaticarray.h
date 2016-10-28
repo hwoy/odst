@@ -4,7 +4,7 @@
 
 //===================================================== Cdstaticarray_base =====================================================
 template <typename T,unsigned int N>
-class Cstaticarray : public Carray_iterator_n<T>
+class Cstaticarray : public Carray_Citerator_n<T>
 {
 	
 	public:

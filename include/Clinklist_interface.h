@@ -1,11 +1,11 @@
 
 #ifndef _ODST_CLINKLIST_INTERFACE_H_
 #define _ODST_CLINKLIST_INTERFACE_H_
-
+#include "Clinklist.h"
 //===================================================== Clinklist_interface =====================================================
 
 
-template <typename T,typename V,typename U>
+template <typename U,unsigned int N=2,typename V=Cnode<U,N>,typename T=Cdoublylinklist<V> >
 struct Clinklist_interface : public T
 {
 	unsigned int getn() const

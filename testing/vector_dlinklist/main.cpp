@@ -1,15 +1,12 @@
 #include <iostream>
 #include <Clinklist_interface.h>
-#include <Clinklist.h>
 #include <Cvector.h>
 
 
 using namespace std;
 
-typedef Cnode<int,2> node_t;
-typedef Cdoublylinklist<node_t> linklist_t;
-typedef Clinklist_interface<linklist_t,node_t,int> linklist_if_t;
-typedef Cvector_interface<linklist_if_t, int> vector_t;
+typedef Clinklist_interface<int> linklist_if_t;
+typedef Cvector<int,linklist_if_t> vector_t;
 
 static void show(const vector_t &list)
 {

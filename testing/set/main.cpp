@@ -1,14 +1,12 @@
 #include <iostream>
 #include <initializer_list>
-
-#include <Cdynamicarray.h>
 #include <Cset.h>
 #include <Cutil.h>
 
 using namespace std;
 
 
-typedef Cset_interface<Cdynamicarray<int>,int> _set_t;
+typedef Cset<int> _set_t;
 
 class set_t:public _set_t
 {

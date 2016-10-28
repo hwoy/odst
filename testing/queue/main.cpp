@@ -1,11 +1,10 @@
 #include <iostream>
-#include <Cdynamicarray.h>
 #include <Cqueue.h>
 
 
 using namespace std;
 
-typedef Cqueue_interface<Cdynamicarray<int>,int> queue_t;
+typedef Cqueue<int> queue_t;
 
 int main()
 {
