@@ -1,10 +1,9 @@
 #include <iostream>
 #include <cstdlib>
-#include <time.h>
-#include <Cstaticarray.h>
-#include <Cvector.h>
+#include <odst.h>
 
-typedef Cvector<unsigned int,Cstaticarray<unsigned int,16> > vector_t;
+//typedef odst::Cvector<unsigned int,odst::Cstaticarray<unsigned int,16> > vector_t;
+typedef odst::Cvector<unsigned int,odst::Clinklist_interface<unsigned int> > vector_t;
 
 static void dec2base(unsigned int num,unsigned int base,vector_t &list)
 {

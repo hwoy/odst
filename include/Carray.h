@@ -97,8 +97,6 @@ public:
     n = 0;
   }
 
-  unsigned int getn() const { return n; }
-
   void setn(unsigned int n) { this->n = n; }
 };
 //===================================================== Carray_Citerator_length

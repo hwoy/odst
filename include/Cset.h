@@ -33,7 +33,7 @@ template <typename U, typename T>
 void
 Cset<U, T>::add(const U& u)
 {
-  T::insert(u, T::getn());
+  T::insert(u, T::size());
 }
 
 template <typename U, typename T>
@@ -47,7 +47,7 @@ template <typename U, typename T>
 void
 Cset<U, T>::remove()
 {
-  T::remove(T::getn() - 1);
+  T::remove(T::size() - 1);
 }
 
 template <typename U, typename T>
@@ -78,9 +78,9 @@ Cset<U, T>::pack()
   unsigned int count;
   count = 0;
 
-  for (unsigned int i = 0; i < T::getn(); i++) {
+  for (unsigned int i = 0; i < T::size(); i++) {
 
-    for (unsigned int j = i + 1; j < T::getn();) {
+    for (unsigned int j = i + 1; j < T::size();) {
       if (T::getobj(i) == T::getobj(j)) {
         remove(j);
         count++;
@@ -100,8 +100,8 @@ Cset<U, T>::_union(const Cset<U, T>& set)
   unsigned int count;
   count = 0;
 
-  for (unsigned int i = 0; i < set.getn(); i++) {
-    if (::find(*this, 0, T::getn(), set.getobj(i)) == -1U) {
+  for (unsigned int i = 0; i < set.size(); i++) {
+    if (find(*this, 0, T::size(), set.getobj(i)) == -1U) {
       add(set.getobj(i));
       count++;
     }
@@ -116,8 +116,8 @@ Cset<U, T>::intersect(const Cset<U, T>& set)
 {
   unsigned int count = 0;
 
-  for (unsigned int i = T::getn(); i > 0; i--) {
-    if (::find(set, 0, set.getn(), T::getobj(i - 1)) == -1U) {
+  for (unsigned int i = T::size(); i > 0; i--) {
+    if (find(set, 0, set.size(), T::getobj(i - 1)) == -1U) {
       remove(i - 1);
       count++;
     }
@@ -132,9 +132,9 @@ Cset<U, T>::issubset(const Cset& set) const
 {
   bool isequal;
 
-  for (unsigned int j = 0; j < set.getn(); j++) {
+  for (unsigned int j = 0; j < set.size(); j++) {
     isequal = false;
-    for (unsigned int i = 0; i < T::getn(); i++) {
+    for (unsigned int i = 0; i < T::size(); i++) {
       if (T::getobj(i) == set[j]) {
         isequal = true;
         break;
@@ -153,8 +153,8 @@ Cset<U, T>::sub(const Cset<U, T>& set)
 {
   unsigned int count = 0;
 
-  for (unsigned int i = T::getn(); i > 0; i--) {
-    if (::find(set, 0, set.getn(), T::getobj(i - 1)) != -1U) {
+  for (unsigned int i = T::size(); i > 0; i--) {
+    if (find(set, 0, set.size(), T::getobj(i - 1)) != -1U) {
       remove(i - 1);
       count++;
     }

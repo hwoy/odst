@@ -13,7 +13,7 @@ public:
   U* pop();
 
   void push_back(const U& u);
-  U* pop_back);
+  U* pop_back();
 };
 
 template <typename U, typename T>
@@ -42,14 +42,14 @@ template <typename U, typename T>
 void
 Cstack<U, T>::push_back(const U& u)
 {
-  T::insert(u, T::getn());
+  T::insert(u, T::size());
 }
 
 template <typename U, typename T>
 U*
 Cstack<U, T>::pop_back()
 {
-  return T::split(T::getn() - 1);
+  return T::split(T::size() - 1);
 }
 
 #endif

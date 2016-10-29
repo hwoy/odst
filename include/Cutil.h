@@ -16,7 +16,7 @@ template <typename T, typename U>
 void
 add(T& a, const U& b)
 {
-  for (unsigned int i = 0; i < b.getn(); i++)
+  for (unsigned int i = 0; i < b.size(); i++)
     a.add(b[i]);
 }
 
@@ -33,7 +33,7 @@ unsigned int
 countif(const T& a, const U& b, V v)
 {
   unsigned int count = 0;
-  for (unsigned int i = 0; i < a.getn(); i++) {
+  for (unsigned int i = 0; i < a.size(); i++) {
     if (v(a[i], b))
       count++;
   }

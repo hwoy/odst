@@ -19,7 +19,7 @@ template <typename U, typename T>
 void
 Cdeque<U, T>::push_back(const U& u)
 {
-  T::insert(u, T::getn());
+  T::insert(u, T::size());
 }
 template <typename U, typename T>
 void
@@ -40,7 +40,7 @@ U*
 Cdeque<U, T>::pop_back()
 {
 
-  return T::split(T::getn() - 1);
+  return T::split(T::size() - 1);
 }
 
 #endif

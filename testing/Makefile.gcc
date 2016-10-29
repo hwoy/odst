@@ -1,92 +1,12 @@
-.PHONY: all clean \
-cirlinklist cirslinklist linklist vector \
-vector_static queue queue_static slinklist stack stack_static example \
-vector_dlinklist vector_slinklist stack_dlinklist stack_slinklist \
-queue_dlinklist queue_slinklist vector_cirdlinklist vector_cirslinklist \
-deque deque_static set set_dlinklist util
+.PHONY: all clean example
 
-all: cirlinklist cirslinklist linklist vector \
-vector_static queue queue_static slinklist stack stack_static example \
-vector_dlinklist vector_slinklist stack_dlinklist stack_slinklist \
-queue_dlinklist queue_slinklist vector_cirdlinklist vector_cirslinklist \
-deque deque_static set set_dlinklist util
+all: example
 
-cirlinklist:
-	make -C cirlinklist -f Makefile.gcc
-cirslinklist:
-	make -C cirslinklist -f Makefile.gcc
-linklist:
-	make -C linklist -f Makefile.gcc
-vector:
-	make -C vector -f Makefile.gcc
-vector_static:
-	make -C vector_static -f Makefile.gcc
-queue:
-	make -C queue -f Makefile.gcc
-queue_static:
-	make -C queue_static -f Makefile.gcc
-slinklist:
-	make -C slinklist -f Makefile.gcc
-stack:
-	make -C stack -f Makefile.gcc
-stack_static:
-	make -C stack_static -f Makefile.gcc
+
 example:
 	make -C example -f Makefile.gcc
-example:
-	make -C example -f Makefile.gcc
-vector_dlinklist:
-	make -C vector_dlinklist -f Makefile.gcc
-vector_slinklist:
-	make -C vector_slinklist -f Makefile.gcc
-stack_dlinklist:
-	make -C stack_dlinklist -f Makefile.gcc
-stack_slinklist:
-	make -C stack_slinklist -f Makefile.gcc
-queue_dlinklist:
-	make -C queue_dlinklist -f Makefile.gcc
-queue_slinklist:
-	make -C queue_slinklist -f Makefile.gcc
-vector_cirdlinklist:
-	make -C vector_cirdlinklist -f Makefile.gcc
-vector_cirslinklist:
-	make -C vector_cirslinklist -f Makefile.gcc
-deque:
-	make -C deque -f Makefile.gcc
-deque_static:
-	make -C deque_static -f Makefile.gcc
-set:
-	make -C set  -f Makefile.gcc
-set_dlinklist:
-	make -C set_dlinklist  -f Makefile.gcc
-util:
-	make -C util -f Makefile.gcc
-
-
 
 
 clean:
-	make -C cirlinklist  -f Makefile.gcc clean ; \
-	make -C cirslinklist  -f Makefile.gcc clean ; \
-	make -C linklist  -f Makefile.gcc clean ; \
-	make -C vector  -f Makefile.gcc clean ; \
-	make -C vector_static  -f Makefile.gcc clean ; \
-	make -C queue  -f Makefile.gcc clean ; \
-	make -C queue_static  -f Makefile.gcc clean ; \
-	make -C slinklist  -f Makefile.gcc clean ; \
-	make -C stack  -f Makefile.gcc clean ; \
-	make -C stack_static  -f Makefile.gcc clean ; \
-	make -C example clean -f Makefile.gcc clean
-	make -C vector_dlinklist  -f Makefile.gcc clean ; \
-	make -C vector_slinklist   -f Makefile.gcc clean ; \
-	make -C stack_dlinklist   -f Makefile.gcc clean ; \
-	make -C stack_slinklist   -f Makefile.gcc clean ; \
-	make -C queue_dlinklist  -f Makefile.gcc clean ; \
-	make -C queue_slinklist   -f Makefile.gcc clean; \
-	make -C vector_cirdlinklist -f Makefile.gcc clean; \
-	make -C vector_cirslinklist -f Makefile.gcc clean; \
-	make -C deque -f Makefile.gcc  clean; \
-	make -C deque_static -f Makefile.gcc clean; \
-	make -C set  -f Makefile.gcc clean ; \
-	make -C set_dlinklist  -f Makefile.gcc clean ;\
-	make -C util -f Makefile.gcc clean
+	make -C example clean -f Makefile.gcc
+

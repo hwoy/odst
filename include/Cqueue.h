@@ -8,48 +8,22 @@ template <typename U, typename T = Cdynamicarray<U>>
 class Cqueue : public T
 {
 public:
-  void push(const U& u);
-  U* pop();
 
   void push_front(const U& u);
   U* pop_back();
 
-  Cqueue& operator<<(const U& u);
 };
 
 template <typename U, typename T>
 void
-Cqueue<U, T>::push(const U& u)
+Cqueue<U, T>::push_front(const U& u)
 {
-  push_back(u);
+  T::insert(u, T::size());
 }
 
 template <typename U, typename T>
 U*
-Cqueue<U, T>::pop()
-{
-
-  return pop_front();
-}
-
-template <typename U, typename T>
-Cqueue<U, T>&
-Cqueue<U, T>::operator<<(const U& u)
-{
-  push(u);
-  return *this;
-}
-
-template <typename U, typename T>
-void
-Cqueue<U, T>::push_back(const U& u)
-{
-  T::insert(u, T::getn());
-}
-
-template <typename U, typename T>
-U*
-Cqueue<U, T>::pop_front()
+Cqueue<U, T>::pop_back()
 {
   return T::split(0);
 }

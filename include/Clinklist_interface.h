@@ -6,10 +6,10 @@
 //=====================================================
 
 template <typename U, unsigned int N = 2, typename V = Cnode<U, N>,
-          typename T = Cdoublylinklist<V>>
+          typename T = Clist<U>>
 struct Clinklist_interface : public T
 {
-  unsigned int getn() const { return T::countNode(); }
+  unsigned int size() const { return T::countNode(); }
 
   void insert(const U& u, unsigned int index)
   {
@@ -44,6 +44,7 @@ struct Clinklist_interface : public T
   }
 
   U& getobj(unsigned int index) const { return T::getNode(index).data; }
+  U& operator[](unsigned int index) const { getobj(index); }
 
   void assign(unsigned int length)
   {

@@ -9,7 +9,6 @@ class Cvector : public T
 
 public:
   Cvector& operator<<(const U& u);
-  U& operator[](unsigned int index) const;
 
   void add(const U& u);
   void remove(unsigned int index);
@@ -31,7 +30,7 @@ template <typename U, typename T>
 void
 Cvector<U, T>::add(const U& u)
 {
-  T::insert(u, T::getn());
+  T::insert(u, T::size());
 }
 
 template <typename U, typename T>
@@ -45,7 +44,7 @@ template <typename U, typename T>
 void
 Cvector<U, T>::remove()
 {
-  T::remove(T::getn() - 1);
+  T::remove(T::size() - 1);
 }
 
 template <typename U, typename T>
@@ -56,11 +55,6 @@ Cvector<U, T>::operator<<(const U& u)
   return *this;
 }
 
-template <typename U, typename T>
-U& Cvector<U, T>::operator[](unsigned int index) const
-{
-  return T::getobj(index);
-}
 
 template <typename U, typename T>
 void
@@ -94,14 +88,14 @@ template <typename U, typename T>
 void
 Cvector<U, T>::push_back(const U& u)
 {
-  T::insert(u, T::getn());
+  T::insert(u, T::size());
 }
 
 template <typename U, typename T>
 U*
 Cvector<U, T>::pop_back()
 {
-  return T::split(T::getn() - 1);
+  return T::split(T::size() - 1);
 }
 
 template <typename U, typename T>

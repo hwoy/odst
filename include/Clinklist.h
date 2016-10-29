@@ -66,7 +66,7 @@ template <typename T, unsigned int N>
 bool
 Clinklist_base<T, N>::isEmpty() const
 {
-  for (unsigned int i = 0; i < head.getn(); i++) {
+  for (unsigned int i = 0; i < head.size(); i++) {
     if (head[i] || tail[i])
       return false;
   }
@@ -153,7 +153,7 @@ void
 Clinklist_base<T, N>::clearbe()
 {
 
-  for (unsigned int i = 0; i < head.getn(); i++) {
+  for (unsigned int i = 0; i < head.size(); i++) {
     head[i] = nullptr;
     tail[i] = nullptr;
   }
