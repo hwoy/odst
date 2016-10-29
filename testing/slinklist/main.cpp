@@ -1,24 +1,16 @@
 #include <iostream>
+#include <algorithm>
 #include <Clinklist.h>
 
-#define NEXT linklist_t::next
-#define PREV linklist_t::prev
-
-typedef nodetype<int>::singlylinklist node_t;
-typedef Csinglylinklist<node_t> linklist_t;
-typedef linklist_t::headtail_t headtail_t;
 
 using namespace std;
-
+typedef Clist_forward<int> linklist_t;
 
 void show(const linklist_t  &ll)
 {
-	node_t *temp1;
-	int i;
-	
-	for(i=0,temp1=ll.head[0];temp1;temp1=(*temp1)[0],i++)
+	for(auto &i:ll)	
 	{
-		cout<< temp1->data << endl;
+		cout<< i << endl;
 	}	
 }
 
@@ -28,7 +20,7 @@ int main()
 
 	linklist_t linklist,ll2;
 	
-	ll2.Insert(new node_t,0).data=1;
+	ll2.Insert(new linklist_t::node_t,0).data=1;
 	
 	for(i=0;i<10;i++)
 	{
@@ -86,6 +78,8 @@ int main()
 	show(ll2);
 	
 	cout << "Index 5 =" << ll2.getNode(ll2.getIndex(&ll2.getNode(5))).data << endl;
+
+	cout << ">=1: " << count_if(ll2.begin(),ll2.end(),[](int i){return i>=1;}) << endl;
 	
 	return 0;
 }

@@ -13,4 +13,4 @@ $(bin): main.o
 main.o: main.cpp
 
 clean:
-	rm -f *.o $(bin)
+	rm -f *.o $(bin) *.exe

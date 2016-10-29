@@ -9,8 +9,8 @@
 
 using namespace std;
 
-typedef Cvector_interface<Cdynamicarray<int>,int> _vector_t;
-typedef Cset_interface<Cstaticarray<int,32>,int> set_t;
+typedef Cvector<int> _vector_t;
+typedef Cset<int,Cstaticarray<int,32> > set_t;
 
 class vector_t: public _vector_t
 {
