@@ -21,7 +21,7 @@ template <typename U, typename T>
 void
 Cqueue<U, T>::push(const U& u)
 {
-  push_front(u);
+  push_back(u);
 }
 
 template <typename U, typename T>
@@ -29,7 +29,7 @@ U*
 Cqueue<U, T>::pop()
 {
 
-  return pop_back();
+  return pop_front();
 }
 
 template <typename U, typename T>
@@ -42,14 +42,14 @@ Cqueue<U, T>::operator<<(const U& u)
 
 template <typename U, typename T>
 void
-Cqueue<U, T>::push_front(const U& u)
+Cqueue<U, T>::push_back(const U& u)
 {
   T::insert(u, T::getn());
 }
 
 template <typename U, typename T>
 U*
-Cqueue<U, T>::pop_back()
+Cqueue<U, T>::pop_front()
 {
   return T::split(0);
 }

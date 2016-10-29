@@ -12,22 +12,22 @@ public:
   void push(const U& u);
   U* pop();
 
-  void push_front(const U& u);
-  U* pop_front();
+  void push_back(const U& u);
+  U* pop_back);
 };
 
 template <typename U, typename T>
 void
 Cstack<U, T>::push(const U& u)
 {
-  push_front(u);
+  push_back(u);
 }
 
 template <typename U, typename T>
 U*
 Cstack<U, T>::pop()
 {
-  return pop_front();
+  return pop_back();
 }
 
 template <typename U, typename T>
@@ -40,14 +40,14 @@ Cstack<U, T>::operator<<(const U& u)
 
 template <typename U, typename T>
 void
-Cstack<U, T>::push_front(const U& u)
+Cstack<U, T>::push_back(const U& u)
 {
   T::insert(u, T::getn());
 }
 
 template <typename U, typename T>
 U*
-Cstack<U, T>::pop_front()
+Cstack<U, T>::pop_back()
 {
   return T::split(T::getn() - 1);
 }

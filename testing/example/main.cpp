@@ -4,7 +4,7 @@
 #include <Cstaticarray.h>
 #include <Cvector.h>
 
-typedef Cvector_interface<Cstaticarray<unsigned int,16>,unsigned int> vector_t;
+typedef Cvector<unsigned int,Cstaticarray<unsigned int,16> > vector_t;
 
 static void dec2base(unsigned int num,unsigned int base,vector_t &list)
 {
@@ -12,7 +12,7 @@ static void dec2base(unsigned int num,unsigned int base,vector_t &list)
 	i=num;
 	do
 	{
-		list.push_back(i%base);
+		list.push_front(i%base);
 	}while(i/=base);
 }
 
@@ -21,9 +21,9 @@ static void show(unsigned int num,const vector_t &list)
 	
 	std::cout << num << " = ";
 	
-	for(unsigned int i=0;i<list.getn();i++)
+	for(auto &i:list)
 	{
-		std::cout << list[i] << " ";
+		std::cout << i << " ";
 	}
 	
 	std::cout << '\n';
@@ -41,7 +41,7 @@ int main(void)
 		i=rand()%101;
 		dec2base(i,2,list);
 		show(i,list);
-		list.setn(0);
+		list.clear();
 	}
 	
 	return 0;

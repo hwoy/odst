@@ -66,40 +66,40 @@ template <typename U, typename T>
 void
 Cvector<U, T>::push(const U& u)
 {
-  push_front(u);
+  push_back(u);
 }
 
 template <typename U, typename T>
 U*
 Cvector<U, T>::pop()
 {
-  return pop_front();
-}
-
-template <typename U, typename T>
-void
-Cvector<U, T>::push_back(const U& u)
-{
-  T::insert(u, 0);
-}
-
-template <typename U, typename T>
-U*
-Cvector<U, T>::pop_back()
-{
-  return T::split(0);
+  return pop_back();
 }
 
 template <typename U, typename T>
 void
 Cvector<U, T>::push_front(const U& u)
 {
-  T::insert(u, T::getn());
+  T::insert(u, 0);
 }
 
 template <typename U, typename T>
 U*
 Cvector<U, T>::pop_front()
+{
+  return T::split(0);
+}
+
+template <typename U, typename T>
+void
+Cvector<U, T>::push_back(const U& u)
+{
+  T::insert(u, T::getn());
+}
+
+template <typename U, typename T>
+U*
+Cvector<U, T>::pop_back()
 {
   return T::split(T::getn() - 1);
 }
