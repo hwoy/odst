@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <odst.h>
 
-//typedef odst::Cvector<unsigned int,odst::Cstaticarray<unsigned int,16> > vector_t;
 typedef odst::Cvector<unsigned int,odst::Clinklist_interface<unsigned int> > vector_t;
 
 static void dec2base(unsigned int num,unsigned int base,vector_t &list)
@@ -34,7 +33,7 @@ int main(void)
 	
 	for(j=0;j<10;j++)
 	{
-		i=rand()%101;
+		i=rand()%100000001;
 		dec2base(i,2,list);
 		show(i,list);
 		list.clear();
