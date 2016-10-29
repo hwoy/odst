@@ -10,10 +10,7 @@ static void dec2base(unsigned int num,unsigned int base,vector_t &list)
 {
 	unsigned int i;
 	i=num;
-	do
-	{
-		list.push_front(i%base);
-	}while(i/=base);
+	do	list.push_front(i%base);	while(i/=base);
 }
 
 static void show(unsigned int num,const vector_t &list)
