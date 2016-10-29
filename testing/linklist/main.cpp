@@ -1,9 +1,6 @@
 #include <iostream>
 #include <Clinklist.h>
 
-#define NEXT linklist_t::next
-#define PREV linklist_t::prev
-
 typedef Clist<int> linklist_t;
 using namespace std;
 

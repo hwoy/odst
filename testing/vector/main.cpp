@@ -1,12 +1,11 @@
 #include <iostream>
 #include <algorithm>
-#include <Cdynamicarray.h>
 #include <Cvector.h>
 
 
 using namespace std;
 
-typedef Cvector_interface<Cdynamicarray<int>,int> vector_t;
+typedef Cvector<int> vector_t;
 
 static void show(const vector_t &vector)
 {
