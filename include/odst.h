@@ -12,4 +12,4 @@ namespace odst {
 #include "Cstaticarray.h"
 #include "Cutil.h"
 #include "Cvector.h"
-};
+}

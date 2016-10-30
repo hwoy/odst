@@ -76,7 +76,7 @@ struct Citerator_linklist : public Citerator_base<T>
     Citerator_linklist::current = Citerator_linklist::current->getobj(0);
     return *this;
   }
-  auto& operator*() const { return Citerator_linklist::current->data; }
+  typename T::data_t& operator*() const { return Citerator_linklist::current->data; }
 };
 
 #endif
