@@ -2,6 +2,10 @@
 #include <iostream>
 #include <odst.h>
 
+#define BASE 16
+#define RANG_MIN 1
+#define RANG_MAX 10000000
+
 typedef odst::Cvector<unsigned int, odst::Clinklist_interface<unsigned int>>
   vector_t;
 
@@ -16,16 +20,22 @@ dec2base(unsigned int num, unsigned int base, vector_t& list)
 }
 
 static void
-show(unsigned int num, const vector_t& list)
+show(unsigned int num, unsigned int base, const vector_t& list)
 {
 
   std::cout << num << " = ";
 
   for (auto& i : list) {
-    std::cout << i << " ";
+    if(base==16 && i>9) std::cout << static_cast<char>('A'+i-10);
+	else std::cout << i;
+	std::cout << " ";
   }
 
   std::cout << '\n';
+}
+unsigned int random(unsigned int min,unsigned int max)
+{
+	return rand()%(max-min+1)+min;
 }
 
 int
@@ -37,9 +47,9 @@ main(void)
   std::srand(time(nullptr));
 
   for (j = 0; j < 10; j++) {
-    i = rand() % 100000001;
-    dec2base(i, 2, list);
-    show(i, list);
+    i = random(RANG_MIN,RANG_MAX);
+    dec2base(i, BASE, list);
+    show(i, BASE ,list);
     list.clear();
   }
 

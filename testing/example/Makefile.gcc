@@ -1,6 +1,6 @@
 include ../gcc.mk
 
-bin=dec2bin
+bin=base
 
 
 .PHONY: all clean

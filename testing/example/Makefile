@@ -1,6 +1,6 @@
 include ../clang.mk
 
-bin=dec2bin
+bin=base
 
 
 .PHONY: all clean
