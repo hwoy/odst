@@ -209,7 +209,6 @@ Clinklist_base<T, N>::countNode(const headtail_t& ht, unsigned int direct,
   return i;
 }
 
-
 //===================================================== Cdoublylinklist
 //=====================================================
 template <typename T>
@@ -557,7 +556,7 @@ Csinglylinklist<T>::countNode() const
                                          0);
 }
 
-template <typename U,typename T=Cnode<U,2> >
+template <typename U, typename T = Cnode<U, 2>>
 struct Clist : public Cdoublylinklist<T>
 {
 
@@ -572,7 +571,7 @@ struct Clist : public Cdoublylinklist<T>
   }
 };
 
-template <typename U,typename T=Cnode<U,1> >
+template <typename U, typename T = Cnode<U, 1>>
 struct Clist_forward : public Csinglylinklist<T>
 {
 

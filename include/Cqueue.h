@@ -8,10 +8,8 @@ template <typename U, typename T = Cdynamicarray<U>>
 class Cqueue : public T
 {
 public:
-
   void push_front(const U& u);
   U* pop_back();
-
 };
 
 template <typename U, typename T>

@@ -1,5 +1,4 @@
-namespace odst
-{
+namespace odst {
 #include "Carray.h"
 #include "Ccirlinklist.h"
 #include "Cdeque.h"

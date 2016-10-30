@@ -1,44 +1,47 @@
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 #include <odst.h>
 
-typedef odst::Cvector<unsigned int,odst::Clinklist_interface<unsigned int> > vector_t;
+typedef odst::Cvector<unsigned int, odst::Clinklist_interface<unsigned int>>
+  vector_t;
 
-static void dec2base(unsigned int num,unsigned int base,vector_t &list)
+static void
+dec2base(unsigned int num, unsigned int base, vector_t& list)
 {
-	unsigned int i;
-	i=num;
-	do	list.push_front(i%base);	while(i/=base);
+  unsigned int i;
+  i = num;
+  do
+    list.push_front(i % base);
+  while (i /= base);
 }
 
-static void show(unsigned int num,const vector_t &list)
+static void
+show(unsigned int num, const vector_t& list)
 {
-	
-	std::cout << num << " = ";
-	
-	for(auto &i:list)
-	{
-		std::cout << i << " ";
-	}
-	
-	std::cout << '\n';
+
+  std::cout << num << " = ";
+
+  for (auto& i : list) {
+    std::cout << i << " ";
+  }
+
+  std::cout << '\n';
 }
 
-int main(void)
+int
+main(void)
 {
-	unsigned int i,j;
-	vector_t list;
-	
-	std::srand(time(nullptr));
-	
-	for(j=0;j<10;j++)
-	{
-		i=rand()%100000001;
-		dec2base(i,2,list);
-		show(i,list);
-		list.clear();
-	}
-	
-	return 0;
-	
+  unsigned int i, j;
+  vector_t list;
+
+  std::srand(time(nullptr));
+
+  for (j = 0; j < 10; j++) {
+    i = rand() % 100000001;
+    dec2base(i, 2, list);
+    show(i, list);
+    list.clear();
+  }
+
+  return 0;
 }

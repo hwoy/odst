@@ -55,7 +55,6 @@ Cvector<U, T>::operator<<(const U& u)
   return *this;
 }
 
-
 template <typename U, typename T>
 void
 Cvector<U, T>::push(const U& u)
