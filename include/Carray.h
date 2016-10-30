@@ -12,6 +12,7 @@ protected:
   unsigned int length;
 
 public:
+  typedef T data_t;
   Carray_base();
 
   T& operator[](unsigned int index) const;

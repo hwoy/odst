@@ -11,6 +11,7 @@ template <typename U, unsigned int N>
 class Cnode : public Carray<Cnode<U, N>*, N>
 {
 public:
+  typedef U data_t;
   U data;
 
   Cnode(unsigned int length = N);
@@ -38,6 +39,7 @@ struct Clinklist_base
 {
   typedef Cvector<T*> headtail_t;
   typedef T node_t;
+  typedef typename T::data_t data_t;
 
   headtail_t head;
   headtail_t tail;
