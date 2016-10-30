@@ -22,6 +22,8 @@ ODS<**T**>++ (A.K.A Open Data Structure Template for C++) is a set of C++ templa
 - Csinglylinklist
 - Ccirdoublylinklist 	(not yet supported iterator)
 - Ccirsinglylinklist 	(not yet supported iterator)
+- Clist
+- Clist_forward
 - Clinklist_interface 	(High-level structure compatibility interface for linkedlist)
 
 #### High-level structure
