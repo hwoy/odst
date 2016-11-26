@@ -4,43 +4,38 @@
 //===================================================== Cdeque_interface
 //=====================================================
 
-template <typename U, typename T = Cdynamicarray<U>>
-class Cdeque : public T
-{
+template <typename U, typename T = Cdynamicarray<U> >
+class Cdeque : public T {
 public:
-  void push_front(const U& u);
-  U* pop_front();
+    void push_front(const U& u);
+    U* pop_front();
 
-  void push_back(const U& u);
-  U* pop_back();
+    void push_back(const U& u);
+    U* pop_back();
 };
 
 template <typename U, typename T>
-void
-Cdeque<U, T>::push_back(const U& u)
+void Cdeque<U, T>::push_back(const U& u)
 {
-  T::insert(u, T::size());
+    T::insert(u, T::size());
 }
 template <typename U, typename T>
-void
-Cdeque<U, T>::push_front(const U& u)
+void Cdeque<U, T>::push_front(const U& u)
 {
-  T::insert(u, 0);
+    T::insert(u, 0);
 }
 
 template <typename U, typename T>
-U*
-Cdeque<U, T>::pop_front()
+U* Cdeque<U, T>::pop_front()
 {
 
-  return T::split(0);
+    return T::split(0);
 }
 template <typename U, typename T>
-U*
-Cdeque<U, T>::pop_back()
+U* Cdeque<U, T>::pop_back()
 {
 
-  return T::split(T::size() - 1);
+    return T::split(T::size() - 1);
 }
 
 #endif

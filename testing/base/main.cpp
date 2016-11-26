@@ -6,7 +6,7 @@
 #define RANG_MIN 1
 #define RANG_MAX 10000000
 
-typedef odst::Cvector<unsigned int, odst::Clinklist_interface<unsigned int>>
+typedef odst::Cvector<unsigned int>
   vector_t;
 
 static void
@@ -38,8 +38,7 @@ unsigned int random(unsigned int min,unsigned int max)
 	return rand()%(max-min+1)+min;
 }
 
-int
-main(void)
+int main(void)
 {
   unsigned int i, j;
   vector_t list;
