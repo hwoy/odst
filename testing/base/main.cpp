@@ -6,8 +6,8 @@
 #define RANG_MIN 1
 #define RANG_MAX 10000000
 
-typedef odst::Cvector<unsigned int>
-  vector_t;
+//typedef odst::Cvector<unsigned int,odst::Cstaticarray<unsigned int,sizeof(unsigned int)*8>> vector_t;
+typedef odst::Cvector<unsigned int> vector_t;
 
 static void
 dec2base(unsigned int num, unsigned int base, vector_t& list)

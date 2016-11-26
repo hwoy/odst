@@ -87,12 +87,7 @@ void Cdynamicarray<T>::resize(unsigned int length)
 template <typename T>
 T Cdynamicarray<T>::split(unsigned int index)
 {
-    T t;
-
-    if (index >= Cdynamicarray::n)
-        return *(Cdynamicarray<T>::t + Cdynamicarray::n);
-
-    t = Cdynamicarray<T>::t[index];
+    T t = Cdynamicarray<T>::t[index];
     remove(index);
 
     return T(t);
