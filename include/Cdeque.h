@@ -1,6 +1,8 @@
 #ifndef _ODST_CDEQUE_H_
 #define _ODST_CDEQUE_H_
 #include "Cdynamicarray.h"
+
+namespace odst{
 //===================================================== Cdeque_interface
 //=====================================================
 
@@ -36,6 +38,8 @@ U* Cdeque<U, T>::pop_back()
 {
 
     return T::split(T::size() - 1);
+}
+
 }
 
 #endif

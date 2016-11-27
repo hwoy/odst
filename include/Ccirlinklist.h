@@ -3,6 +3,8 @@
 #ifndef _ODST_CCIRLINKLIST_H_
 #define _ODST_CCIRLINKLIST_H_
 
+namespace odst{
+
 //===================================================== Ccirsinglylinklist
 //=====================================================
 template <typename T>
@@ -440,6 +442,8 @@ Ccirdoublylinklist<T>::countNode() const
         ;
 
     return i;
+}
+
 }
 
 #endif

@@ -2,6 +2,8 @@
 #define _ODST_CARRAY_H_
 #include "Citerator.h"
 #include <memory>
+
+namespace odst{
 //===================================================== Carray_base
 //=====================================================
 
@@ -24,7 +26,10 @@ public:
     typedef T data_t;
 
     T& operator[](unsigned int index);
+    constexpr T& operator[](unsigned int index) const;
+
     T& getobj(unsigned int index); // interface
+    constexpr T& getobj(unsigned int index) const; // interface
 
     unsigned int getlength() const;
 };
@@ -37,7 +42,19 @@ T& Carray_base<T>::operator[](unsigned int index)
 }
 
 template <typename T>
+constexpr T& Carray_base<T>::operator[](unsigned int index) const
+{
+    return t[index];
+}
+
+template <typename T>
 T& Carray_base<T>::getobj(unsigned int index)
+{
+    return t[index];
+}
+
+template <typename T>
+constexpr T& Carray_base<T>::getobj(unsigned int index) const
 {
     return t[index];
 }
@@ -167,12 +184,22 @@ struct Carray  {
 
 T t[N>0?N:1];
 
-T& get(unsigned int index) 
+T& getobj(unsigned int index) 
+{
+	return t[index];
+}
+
+constexpr T& getobj(unsigned int index) const
 {
 	return t[index];
 }
 
 T& operator[](unsigned int index)
+{
+	return t[index];
+}
+
+constexpr T& operator[](unsigned int index) const
 {
 	return t[index];
 }
@@ -199,5 +226,5 @@ constexpr Criterator<T> rend() const
 
 };
 
-
+}
 #endif

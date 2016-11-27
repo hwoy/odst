@@ -1,6 +1,9 @@
 #ifndef _ODST_CSTACK_H_
 #define _ODST_CSTACK_H_
 #include "Cdynamicarray.h"
+
+namespace odst{
+
 //===================================================== Cstack_interface
 //=====================================================
 template <typename U, typename T = Cdynamicarray<U> >
@@ -46,5 +49,5 @@ U* Cstack<U, T>::pop_back()
 {
     return T::split(T::size() - 1);
 }
-
+}
 #endif

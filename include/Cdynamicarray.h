@@ -2,6 +2,7 @@
 #ifndef _ODST_CDYNAMICARRAY_H_
 #define _ODST_CDYNAMICARRAY_H_
 
+namespace odst{
 //===================================================== Cdynamicarray
 //=====================================================
 template <typename T>
@@ -92,5 +93,5 @@ T Cdynamicarray<T>::split(unsigned int index)
 
     return T(t);
 }
-
+}
 #endif

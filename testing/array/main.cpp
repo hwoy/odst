@@ -21,7 +21,7 @@ void print(const odst::Carray<T,N> &array)
 }
 
 template <typename T,unsigned int N>
-void rprint(const odst::Carray<T,N> &array)
+void rprint(const odst::array<T,N> &array)
 {
 	for(auto i=array.rbegin();i!=array.rend();i++)
 		rprint(*i);
@@ -31,14 +31,14 @@ int main()
 {
 	{
 	std::cout << "Array 1\n";
-	odst::Carray<odst::Carray<int,3>,2> array={ {  {{1,2,3}}  , {{4,5,6}}      }  };
+	odst::array<odst::array<int,3>,2> array={ {  {{1,2,3}}  , {{4,5,6}}      }  };
 	print(array);
 	rprint(array);
 	}
 	{
 
 		std::cout << "Array 2\n";
-		odst::Carray<odst::Cvector<int>,2> array={ {  {1,2,3,4} , {5,6,7,8,9}     }  };
+		odst::array<odst::vector<int>,2> array={ {  {1,2,3,4} , {5,6,7,8,9}     }  };
 	
 		for(const auto i:array)
 			for(const auto j:i)
@@ -48,12 +48,20 @@ int main()
 	{
 
 		std::cout << "Array 3\n";
-		odst::Cvector<odst::Carray<int,2>> array={ {{1,2}} , {{3,4}} , {{5,6}} };
+		odst::vector<odst::array<int,2>> array={ {{1,2}} , {{3,4}} , {{5,6}} };
 	
 		for(const auto i:array)
 			for(const auto j:i)
 				std::cout << j << std::endl;
 
 	}
-  return 0;
+	{
+		std::cout << "Doubly linklist\n";
+		odst::list<odst::list<unsigned int>> list={{1},{1,2,3},{0,1}};
+
+		for(const auto i:list)
+			for(const auto j:i)
+				std::cout << j << std::endl;
+	}
+ 	return 0;
 }

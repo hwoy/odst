@@ -1,10 +1,13 @@
 #ifndef _ODST_CVECTOR_H_
 #define _ODST_CVECTOR_H_
-#include "Cdynamicarray.h"
 #include <initializer_list>
+#include "Cdynamicarray.h"
+
+namespace odst{
+
 //===================================================== Cvector
 //=====================================================
-template <typename U, typename T = Cdynamicarray<U> >
+template <typename U, typename T >
 class Cvector : public T {
 
 public:
@@ -122,5 +125,5 @@ void Cvector<U, T>::insert(const U& u, unsigned int index)
 {
     T::insert(u, index);
 }
-
+}
 #endif

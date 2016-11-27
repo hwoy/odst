@@ -1,6 +1,8 @@
 #ifndef _ODST_CUTIL_H_
 #define _ODST_CUTIL_H_
 
+namespace odst{
+
 template <typename T>
 void _swap(T* a, T* b)
 {
@@ -139,5 +141,5 @@ _min(const T& a, const T& b)
 {
     return (a < b);
 }
-
+}
 #endif

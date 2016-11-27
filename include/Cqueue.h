@@ -1,6 +1,9 @@
 #ifndef _ODST_CQUEUE_H_
 #define _ODST_CQUEUE_H_
 #include "Cdynamicarray.h"
+
+namespace odst{
+
 //===================================================== Cqueue_interface
 //=====================================================
 
@@ -22,5 +25,5 @@ U* Cqueue<U, T>::pop_back()
 {
     return T::split(0);
 }
-
+}
 #endif

@@ -1,6 +1,8 @@
 #ifndef _CITERATOR_H_
 #define _CITERATOR_H_
 
+namespace odst{
+
 template <typename T>
 struct Citerator_base {
 
@@ -103,5 +105,5 @@ struct Citerator_linklist : public Citerator_base<T> {
     }
     typename T::data_t& operator*() const { return Citerator_linklist::current->data; }
 };
-
+}
 #endif

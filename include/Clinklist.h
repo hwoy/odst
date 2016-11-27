@@ -1,8 +1,11 @@
+#include <memory>
 #include "Citerator.h"
 #include "Cvector.h"
 
 #ifndef _ODST_CLINKLIST_H_
 #define _ODST_CLINKLIST_H_
+
+namespace odst{
 
 //===================================================== Cnode
 //=====================================================
@@ -13,33 +16,35 @@ public:
     typedef U data_t;
     U data;
 
-    Cnode(unsigned int length = N);
-    void setall(Cnode* t);
+    Cnode()
+    {
+        setall(nullptr);
+    }
+
+    Cnode(const U& data)
+        : data(data)
+    {
+        setall(nullptr);
+    }
+    void setall(Cnode* t)
+    {
+        for (unsigned int i = 0; i < N; i++)
+            this->t[i] = t;
+    }
 };
-
-template <typename U, unsigned int N>
-Cnode<U, N>::Cnode(unsigned int length)
-{
-    setall(nullptr);
-}
-
-template <typename U, unsigned int N>
-void Cnode<U, N>::setall(Cnode<U, N>* t)
-{
-    for (unsigned int i = 0; i < Cnode<U, N>::length; i++)
-        this->t[i] = t;
-}
 
 //===================================================== Clinklist_base
 //=====================================================
 template <typename T, unsigned int N>
 struct Clinklist_base {
-    typedef Cvector<T*> headtail_t;
+    typedef Cvector<T*,Cdynamicarray<T*>> headtail_t;
     typedef T node_t;
     typedef typename T::data_t data_t;
 
     headtail_t head;
     headtail_t tail;
+
+    std::allocator<T> alloc;
 
     Clinklist_base();
 
@@ -59,6 +64,7 @@ protected:
         const T* t) const;
     unsigned int countNode(const headtail_t& ht, unsigned int direct,
         unsigned int index) const;
+
 };
 
 template <typename T, unsigned int N>
@@ -101,9 +107,8 @@ T& Clinklist_base<T, N>::Addnext(T* t, unsigned int index)
 template <typename T, unsigned int N>
 T& Clinklist_base<T, N>::Newnext(unsigned int index)
 {
-    T* t;
 
-    return Addnext(t = new T, index);
+    return Addnext(alloc.allocate(1) , index);
 }
 
 template <typename T, unsigned int N>
@@ -124,9 +129,8 @@ T& Clinklist_base<T, N>::Addprev(T* t, unsigned int index)
 template <typename T, unsigned int N>
 T& Clinklist_base<T, N>::Newprev(unsigned int index)
 {
-    T* t;
 
-    return Addprev(t = new T, index);
+    return Addprev(alloc.allocate(1), index);
 }
 
 template <typename T, unsigned int N>
@@ -137,7 +141,8 @@ void Clinklist_base<T, N>::Destroy(headtail_t& ht, unsigned int index)
     for (temp1 = ht[index]; temp1;) {
         temp2 = temp1;
         temp1 = (*temp1)[index];
-        delete temp2;
+	alloc.destroy(temp2);
+	alloc.deallocate(temp2,1);
     }
 }
 
@@ -255,7 +260,7 @@ template <typename T>
 T& Cdoublylinklist<T>::New()
 {
     T* t;
-    Add(t = new T);
+    Add(t =Cdoublylinklist<T>::alloc.allocate(1));
     return *t;
 }
 
@@ -301,7 +306,7 @@ template <typename T>
 T& Cdoublylinklist<T>::Insert(unsigned int index)
 {
 
-    return Insert(new T, index);
+    return Insert(Cdoublylinklist<T>::alloc.allocate(1), index);
 }
 
 template <typename T>
@@ -522,30 +527,34 @@ Csinglylinklist<T>::countNode() const
 }
 
 template <typename U, typename T = Cnode<U, 2> >
-struct Clist : public Cdoublylinklist<T> {
+struct Clist_base : public Cdoublylinklist<T> {
+
 
     Citerator_linklist<T> begin() const
     {
-        return Citerator_linklist<T>(Clist::head[0]);
+        return Citerator_linklist<T>(Clist_base::head[0]);
     }
     Citerator_linklist<T> end() const
     {
-        return Citerator_linklist<T>(Clist::tail[0] ? Clist::tail[0]->getobj(0)
+        return Citerator_linklist<T>(Clist_base::tail[0] ? Clist_base::tail[0]->getobj(0)
                                                     : nullptr);
     }
+
 };
 
 template <typename U, typename T = Cnode<U, 1> >
-struct Clist_forward : public Csinglylinklist<T> {
+struct Clist_forward_base : public Csinglylinklist<T> {
 
     Citerator_linklist<T> begin() const
     {
-        return Citerator_linklist<T>(Clist_forward::head[0]);
+        return Citerator_linklist<T>(Clist_forward_base::head[0]);
     }
     Citerator_linklist<T> end() const
     {
         return Citerator_linklist<T>(
-            Clist_forward::tail[0] ? Clist_forward::tail[0]->getobj(0) : nullptr);
+            Clist_forward_base::tail[0] ? Clist_forward_base::tail[0]->getobj(0) : nullptr);
     }
 };
+
+}
 #endif

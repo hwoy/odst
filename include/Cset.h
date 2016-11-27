@@ -3,6 +3,8 @@
 #include "Cdynamicarray.h"
 #include "Cutil.h"
 
+namespace odst{
+
 //===================================================== Cset_interface
 //=====================================================
 template <typename U, typename T = Cdynamicarray<U> >
@@ -165,5 +167,5 @@ bool Cset<U, T>::equal(const Cset& set) const
 
     return true;
 }
-
+}
 #endif

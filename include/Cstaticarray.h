@@ -2,6 +2,8 @@
 #ifndef _ODST_CSTATAICARRAY_H_
 #define _ODST_CSTATAICARRAY_H_
 
+namespace odst{
+
 //===================================================== Cdstaticarray_base
 //=====================================================
 template <typename T, unsigned int N>
@@ -64,5 +66,5 @@ T Cstaticarray<T, N>::split(unsigned int index)
 
     return T(t);
 }
-
+}
 #endif
