@@ -8,6 +8,8 @@ int main()
 	{
 		odst::set<odst::set<int>> set1={{1,2,3},{4}};
 		odst::set<odst::set<int>> set2={{1,2,3},{4}};
+
+		set1.add({1,2,3});
 		
 		std::cout << "======set1======\n";
 		for(const auto i:set1)
