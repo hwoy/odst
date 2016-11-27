@@ -7,7 +7,7 @@ namespace odst{
 //===================================================== Cqueue_interface
 //=====================================================
 
-template <typename U, typename T = Cdynamicarray<U> >
+template <typename U, typename T>
 class Cqueue : public T {
 public:
     void push_front(const U& u);

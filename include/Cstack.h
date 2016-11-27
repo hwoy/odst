@@ -6,7 +6,7 @@ namespace odst{
 
 //===================================================== Cstack_interface
 //=====================================================
-template <typename U, typename T = Cdynamicarray<U> >
+template <typename U, typename T>
 class Cstack : public T {
 public:
     Cstack& operator<<(const U& u);

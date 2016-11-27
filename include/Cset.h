@@ -7,7 +7,7 @@ namespace odst{
 
 //===================================================== Cset_interface
 //=====================================================
-template <typename U, typename T = Cdynamicarray<U> >
+template <typename U, typename T>
 class Cset : public T {
 
 public:

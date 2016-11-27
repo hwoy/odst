@@ -21,6 +21,18 @@ template <typename U>
 using vector = Cvector<U,Cdynamicarray<U>>;
 
 template <typename U>
+using stack = Cstack<U,Cdynamicarray<U>>;
+
+template <typename U>
+using deque = Cdeque<U,Cdynamicarray<U>>;
+
+template <typename U>
+using queue = Cqueue<U,Cdynamicarray<U>>;
+
+template <typename U>
+using set = Cset<U,Cdynamicarray<U>>;
+
+template <typename U>
 using list = Cvector<U,Clinklist_interface<U,2,Cnode<U,2>,Clist_base<U>>>;
 
 template <typename U>

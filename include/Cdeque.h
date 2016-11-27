@@ -6,7 +6,7 @@ namespace odst{
 //===================================================== Cdeque_interface
 //=====================================================
 
-template <typename U, typename T = Cdynamicarray<U> >
+template <typename U, typename T>
 class Cdeque : public T {
 public:
     void push_front(const U& u);
