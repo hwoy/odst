@@ -27,7 +27,7 @@ ODS<**T**>++ (A.K.A Open Data Structure Template for C++) is a set of C++ templa
 - Clinklist_interface 	(High-level structure compatibility interface for linkedlist)
 
 #### High-level structure
-A.K.A interface class/struct
+A.K.A Adaptor class/struct
 - Cvector
 - Cstack
 - Cqueue
