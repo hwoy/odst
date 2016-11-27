@@ -75,7 +75,7 @@ void Cdynamicarray<T>::resize(unsigned int length)
         tmp[i] = Cdynamicarray<T>::t[i];
     }
 
-    Cdynamicarray<T>::assign_raw(length);
+    Cdynamicarray<T>::reserve(length);
     this->n = n;
 
     for (unsigned int i = 0; i < n; i++) {

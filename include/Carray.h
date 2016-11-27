@@ -125,7 +125,7 @@ public:
         Carray_Citerator_n::t = nullptr;
     }
 
-    void assign_raw(unsigned int length)
+    void reserve(unsigned int length)
     {
         destroy();
         if (length)
@@ -169,7 +169,7 @@ public:
         Carray_Citerator_length::t = nullptr;
     }
 
-    void assign_raw(unsigned int length)
+    void reserve(unsigned int length)
     {
         destroy();
         if (length)

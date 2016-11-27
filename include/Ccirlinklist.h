@@ -85,7 +85,7 @@ template <typename T>
 T& Ccirsinglylinklist<T>::New()
 {
     T* t;
-    Add(t = new T);
+    Add(t = Ccirsinglylinklist<T>::alloc.allocate(1));
     return *t;
 }
 
@@ -106,7 +106,7 @@ T& Ccirsinglylinklist<T>::Insert(T* t, unsigned int index)
 template <typename T>
 T& Ccirsinglylinklist<T>::Insert(unsigned int index)
 {
-    return Insert(new T, index);
+    return Insert(Ccirsinglylinklist<T>::alloc.allocate(1), index);
 }
 
 template <typename T>
@@ -300,7 +300,7 @@ template <typename T>
 T& Ccirdoublylinklist<T>::New()
 {
     T* t;
-    Add(t = new T);
+    Add(t = Ccirdoublylinklist<T>::alloc.allocate(1));
     return *t;
 }
 
@@ -323,7 +323,7 @@ T& Ccirdoublylinklist<T>::Insert(T* t, unsigned int index)
 template <typename T>
 T& Ccirdoublylinklist<T>::Insert(unsigned int index)
 {
-    return Insert(new T, index);
+    return Insert(Ccirdoublylinklist<T>::alloc.allocate(1), index);
 }
 
 template <typename T>

@@ -63,5 +63,31 @@ int main()
 			for(const auto j:i)
 				std::cout << j << std::endl;
 	}
+	{
+		std::cout << "Singly linklist\n";
+		odst::list_forward<odst::list_forward<unsigned int>> list={{1,2,3,4,5,6},{1,2,3},{0,1}};
+
+		for(const auto i:list)
+			for(const auto j:i)
+				std::cout << j << std::endl;
+	}
+	{
+		std::cout << "Circular Doubly linklist\n";
+		odst::cirlist<unsigned int> list={1,2,3,4,5};
+		while(list.size())
+		{
+			std::cout << list.split(0) << std::endl;
+		}
+
+	}
+	{
+		std::cout << "Circular Singly linklist\n";
+		odst::cirlist_forward<unsigned int> list={6,7,8,9,10};
+		while(list.size())
+		{
+			std::cout << list.split(0) << std::endl;
+		}
+
+	}
  	return 0;
 }

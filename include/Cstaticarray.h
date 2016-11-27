@@ -29,7 +29,7 @@ int Cstaticarray<T, N>::clear()
 template <typename T, unsigned int N>
 Cstaticarray<T, N>::Cstaticarray(unsigned int lenght)
 {
-    Cstaticarray<T, N>::assign_raw(lenght);
+    Cstaticarray<T, N>::reserve(lenght);
 }
 
 template <typename T, unsigned int N>

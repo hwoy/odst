@@ -418,8 +418,9 @@ void Csinglylinklist<T>::Add(T* t)
 template <typename T>
 T& Csinglylinklist<T>::New()
 {
-    T* t;
-    Add(t = new T);
+    T* t=Csinglylinklist<T>::alloc.allocate(1);
+
+    Add(t);
     return *t;
 }
 
@@ -464,7 +465,7 @@ T& Csinglylinklist<T>::Insert(T* t, unsigned int index)
 template <typename T>
 T& Csinglylinklist<T>::Insert(unsigned int index)
 {
-    return Insert(new T, index);
+    return Insert(Csinglylinklist<T>::alloc.allocate(1), index);
 }
 
 template <typename T>
