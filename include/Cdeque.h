@@ -9,6 +9,28 @@ namespace odst{
 template <typename U, typename T>
 class Cdeque : public T {
 public:
+    Cdeque() = default;
+
+    Cdeque(const Cdeque& t)
+    {
+        for (const auto& i : t)
+            push_back(i);
+    }
+
+    Cdeque& operator=(const Cdeque& t)
+    {
+        Cdeque::destroy();
+        for (const auto& i : t)
+            push_back(i);
+        return *this;
+    }
+
+    Cdeque(std::initializer_list<U> list)
+    {
+        for (const auto& i : list)
+            push_back(i);
+    }
+	
     void push_front(const U& u);
     U* pop_front();
 

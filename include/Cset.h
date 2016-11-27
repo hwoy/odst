@@ -11,6 +11,29 @@ template <typename U, typename T>
 class Cset : public T {
 
 public:
+
+    Cset() = default;
+
+    Cset(const Cset& t)
+    {
+        for (const auto& i : t)
+            T::insert(i, T::size());
+    }
+
+    Cset& operator=(const Cset& t)
+    {
+        Cset::destroy();
+        for (const auto& i : t)
+            T::insert(i, T::size());;
+        return *this;
+    }
+
+    Cset(std::initializer_list<U> list)
+    {
+        for (const auto& i : list)
+            T::insert(i, T::size());;
+    }
+	
     Cset& operator<<(const U& u);
     U& operator[](unsigned int index) const;
 
@@ -28,6 +51,17 @@ public:
     unsigned int sub(const Cset& set);
     bool issubset(const Cset& set) const;
     bool equal(const Cset& setconst) const;
+	
+	bool operator==(const Cset &set) const
+	{
+		return equal(set);
+	}
+	
+	bool operator!=(const Cset &set) const
+	{
+		return !equal(set);
+	}
+	
 };
 
 template <typename U, typename T>

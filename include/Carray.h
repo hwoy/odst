@@ -105,7 +105,7 @@ public:
     constexpr Citerator<T> end() const { return Citerator<T>(Carray_Citerator_n::t + n); }
     constexpr Criterator<T> rbegin() const { return Criterator<T>(Carray_Citerator_n::t + n - 1); }
 
-    constexpr int size() const { return n; }
+    constexpr unsigned int size() const { return n; }
 
     void setn(unsigned int n) { this->n = n; }
 
@@ -150,7 +150,7 @@ public:
 
     constexpr Criterator<T> rbegin() const { return Criterator<T>(Carray_Citerator_length::t + Carray_Citerator_length::length - 1); }
 
-    constexpr int size() const { return Carray_Citerator_length::length; }
+    constexpr unsigned int size() const { return Carray_Citerator_length::length; }
 
     void destroy()
     {

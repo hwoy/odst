@@ -9,6 +9,28 @@ namespace odst{
 template <typename U, typename T>
 class Cstack : public T {
 public:
+    Cstack() = default;
+
+    Cstack(const Cstack& t)
+    {
+        for (const auto& i : t)
+            push_back(i);
+    }
+
+    Cstack& operator=(const Cstack& t)
+    {
+        Cstack::destroy();
+        for (const auto& i : t)
+            push_back(i);
+        return *this;
+    }
+
+    Cstack(std::initializer_list<U> list)
+    {
+        for (const auto& i : list)
+            push_back(i);
+    }
+	
     Cstack& operator<<(const U& u);
 
     void push(const U& u);

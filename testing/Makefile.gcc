@@ -4,9 +4,13 @@ all: example
 
 
 example:
-	make -C example -f Makefile.gcc
+	make -C array -f Makefile.gcc
+	make -C base -f Makefile.gcc
+	make -C set -f Makefile.gcc
 
 
 clean:
-	make -C example clean -f Makefile.gcc
+	make -C array -f Makefile.gcc clean
+	make -C base -f Makefile.gcc clean
+	make -C set -f Makefile.gcc clean
 

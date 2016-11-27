@@ -4,9 +4,13 @@ all: example
 
 
 example:
-	make -C example
+	make -C array
+	make -C base
+	make -C set
 
 
 clean:
-	make -C example clean
+	make -C array clean
+	make -C base clean
+	make -C set clean
 

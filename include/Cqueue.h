@@ -10,6 +10,7 @@ namespace odst{
 template <typename U, typename T>
 class Cqueue : public T {
 public:
+	
     void push_front(const U& u);
     U* pop_back();
 };

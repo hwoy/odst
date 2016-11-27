@@ -1,4 +1,5 @@
-#include <cstdlib>
+#include <random>
+#include <ctime>
 #include <iostream>
 #include <odst.h>
 
@@ -33,20 +34,17 @@ show(unsigned int num, unsigned int base, const vector_t& list)
 
   std::cout << '\n';
 }
-unsigned int random(unsigned int min,unsigned int max)
-{
-	return rand()%(max-min+1)+min;
-}
 
 int main(void)
 {
   unsigned int i, j;
   vector_t list;
 
-  std::srand(time(nullptr));
+  std::mt19937 gen(time(nullptr));
+  std::uniform_int_distribution<> dis(RANG_MIN,RANG_MAX);
 
   for (j = 0; j < 10; j++) {
-    i = random(RANG_MIN,RANG_MAX);
+    i = dis(gen);
     dec2base(i, BASE, list);
     show(i, BASE ,list);
     list.clear();
