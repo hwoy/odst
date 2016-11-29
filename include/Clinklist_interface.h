@@ -23,6 +23,8 @@ struct Clinklist_interface : public T {
     }
 
     void remove(unsigned int index) { T::Remove(index); }
+	
+	void remove(V *v) { T::Remove(v); }
 
     void destroy() { T::Destroy(); }
 
