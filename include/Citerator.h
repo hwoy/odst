@@ -228,5 +228,13 @@ struct Criterator_linklist : public Citerator_base<T> {
     }
     typename T::data_t& operator*() const { return Criterator_linklist::current->data; }
 };
+
+
+template <typename T>
+typename odst::Criterator<T>::self_type operator+(typename odst::Criterator<T>::difference_type n,const odst::Criterator<T> &it)
+{
+	return it+n;
+}
+	
 }
 #endif
