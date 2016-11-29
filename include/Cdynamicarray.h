@@ -16,15 +16,15 @@ public:
         return 0;
     }
 
-    void remove(unsigned int index)
+    void remove(T *p)
     {
-        if (index >= Cdynamicarray::n)
+        if ( p < Cdynamicarray<T>::t && p >= Cdynamicarray<T>::t+Cdynamicarray::n)
             return;
 
-        Cdynamicarray<T>::alloc.destroy(Cdynamicarray<T>::t + index);
+        Cdynamicarray<T>::alloc.destroy(p);
 
-        for (unsigned int i = index; i + 1 < Cdynamicarray::n; i++) {
-            Cdynamicarray<T>::t[i] = Cdynamicarray<T>::t[i + 1];
+        for (T *i = p; i + 1 < Cdynamicarray<T>::t+Cdynamicarray::n; i++) {
+            *i = *(i+1);
         }
 
         Cdynamicarray::n--;
@@ -35,6 +35,11 @@ public:
             resize((Cdynamicarray::n + 1) << 2);
     }
 
+	void remove(unsigned int index)
+    {
+		remove(Cdynamicarray<T>::t + index);
+    }
+	
     void insert(const T& t, unsigned int index)
     {
 

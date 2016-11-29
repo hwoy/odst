@@ -21,17 +21,22 @@ public:
         Cstaticarray<T, N>::reserve(lenght);
     }
 
-    void remove(unsigned int index)
+    void remove(T *p)
     {
-        if (index >= Cstaticarray<T, N>::n)
+        if ( p < Cstaticarray<T,N>::t && p >= Cstaticarray<T,N>::t+Cstaticarray::n)
             return;
 
-        for (unsigned int i = index; i + 1 < Cstaticarray<T, N>::n; i++) {
-            Cstaticarray<T, N>::t[i] = Cstaticarray<T, N>::t[i + 1];
+        for (T *i = p; i + 1 < Cstaticarray<T,N>::t+Cstaticarray::n; i++) {
+            *i = *(i+1);
         }
 
         Cstaticarray<T, N>::n--;
         Cstaticarray<T, N>::alloc.destroy(Cstaticarray<T, N>::t + Cstaticarray<T, N>::n);
+    }
+	
+    void remove(unsigned int index)
+    {
+		remove(Cstaticarray<T,N>::t + index);
     }
 
     void insert(const T& t, unsigned int index)

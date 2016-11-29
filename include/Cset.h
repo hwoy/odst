@@ -50,6 +50,27 @@ public:
         assign(list.begin(), list.end());
     }
 
+	//******************************************************************//
+	
+	template <typename It>
+	void erase(It i)
+	{
+		T::remove(i.base());
+		
+	}
+	
+	template <typename It>
+	void erase(It i,It j)
+	{
+		
+		for(;i!=j;)
+		{
+			It m=i;
+			i++;
+			T::remove(m.base());
+		}
+		
+	}
     //******************************************************************//
 
     void add(const U& u)
