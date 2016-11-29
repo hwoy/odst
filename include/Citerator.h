@@ -231,7 +231,7 @@ struct Criterator_linklist : public Citerator_base<T> {
 
 
 template <typename T>
-typename odst::Criterator<T>::self_type operator+(typename odst::Criterator<T>::difference_type n,const odst::Criterator<T> &it)
+typename odst::Citerator<T>::self_type operator+(typename odst::Citerator<T>::difference_type n,const odst::Citerator<T> &it)
 {
 	return it+n;
 }
