@@ -3,7 +3,7 @@
 #include "Cdynamicarray.h"
 #include "Cutil.h"
 
-namespace odst{
+namespace odst {
 
 //===================================================== Cset_interface
 //=====================================================
@@ -11,195 +11,192 @@ template <typename U, typename T>
 class Cset : public T {
 
 public:
-
     Cset() = default;
 
     Cset(const Cset& t)
     {
-        for (const auto& i : t)
-            T::insert(i, T::size());
+        for (unsigned int i = 0; i < t.size(); ++i)
+            push_back(t[i]);
+    }
+
+    Cset(std::initializer_list<U> list)
+    {
+        assign(list.begin(), list.end());
+    }
+
+    template <typename iter>
+    Cset(const iter a, const iter b)
+    {
+        assign(a, b);
     }
 
     Cset& operator=(const Cset& t)
     {
         Cset::destroy();
-        for (const auto& i : t)
-            T::insert(i, T::size());;
+        for (unsigned int i = 0; i < t.size(); ++i)
+            push_back(t[i]);
         return *this;
     }
 
-    Cset(std::initializer_list<U> list)
+    template <typename Input>
+    void assign(Input a, Input b)
     {
-        for (const auto& i : list)
-            T::insert(i, T::size());;
-    }
-	
-    Cset& operator<<(const U& u);
-    U& operator[](unsigned int index) const;
-
-    void add(const U& u);
-    void remove(unsigned int index);
-    void remove();
-
-    void insert(const U& u, unsigned int index);
-
-    /*		Core Methodes		*/
-
-    unsigned int pack();
-    unsigned int _union(const Cset& set);
-    unsigned int intersect(const Cset& set);
-    unsigned int sub(const Cset& set);
-    bool issubset(const Cset& set) const;
-    bool equal(const Cset& setconst) const;
-	
-	bool operator==(const Cset &set) const
-	{
-		return equal(set);
-	}
-	
-	bool operator!=(const Cset &set) const
-	{
-		return !equal(set);
-	}
-	
-};
-
-template <typename U, typename T>
-void Cset<U, T>::add(const U& u)
-{
-    T::insert(u, T::size());
-}
-
-template <typename U, typename T>
-void Cset<U, T>::remove(unsigned int index)
-{
-    T::remove(index);
-}
-
-template <typename U, typename T>
-void Cset<U, T>::remove()
-{
-    T::remove(T::size() - 1);
-}
-
-template <typename U, typename T>
-Cset<U, T>&
-Cset<U, T>::operator<<(const U& u)
-{
-    add(u);
-    return *this;
-}
-
-template <typename U, typename T>
-U& Cset<U, T>::operator[](unsigned int index) const
-{
-    return T::getobj(index);
-}
-
-template <typename U, typename T>
-void Cset<U, T>::insert(const U& u, unsigned int index)
-{
-    T::insert(u, index);
-}
-
-template <typename U, typename T>
-unsigned int
-Cset<U, T>::pack()
-{
-    unsigned int count;
-    count = 0;
-
-    for (unsigned int i = 0; i < T::size(); i++) {
-
-        for (unsigned int j = i + 1; j < T::size();) {
-            if (T::getobj(i) == T::getobj(j)) {
-                remove(j);
-                count++;
-                continue;
-            }
-            j++;
-        }
+        for (Input i = a; i != b; ++i)
+            push_back(*i);
     }
 
-    return count;
-}
-
-template <typename U, typename T>
-unsigned int
-Cset<U, T>::_union(const Cset<U, T>& set)
-{
-    unsigned int count;
-    count = 0;
-
-    for (unsigned int i = 0; i < set.size(); i++) {
-        if (find(*this, 0, T::size(), set.getobj(i)) == -1U) {
-            add(set.getobj(i));
-            count++;
-        }
+    void assign(std::initializer_list<U> list)
+    {
+        assign(list.begin(), list.end());
     }
 
-    return count;
-}
+    //******************************************************************//
 
-template <typename U, typename T>
-unsigned int
-Cset<U, T>::intersect(const Cset<U, T>& set)
-{
-    unsigned int count = 0;
-
-    for (unsigned int i = T::size(); i > 0; i--) {
-        if (find(set, 0, set.size(), T::getobj(i - 1)) == -1U) {
-            remove(i - 1);
-            count++;
-        }
+    void add(const U& u)
+    {
+        T::insert(u, T::size());
     }
 
-    return count;
-}
+    void remove(unsigned int index)
+    {
+        T::remove(index);
+    }
 
-template <typename U, typename T>
-bool Cset<U, T>::issubset(const Cset& set) const
-{
-    bool isequal;
+    void remove()
+    {
+        T::remove(T::size() - 1);
+    }
 
-    for (unsigned int j = 0; j < set.size(); j++) {
-        isequal = false;
+    Cset<U, T>& operator<<(const U& u)
+    {
+        add(u);
+        return *this;
+    }
+
+    void insert(const U& u, unsigned int index)
+    {
+        T::insert(u, index);
+    }
+
+    unsigned int pack()
+    {
+        unsigned int count;
+        count = 0;
+
         for (unsigned int i = 0; i < T::size(); i++) {
-            if (T::getobj(i) == set[j]) {
-                isequal = true;
-                break;
+
+            for (unsigned int j = i + 1; j < T::size();) {
+                if (T::getobj(i) == T::getobj(j)) {
+                    remove(j);
+                    count++;
+                    continue;
+                }
+                j++;
             }
         }
-        if (!isequal)
-            return false;
+
+        return count;
     }
 
-    return true;
-}
+    unsigned int _union(const Cset<U, T>& set)
+    {
+        unsigned int count;
+        count = 0;
 
-template <typename U, typename T>
-unsigned int
-Cset<U, T>::sub(const Cset<U, T>& set)
-{
-    unsigned int count = 0;
-
-    for (unsigned int i = T::size(); i > 0; i--) {
-        if (find(set, 0, set.size(), T::getobj(i - 1)) != -1U) {
-            remove(i - 1);
-            count++;
+        for (unsigned int i = 0; i < set.size(); i++) {
+            if (find(*this, 0, T::size(), set.getobj(i)) == -1U) {
+                add(set.getobj(i));
+                count++;
+            }
         }
+
+        return count;
     }
 
-    return count;
+    unsigned int intersect(const Cset<U, T>& set)
+    {
+        unsigned int count = 0;
+
+        for (unsigned int i = T::size(); i > 0; i--) {
+            if (find(set, 0, set.size(), T::getobj(i - 1)) == -1U) {
+                remove(i - 1);
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    bool issubset(const Cset& set) const
+    {
+        bool isequal;
+
+        for (unsigned int j = 0; j < set.size(); j++) {
+            isequal = false;
+            for (unsigned int i = 0; i < T::size(); i++) {
+                if (T::getobj(i) == set[j]) {
+                    isequal = true;
+                    break;
+                }
+            }
+            if (!isequal)
+                return false;
+        }
+
+        return true;
+    }
+
+    unsigned int sub(const Cset<U, T>& set)
+    {
+        unsigned int count = 0;
+
+        for (unsigned int i = T::size(); i > 0; i--) {
+            if (find(set, 0, set.size(), T::getobj(i - 1)) != -1U) {
+                remove(i - 1);
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    bool equal(const Cset& set) const
+    {
+        if (!issubset(set) || !set.issubset(*this))
+            return false;
+
+        return true;
+    }
+
+    bool operator==(const Cset& set) const
+    {
+        return equal(set);
+    }
+
+    bool operator!=(const Cset& set) const
+    {
+        return !equal(set);
+    }
+
+protected:
+    void push_back(const U& u)
+    {
+        T::insert(u, T::size());
+    }
+};
 }
 
-template <typename U, typename T>
-bool Cset<U, T>::equal(const Cset& set) const
+template <typename Char ,typename CharT,typename U, typename T>
+std::basic_ostream<Char,CharT>& operator<< (std::basic_ostream<Char,CharT>& out,const odst::Cset<U,T> &set)
 {
-    if (!issubset(set) || !set.issubset(*this))
-        return false;
-
-    return true;
-}
+	out << '{';
+	for(unsigned int i=0;i<set.size();i++)
+	{
+		out << set[i];
+		if(i+1!=set.size())
+			out << ',';
+	}
+	out << '}';
+	return out;
 }
 #endif

@@ -1,4 +1,9 @@
 #include <iostream>
+#include <vector>
+#include <random>
+#include <ctime>
+#include <algorithm>
+#include <iterator>
 #include <odst.h>
 
 template <typename T>
@@ -64,6 +69,14 @@ int main()
 				std::cout << j << std::endl;
 	}
 	{
+		std::cout << "Doubly linklist Reverse\n";
+		std::vector<unsigned int> vec={1,2,3,4,5};
+		odst::list<unsigned int> list(vec.begin(),vec.end());
+
+		for(auto i=list.rbegin();i!=list.rend();i++)
+				std::cout << *i << std::endl;
+	}
+	{
 		std::cout << "Singly linklist\n";
 		odst::list_forward<odst::list_forward<unsigned int>> list={{1,2,3,4,5,6},{1,2,3},{0,1}};
 
@@ -73,11 +86,16 @@ int main()
 	}
 	{
 		std::cout << "Circular Doubly linklist\n";
-		odst::cirlist<unsigned int> list={1,2,3,4,5};
+		odst::cirlist<odst::cirlist<unsigned int>> list={{1,2,3},{2,3,4,5}};
+
 		while(list.size())
 		{
-			std::cout << list.split(0) << std::endl;
+			auto i=list.split(0);
+			
+			while(i.size())
+			std::cout << i.split(0) << std::endl;
 		}
+
 
 	}
 	{
@@ -88,6 +106,34 @@ int main()
 			std::cout << list.split(0) << std::endl;
 		}
 
+	}
+	
+	{
+		std::cout << "Random vector\n";
+		std::mt19937 gen(time(nullptr));
+		odst::vector<int> vec={1,2,3,4,5,6,7,8,9,10};
+		std::shuffle(vec.begin(),vec.end(),gen);
+		
+		for(const auto i:vec)
+			std::cout << i << std::endl;
+	}
+	
+	{
+		std::cout << "Vector Back Inserter\n";
+		odst::vector<int> vec={1,2,3,4,5,6,7,8,9,10};
+		std::fill_n(std::back_inserter(vec),50,-1);
+		
+		for(const auto i:vec)
+			std::cout << i << std::endl;
+	}
+	
+	{
+		std::cout << "List Back Inserter\n";
+		odst::list<int> list={1,2,3,4,5};
+		std::fill_n(std::back_inserter(list),50,-2);
+		
+		for(const auto i:list)
+			std::cout << i << std::endl;
 	}
  	return 0;
 }

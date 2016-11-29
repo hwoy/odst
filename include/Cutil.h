@@ -1,7 +1,7 @@
 #ifndef _ODST_CUTIL_H_
 #define _ODST_CUTIL_H_
 
-namespace odst{
+namespace odst {
 
 template <typename T>
 void _swap(T* a, T* b)

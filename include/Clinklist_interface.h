@@ -3,7 +3,7 @@
 #define _ODST_CLINKLIST_INTERFACE_H_
 #include "Clinklist.h"
 
-namespace odst{
+namespace odst {
 //===================================================== Clinklist_interface
 //=====================================================
 
@@ -17,7 +17,7 @@ struct Clinklist_interface : public T {
     {
         V* v;
         v = T::alloc.allocate(1);
-	T::alloc.construct(v,u);
+        T::alloc.construct(v, u);
 
         T::Insert(v, index);
     }
@@ -34,23 +34,30 @@ struct Clinklist_interface : public T {
 
     U split(unsigned int index)
     {
-        U u= T::getNode(index).data;
+        U u = T::getNode(index).data;
 
         T::Remove(index);
 
         return U(u);
     }
 
-    U& getobj(unsigned int index) const { return T::getNode(index).data; }
-    U& operator[](unsigned int index) const { getobj(index); }
+    const U& getobj(unsigned int index) const { return T::getNode(index).data; }
 
-    void assign(unsigned int length)
+    const U& operator[](unsigned int index) const { return T::getNode(index).data; }
+
+    U& getobj(unsigned int index) { return T::getNode(index).data; }
+
+    U& operator[](unsigned int index) { return T::getNode(index).data; }
+
+    /*
+    void reserve(unsigned int length)
     {
         T::Destroy();
         for (unsigned int i = 0; i < length; i++) {
             T::New();
         }
     }
+	*/
 };
 }
 #endif

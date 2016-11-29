@@ -38,6 +38,22 @@ A.K.A Adaptor class/struct
 -Citerator
 -Citerator_linklist
 
+#### Predefined structure
+- vector
+- stack
+- queue
+- deque
+- set
+- svector
+- sstack
+- squeue
+- sdeque
+- sset
+- list
+- list_forward
+- cirlist
+- cirlist_forward
+
 ## Requirement
 - compiler: CPP11 Compiler
 

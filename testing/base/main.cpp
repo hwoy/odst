@@ -8,10 +8,10 @@
 #define RANG_MAX 10000000
 
 
-typedef odst::vector<unsigned int> vector_t;
+typedef odst::svector<unsigned int,32> base_t;
 
 static void
-dec2base(unsigned int num, unsigned int base, vector_t& list)
+dec2base(unsigned int num, unsigned int base, base_t& list)
 {
   unsigned int i;
   i = num;
@@ -21,7 +21,7 @@ dec2base(unsigned int num, unsigned int base, vector_t& list)
 }
 
 static void
-show(unsigned int num, unsigned int base, const vector_t& list)
+show(unsigned int num, unsigned int base, const base_t& list)
 {
 
   std::cout << num << " = ";
@@ -38,7 +38,7 @@ show(unsigned int num, unsigned int base, const vector_t& list)
 int main(void)
 {
   unsigned int i, j;
-  vector_t list;
+  base_t list;
 
   std::mt19937 gen(time(nullptr));
   std::uniform_int_distribution<> dis(RANG_MIN,RANG_MAX);

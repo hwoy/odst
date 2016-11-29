@@ -1,13 +1,13 @@
 #ifndef _ODST_CVECTOR_H_
 #define _ODST_CVECTOR_H_
-#include <initializer_list>
 #include "Cdynamicarray.h"
+#include <initializer_list>
 
-namespace odst{
+namespace odst {
 
 //===================================================== Cvector
 //=====================================================
-template <typename U, typename T >
+template <typename U, typename T>
 class Cvector : public T {
 
 public:
@@ -15,115 +15,97 @@ public:
 
     Cvector(const Cvector& t)
     {
-        for (const auto& i : t)
-            push_back(i);
-    }
-
-    Cvector& operator=(const Cvector& t)
-    {
-        Cvector::destroy();
-        for (const auto& i : t)
-            push_back(i);
-        return *this;
+        for (unsigned int i = 0; i < t.size(); ++i)
+            push_back(t[i]);
     }
 
     Cvector(std::initializer_list<U> list)
     {
-        for (const auto& i : list)
-            push_back(i);
+        assign(list.begin(), list.end());
     }
 
     template <typename iter>
     Cvector(const iter a, const iter b)
     {
-        for (iter i = a; i != b; ++i)
+        assign(a, b);
+    }
+
+    Cvector& operator=(const Cvector& t)
+    {
+        Cvector::destroy();
+        for (unsigned int i = 0; i < t.size(); ++i)
+            push_back(t[i]);
+        return *this;
+    }
+
+    template <typename Input>
+    void assign(Input a, Input b)
+    {
+        for (Input i = a; i != b; ++i)
             push_back(*i);
     }
 
-    Cvector& operator<<(const U& u);
+    void assign(std::initializer_list<U> list)
+    {
+        assign(list.begin(), list.end());
+    }
 
-    void add(const U& u);
-    void remove(unsigned int index);
-    void remove();
+    //******************************************************************//
+    void add(const U& u)
+    {
+        T::insert(u, T::size());
+    }
 
-    void push(const U& u);
-    U pop();
+    void remove(unsigned int index)
+    {
+        T::remove(index);
+    }
 
-    void push_back(const U& u);
-    U pop_back();
+    void remove()
+    {
+        T::remove(T::size() - 1);
+    }
 
-    void push_front(const U& u);
-    U pop_front();
+    Cvector<U, T>& operator<<(const U& u)
+    {
+        add(u);
+        return *this;
+    }
 
-    void insert(const U& u, unsigned int index);
+    void push(const U& u)
+    {
+        push_back(u);
+    }
+
+    U pop()
+    {
+        return pop_back();
+    }
+
+    void push_front(const U& u)
+    {
+        T::insert(u, 0);
+    }
+
+    U pop_front()
+    {
+        return T::split(0);
+    }
+
+    void push_back(const U& u)
+    {
+        T::insert(u, T::size());
+    }
+
+    U pop_back()
+    {
+        return T::split(T::size() - 1);
+    }
+
+    void insert(const U& u, unsigned int index)
+    {
+        T::insert(u, index);
+    }
 };
-
-template <typename U, typename T>
-void Cvector<U, T>::add(const U& u)
-{
-    T::insert(u, T::size());
-}
-
-template <typename U, typename T>
-void Cvector<U, T>::remove(unsigned int index)
-{
-    T::remove(index);
-}
-
-template <typename U, typename T>
-void Cvector<U, T>::remove()
-{
-    T::remove(T::size() - 1);
-}
-
-template <typename U, typename T>
-Cvector<U, T>&
-Cvector<U, T>::operator<<(const U& u)
-{
-    add(u);
-    return *this;
-}
-
-template <typename U, typename T>
-void Cvector<U, T>::push(const U& u)
-{
-    push_back(u);
-}
-
-template <typename U, typename T>
-U Cvector<U, T>::pop()
-{
-    return pop_back();
-}
-
-template <typename U, typename T>
-void Cvector<U, T>::push_front(const U& u)
-{
-    T::insert(u, 0);
-}
-
-template <typename U, typename T>
-U Cvector<U, T>::pop_front()
-{
-    return T::split(0);
-}
-
-template <typename U, typename T>
-void Cvector<U, T>::push_back(const U& u)
-{
-    T::insert(u, T::size());
-}
-
-template <typename U, typename T>
-U Cvector<U, T>::pop_back()
-{
-    return T::split(T::size() - 1);
-}
-
-template <typename U, typename T>
-void Cvector<U, T>::insert(const U& u, unsigned int index)
-{
-    T::insert(u, index);
-}
 }
 #endif

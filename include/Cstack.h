@@ -2,7 +2,7 @@
 #define _ODST_CSTACK_H_
 #include "Cdynamicarray.h"
 
-namespace odst{
+namespace odst {
 
 //===================================================== Cstack_interface
 //=====================================================
@@ -13,63 +13,68 @@ public:
 
     Cstack(const Cstack& t)
     {
-        for (const auto& i : t)
-            push_back(i);
+        for (unsigned int i = 0; i < t.size(); ++i)
+            push_back(t[i]);
+    }
+
+    Cstack(std::initializer_list<U> list)
+    {
+        assign(list.begin(), list.end());
+    }
+
+    template <typename iter>
+    Cstack(const iter a, const iter b)
+    {
+        assign(a, b);
     }
 
     Cstack& operator=(const Cstack& t)
     {
         Cstack::destroy();
-        for (const auto& i : t)
-            push_back(i);
+        for (unsigned int i = 0; i < t.size(); ++i)
+            push_back(t[i]);
         return *this;
     }
 
-    Cstack(std::initializer_list<U> list)
+    template <typename Input>
+    void assign(Input a, Input b)
     {
-        for (const auto& i : list)
-            push_back(i);
+        for (Input i = a; i != b; ++i)
+            push_back(*i);
     }
-	
-    Cstack& operator<<(const U& u);
 
-    void push(const U& u);
-    U* pop();
+    void assign(std::initializer_list<U> list)
+    {
+        assign(list.begin(), list.end());
+    }
 
-    void push_back(const U& u);
-    U* pop_back();
+    //******************************************************************//
+
+    void push(const U& u)
+    {
+        push_back(u);
+    }
+
+    U pop()
+    {
+        return pop_back();
+    }
+
+    Cstack<U, T>& operator<<(const U& u)
+    {
+        push(u);
+        return *this;
+    }
+
+    void push_back(const U& u)
+    {
+        T::insert(u, T::size());
+    }
+
+    U pop_back()
+    {
+        return T::split(T::size() - 1);
+    }
 };
-
-template <typename U, typename T>
-void Cstack<U, T>::push(const U& u)
-{
-    push_back(u);
-}
-
-template <typename U, typename T>
-U* Cstack<U, T>::pop()
-{
-    return pop_back();
-}
-
-template <typename U, typename T>
-Cstack<U, T>&
-Cstack<U, T>::operator<<(const U& u)
-{
-    push(u);
-    return *this;
-}
-
-template <typename U, typename T>
-void Cstack<U, T>::push_back(const U& u)
-{
-    T::insert(u, T::size());
-}
-
-template <typename U, typename T>
-U* Cstack<U, T>::pop_back()
-{
-    return T::split(T::size() - 1);
-}
 }
 #endif

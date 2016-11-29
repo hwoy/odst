@@ -12,14 +12,10 @@ int main()
 		set1.add({1,2,3});
 		
 		std::cout << "======set1======\n";
-		for(const auto i:set1)
-			for(const auto j:i)
-				std::cout << j << std::endl;
+		std::cout << set1 << std::endl;
 			
 		std::cout << "======set2======\n";
-		for(const auto i:set2)
-			for(const auto j:i)
-				std::cout << j << std::endl;
+		std::cout << set2 << std::endl;
 		
 		std::cout << std::string("set1 ") + ((set1==set2)?"=":"!=") + " set2" << std::endl;
 	}
@@ -29,12 +25,10 @@ int main()
 		odst::set<std::string> set2={"Kung","Ruam"};
 		
 		std::cout << "======set1======\n";
-		for(const auto i:set1)
-			std::cout << i << std::endl;
+		std::cout << set1 << std::endl;
 			
 		std::cout << "======set2======\n";
-		for(const auto i:set2)
-			std::cout << i << std::endl;
+		std::cout << set2 << std::endl;
 		
 		std::cout << std::string("set1 ") + ((set1==set2)?"=":"!=") + " set2" << std::endl;
 	}

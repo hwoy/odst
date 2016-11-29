@@ -12,35 +12,56 @@
 #include "Cutil.h"
 #include "Cvector.h"
 
-namespace odst{
+namespace odst {
 
-template <typename U,unsigned int N>
-using array = Carray<U,N>;
+template <typename U, unsigned int N>
+using array = Carray<U, N>;
 
-template <typename U>
-using vector = Cvector<U,Cdynamicarray<U>>;
-
-template <typename U>
-using stack = Cstack<U,Cdynamicarray<U>>;
+//****************** Dynamic Array ****************
 
 template <typename U>
-using deque = Cdeque<U,Cdynamicarray<U>>;
+using vector = Cvector<U, Cdynamicarray<U> >;
 
 template <typename U>
-using queue = Cqueue<U,Cdynamicarray<U>>;
+using stack = Cstack<U, Cdynamicarray<U> >;
 
 template <typename U>
-using set = Cset<U,Cdynamicarray<U>>;
+using deque = Cdeque<U, Cdynamicarray<U> >;
 
 template <typename U>
-using list = Cvector<U,Clinklist_interface<U,2,Cnode<U,2>,Clist_base<U>>>;
+using queue = Cqueue<U, Cdynamicarray<U> >;
 
 template <typename U>
-using list_forward = Cvector<U,Clinklist_interface<U,1,Cnode<U,1>,Clist_forward_base<U>>>;
+using set = Cset<U, Cdynamicarray<U> >;
+
+//****************** Static Array ****************
+
+template <typename U, unsigned int N>
+using svector = Cvector<U, Cstaticarray<U, N> >;
+
+template <typename U, unsigned int N>
+using sstack = Cstack<U, Cstaticarray<U, N> >;
+
+template <typename U, unsigned int N>
+using sdeque = Cdeque<U, Cstaticarray<U, N> >;
+
+template <typename U, unsigned int N>
+using squeue = Cqueue<U, Cstaticarray<U, N> >;
+
+template <typename U, unsigned int N>
+using sset = Cset<U, Cstaticarray<U, N> >;
+
+//****************** Linklist ****************
 
 template <typename U>
-using cirlist = Cvector<U,Clinklist_interface<U,2,Cnode<U,2>,Ccirdoublylinklist<Cnode<U,2>>>>;
+using list = Cvector<U, Clinklist_interface<U, 2, Cnode<U, 2>, Clist_base<U> > >;
 
 template <typename U>
-using cirlist_forward = Cvector<U,Clinklist_interface<U,1,Cnode<U,1>,Ccirsinglylinklist<Cnode<U,1>>>>;
+using list_forward = Cvector<U, Clinklist_interface<U, 1, Cnode<U, 1>, Clist_forward_base<U> > >;
+
+template <typename U>
+using cirlist = Cvector<U, Clinklist_interface<U, 2, Cnode<U, 2>, Ccirdoublylinklist<Cnode<U, 2> > > >;
+
+template <typename U>
+using cirlist_forward = Cvector<U, Clinklist_interface<U, 1, Cnode<U, 1>, Ccirsinglylinklist<Cnode<U, 1> > > >;
 }
