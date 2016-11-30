@@ -11,32 +11,31 @@ struct Citerator_base {
     {
     }
 
-	bool operator==(const Citerator_base& hs) const
+    bool operator==(const Citerator_base& hs) const
     {
         return this->current == hs.current;
     }
-	
-	//************************* Input *******************
-	
+
+    //************************* Input *******************
+
     bool operator!=(const Citerator_base& hs) const
     {
         return this->current != hs.current;
     }
-	
-	T* operator-> ()
-	{
-		return current;
-	}
-	
-	const T* operator-> () const
-	{
-		return current;
-	}
+
+    T* operator->()
+    {
+        return current;
+    }
+
+    const T* operator->() const
+    {
+        return current;
+    }
 
     T* base() { return current; }
-	
-	const T* base() const { return current; }
-	
+
+    const T* base() const { return current; }
 
 protected:
     T* current;
@@ -56,8 +55,8 @@ struct Citerator : public Citerator_base<T> {
     {
     }
 
-	reference operator*() const { return *Citerator::current; }
-		
+    reference operator*() const { return *Citerator::current; }
+
     self_type& operator++()
     {
         Citerator::current++;
@@ -69,9 +68,8 @@ struct Citerator : public Citerator_base<T> {
         Citerator::current++;
         return *this;
     }
-	
 
-	//************************ Binary Acess ***********************	
+    //************************ Binary Acess ***********************
     self_type& operator--()
     {
         Citerator::current--;
@@ -83,65 +81,65 @@ struct Citerator : public Citerator_base<T> {
         Citerator::current--;
         return *this;
     }
-	
-	//************************ Random Acess ***********************
-	
-	self_type& operator+=(difference_type n)
-	{
-		Citerator::current+=n;
-		return *this;
-	}
-	
-	self_type operator+(difference_type n) const
-	{
-		return Citerator(Citerator::current+n);
-	}
-	
-	self_type& operator-=(difference_type n)
-	{
-		Citerator::current-=n;
-		return *this;
-	}
-	
-	self_type operator-(difference_type n) const
-	{
-		return Citerator(Citerator::current-n);
-	}
-	
-	difference_type operator-(Citerator a) const
-	{
-		return Citerator::current-a.current;
-	}
-	
-	self_type& operator[](difference_type n)
-	{
-		return *(Citerator::current+n);
-	}
-	
-	const self_type& operator[](difference_type n) const
-	{
-		return *(Citerator::current+n);
-	}
-	
-	bool operator<(Citerator b) const
-	{
-		return (b.current-Citerator::current)>0;
-	}
-	
-	bool operator>(Citerator b) const
-	{
-		return Citerator::current>b.current;
-	}
-	
-	bool operator<=(Citerator b) const
-	{
-		return !(Citerator::current>b.current);
-	}
-	
-	bool operator>=(Citerator b) const
-	{
-		return !(Citerator::current<b.current);
-	}
+
+    //************************ Random Acess ***********************
+
+    self_type& operator+=(difference_type n)
+    {
+        Citerator::current += n;
+        return *this;
+    }
+
+    self_type operator+(difference_type n) const
+    {
+        return Citerator(Citerator::current + n);
+    }
+
+    self_type& operator-=(difference_type n)
+    {
+        Citerator::current -= n;
+        return *this;
+    }
+
+    self_type operator-(difference_type n) const
+    {
+        return Citerator(Citerator::current - n);
+    }
+
+    difference_type operator-(Citerator a) const
+    {
+        return Citerator::current - a.current;
+    }
+
+    self_type& operator[](difference_type n)
+    {
+        return *(Citerator::current + n);
+    }
+
+    const self_type& operator[](difference_type n) const
+    {
+        return *(Citerator::current + n);
+    }
+
+    bool operator<(Citerator b) const
+    {
+        return (b.current - Citerator::current) > 0;
+    }
+
+    bool operator>(Citerator b) const
+    {
+        return Citerator::current > b.current;
+    }
+
+    bool operator<=(Citerator b) const
+    {
+        return !(Citerator::current > b.current);
+    }
+
+    bool operator>=(Citerator b) const
+    {
+        return !(Citerator::current < b.current);
+    }
 };
 
 template <typename T>
@@ -229,12 +227,10 @@ struct Criterator_linklist : public Citerator_base<T> {
     typename T::data_t& operator*() const { return Criterator_linklist::current->data; }
 };
 
-
 template <typename T>
-typename odst::Citerator<T>::self_type operator+(typename odst::Citerator<T>::difference_type n,const odst::Citerator<T> &it)
+typename odst::Citerator<T>::self_type operator+(typename odst::Citerator<T>::difference_type n, const odst::Citerator<T>& it)
 {
-	return it+n;
+    return it + n;
 }
-	
 }
 #endif

@@ -9,22 +9,21 @@ template <typename T>
 class Cdynamicarray : public Carray_Citerator_n<T> {
 
 public:
-
     int clear()
     {
         Cdynamicarray<T>::destroy();
         return 0;
     }
 
-    void remove(T *p)
+    void remove(T* p)
     {
-        if ( p < Cdynamicarray<T>::t && p >= Cdynamicarray<T>::t+Cdynamicarray::n)
+        if (p < Cdynamicarray<T>::t && p >= Cdynamicarray<T>::t + Cdynamicarray::n)
             return;
 
         Cdynamicarray<T>::alloc.destroy(p);
 
-        for (T *i = p; i + 1 < Cdynamicarray<T>::t+Cdynamicarray::n; i++) {
-            *i = *(i+1);
+        for (T* i = p; i + 1 < Cdynamicarray<T>::t + Cdynamicarray::n; i++) {
+            *i = *(i + 1);
         }
 
         Cdynamicarray::n--;
@@ -35,11 +34,11 @@ public:
             resize((Cdynamicarray::n + 1) << 2);
     }
 
-	void remove(unsigned int index)
+    void remove(unsigned int index)
     {
-		remove(Cdynamicarray<T>::t + index);
+        remove(Cdynamicarray<T>::t + index);
     }
-	
+
     void insert(const T& t, unsigned int index)
     {
 

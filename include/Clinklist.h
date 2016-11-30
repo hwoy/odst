@@ -39,12 +39,12 @@ template <typename T, unsigned int N>
 struct Clinklist_base {
     typedef Cvector<T*, Cdynamicarray<T*> > headtail_t;
     typedef T node_t;
-	
+
     typedef typename T::data_t value_type;
-	typedef typename T::data_t& reference;
-	typedef const typename T::data_t& const_reference;
-	typedef typename std::allocator_traits<std::allocator<T>>::pointer pointer;
-	typedef typename std::allocator_traits<std::allocator<T>>::const_pointer const_pointer;
+    typedef typename T::data_t& reference;
+    typedef const typename T::data_t& const_reference;
+    typedef typename std::allocator_traits<std::allocator<T> >::pointer pointer;
+    typedef typename std::allocator_traits<std::allocator<T> >::const_pointer const_pointer;
 
     headtail_t head;
     headtail_t tail;

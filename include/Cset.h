@@ -50,27 +50,24 @@ public:
         assign(list.begin(), list.end());
     }
 
-	//******************************************************************//
-	
-	template <typename It>
-	void erase(It i)
-	{
-		T::remove(i.base());
-		
-	}
-	
-	template <typename It>
-	void erase(It i,It j)
-	{
-		
-		for(;i!=j;)
-		{
-			It m=i;
-			i++;
-			T::remove(m.base());
-		}
-		
-	}
+    //******************************************************************//
+
+    template <typename It>
+    void erase(It i)
+    {
+        T::remove(i.base());
+    }
+
+    template <typename It>
+    void erase(It i, It j)
+    {
+
+        for (; i != j;) {
+            It m = i;
+            i++;
+            T::remove(m.base());
+        }
+    }
     //******************************************************************//
 
     void add(const U& u)
@@ -198,51 +195,50 @@ public:
     {
         return !equal(set);
     }
-	
-//*************************************************
+
+    //*************************************************
     Cset operator|(const Cset& set) const
     {
-		Cset tmp(*this);
-		tmp._union(set);
-		
+        Cset tmp(*this);
+        tmp._union(set);
+
         return Cset(tmp);
     }
-	
+
     Cset operator&(const Cset& set) const
     {
-		Cset tmp(*this);
-		tmp.intersect(set);
-		
+        Cset tmp(*this);
+        tmp.intersect(set);
+
         return Cset(tmp);
     }
-	
+
     Cset operator-(const Cset& set) const
     {
-		Cset tmp(*this);
-		tmp.sub(set);
-		
+        Cset tmp(*this);
+        tmp.sub(set);
+
         return Cset(tmp);
     }
-	
-//*************************************************
+
+    //*************************************************
     Cset& operator|=(const Cset& set)
     {
-		_union(set);
+        _union(set);
         return *this;
     }
-	
+
     Cset& operator&=(const Cset& set)
     {
-		intersect(set);
+        intersect(set);
         return *this;
     }
-	
+
     Cset& operator-=(const Cset& set)
     {
-		sub(set);
+        sub(set);
         return *this;
     }
-	
 
 protected:
     void push_back(const U& u)
@@ -252,17 +248,16 @@ protected:
 };
 }
 
-template <typename Char ,typename CharT,typename U, typename T>
-std::basic_ostream<Char,CharT>& operator<< (std::basic_ostream<Char,CharT>& out,const odst::Cset<U,T> &set)
+template <typename Char, typename CharT, typename U, typename T>
+std::basic_ostream<Char, CharT>& operator<<(std::basic_ostream<Char, CharT>& out, const odst::Cset<U, T>& set)
 {
-	out << '{';
-	for(unsigned int i=0;i<set.size();i++)
-	{
-		out << set[i];
-		if(i+1!=set.size())
-			out << ',';
-	}
-	out << '}';
-	return out;
+    out << '{';
+    for (unsigned int i = 0; i < set.size(); i++) {
+        out << set[i];
+        if (i + 1 != set.size())
+            out << ',';
+    }
+    out << '}';
+    return out;
 }
 #endif

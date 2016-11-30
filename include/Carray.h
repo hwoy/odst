@@ -28,10 +28,10 @@ protected:
 
 public:
     typedef T value_type;
-	typedef T& reference;
-	typedef const T& const_reference;
-	typedef typename std::allocator_traits<std::allocator<T>>::pointer pointer;
-	typedef typename std::allocator_traits<std::allocator<T>>::const_pointer const_pointer;
+    typedef T& reference;
+    typedef const T& const_reference;
+    typedef typename std::allocator_traits<std::allocator<T> >::pointer pointer;
+    typedef typename std::allocator_traits<std::allocator<T> >::const_pointer const_pointer;
 
     T& operator[](unsigned int index)
     {
