@@ -441,7 +441,7 @@ struct Clist_base : public Cdoublylinklist<T> {
     Citerator_doublylinklist<T> end() const
     {
         return Citerator_doublylinklist<T>(Clist_base::tail[0] ? Clist_base::tail[0]->getobj(0)
-                                                         : nullptr);
+                                                               : nullptr);
     }
 
     Criterator_linklist<T> rbegin() const

@@ -46,11 +46,11 @@ public:
             resize((Cdynamicarray::n + 1) << 1);
 
         for (unsigned int i = Cdynamicarray::n; i > index; i--) {
-            Cdynamicarray<T>::alloc.construct(Cdynamicarray<T>::t+i,Cdynamicarray<T>::t[i - 1]);
-       	    Cdynamicarray<T>::alloc.destroy(Cdynamicarray<T>::t+i-1);
+            Cdynamicarray<T>::alloc.construct(Cdynamicarray<T>::t + i, Cdynamicarray<T>::t[i - 1]);
+            Cdynamicarray<T>::alloc.destroy(Cdynamicarray<T>::t + i - 1);
         }
 
-        Cdynamicarray<T>::alloc.construct(Cdynamicarray<T>::t+index, t);
+        Cdynamicarray<T>::alloc.construct(Cdynamicarray<T>::t + index, t);
         Cdynamicarray::n++;
     }
 
@@ -70,24 +70,22 @@ public:
 
         tmp = alloc.allocate(length);
 
-
         unsigned int n = this->n;
 
-	for(unsigned int i=0;i<n;++i)
-		alloc.construct(tmp+i,Cdynamicarray<T>::t[i]);
+        for (unsigned int i = 0; i < n; ++i)
+            alloc.construct(tmp + i, Cdynamicarray<T>::t[i]);
 
         Cdynamicarray<T>::reserve(length);
         Cdynamicarray<T>::n = n;
 
         for (unsigned int i = 0; i < n; i++) {
-            Cdynamicarray<T>::alloc.construct(Cdynamicarray<T>::t+i,tmp[i]);
+            Cdynamicarray<T>::alloc.construct(Cdynamicarray<T>::t + i, tmp[i]);
         }
 
-	for(unsigned int i=0;i<n;++i)
-		alloc.destroy(tmp+i);
+        for (unsigned int i = 0; i < n; ++i)
+            alloc.destroy(tmp + i);
 
         alloc.deallocate(tmp, length);
-
     }
 };
 }

@@ -43,8 +43,8 @@ public:
     {
 
         for (unsigned int i = Cstaticarray<T, N>::n; i > index; i--) {
-            Cstaticarray<T, N>::alloc.construct(Cstaticarray<T, N>::t+i,Cstaticarray<T, N>::t[i - 1]);
-            Cstaticarray<T, N>::alloc.destroy(Cstaticarray<T, N>::t+i - 1);
+            Cstaticarray<T, N>::alloc.construct(Cstaticarray<T, N>::t + i, Cstaticarray<T, N>::t[i - 1]);
+            Cstaticarray<T, N>::alloc.destroy(Cstaticarray<T, N>::t + i - 1);
         }
 
         Cstaticarray<T, N>::alloc.construct(Cstaticarray<T, N>::t + index, t);
