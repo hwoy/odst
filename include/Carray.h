@@ -104,14 +104,15 @@ public:
 
     void destroy()
     {
-        for (unsigned int i = Carray_Citerator_n::n; i > 0; i--)
-            Carray_Citerator_n::alloc.destroy(Carray_Citerator_n::t + i - 1);
+
+        for (unsigned int i = 0; i<  Carray_Citerator_n::n; ++i)
+            Carray_Citerator_n::alloc.destroy(Carray_Citerator_n::t + i);
 
         destroy_raw();
     }
     void destroy_raw()
     {
-        Carray_Citerator_n::alloc.deallocate(Carray_Citerator_n::t, Carray_Citerator_n::length);
+        Carray_Citerator_n::alloc.deallocate(Carray_Citerator_n::t, Carray_Citerator_n::length+2);
 
         n = 0;
         Carray_Citerator_n::length = 0;
@@ -146,8 +147,9 @@ public:
 
     void destroy()
     {
-        for (unsigned int i = Carray_Citerator_length::length; i > 0; i--)
-            Carray_Citerator_length::alloc.destroy(Carray_Citerator_length::t + i - 1);
+
+        for (unsigned int i = 0; i< Carray_Citerator_length::length; ++i)
+            Carray_Citerator_length::alloc.destroy(Carray_Citerator_length::t + i);
 
         destroy_raw();
     }

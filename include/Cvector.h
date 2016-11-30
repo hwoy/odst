@@ -32,7 +32,7 @@ public:
 
     Cvector& operator=(const Cvector& t)
     {
-        Cvector::destroy();
+        Cvector::clear();
         for (unsigned int i = 0; i < t.size(); ++i)
             push_back(t[i]);
         return *this;
@@ -69,6 +69,59 @@ public:
         }
     }
 
+	//******************************************************************//
+	
+	bool operator==(const Cvector &vec) const
+	{
+		unsigned int i,j;
+		for(i=0,j=0;i<T::size() && j<vec.size();++i,++j)
+			if(!(T::getobj(i) == vec[j])) return false;
+		
+		return (i==T::size() && j==vec.size());
+	}
+	
+	bool operator!=(const Cvector &vec) const
+	{
+		return !operator=(vec);
+	}
+	
+	bool operator<(const Cvector &vec) const
+	{
+		unsigned int i,j;
+		for(i=0,j=0;i<T::size() && j<vec.size();++i,++j)
+		{
+			if(T::getobj(i) < vec[j]) return true;
+			else if(T::getobj(i) > vec[j]) return false;
+		}
+		
+		return (i==T::size() && j!=vec.size());
+	}
+	
+	bool operator>=(const Cvector &vec) const
+	{
+		
+		return !operator<(vec);
+	}
+
+	bool operator>(const Cvector &vec) const
+	{
+		unsigned int i,j;
+		for(i=0,j=0;i<T::size() && j<vec.size();++i,++j)
+		{
+			if(T::getobj(i) > vec[j]) return true;
+			else if(T::getobj(i) < vec[j]) return false;
+		}
+
+		return (i!=T::size() && j==vec.size());
+		
+	}
+	
+	bool operator<=(const Cvector &vec) const
+	{
+		
+		return !operator>(vec);
+	}
+	
     //******************************************************************//
     void add(const U& u)
     {

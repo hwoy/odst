@@ -197,6 +197,47 @@ struct Citerator_linklist : public Citerator_base<T> {
         return *this;
     }
     typename T::data_t& operator*() const { return Citerator_linklist::current->data; }
+	
+};
+
+template <typename T>
+struct Citerator_doublylinklist : public Citerator_base<T> {
+    typedef Citerator_doublylinklist self_type;
+    typedef T value_type;
+    typedef T& reference;
+    typedef T* pointer;
+    typedef std::bidirectional_iterator_tag iterator_category;
+    typedef std::ptrdiff_t difference_type;
+	
+    Citerator_doublylinklist(T* t)
+        : Citerator_base<T>(t)
+    {
+    }
+	
+    self_type& operator++()
+    {
+        Citerator_doublylinklist::current = Citerator_doublylinklist::current->getobj(0);
+        return *this;
+    }
+
+    self_type& operator++(int i)
+    {
+        Citerator_doublylinklist::current = Citerator_doublylinklist::current->getobj(0);
+        return *this;
+    }
+    typename T::data_t& operator*() const { return Citerator_doublylinklist::current->data; }
+	
+    self_type& operator--()
+    {
+        Citerator_doublylinklist::current = Citerator_doublylinklist::current->getobj(1);
+        return *this;
+    }
+
+    self_type& operator--(int i)
+    {
+        Citerator_doublylinklist::current = Citerator_doublylinklist::current->getobj(1);
+        return *this;
+    }
 };
 
 template <typename T>

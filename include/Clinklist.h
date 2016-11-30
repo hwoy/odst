@@ -433,14 +433,14 @@ protected:
 template <typename U, typename T = Cnode<U, 2> >
 struct Clist_base : public Cdoublylinklist<T> {
 
-    Citerator_linklist<T> begin() const
+    Citerator_doublylinklist<T> begin() const
     {
-        return Citerator_linklist<T>(Clist_base::head[0]);
+        return Citerator_doublylinklist<T>(Clist_base::head[0]);
     }
 
-    Citerator_linklist<T> end() const
+    Citerator_doublylinklist<T> end() const
     {
-        return Citerator_linklist<T>(Clist_base::tail[0] ? Clist_base::tail[0]->getobj(0)
+        return Citerator_doublylinklist<T>(Clist_base::tail[0] ? Clist_base::tail[0]->getobj(0)
                                                          : nullptr);
     }
 
