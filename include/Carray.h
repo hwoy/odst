@@ -112,7 +112,7 @@ public:
     }
     void destroy_raw()
     {
-        Carray_Citerator_n::alloc.deallocate(Carray_Citerator_n::t, Carray_Citerator_n::length + 2);
+        Carray_Citerator_n::alloc.deallocate(Carray_Citerator_n::t, Carray_Citerator_n::length);
 
         n = 0;
         Carray_Citerator_n::length = 0;
