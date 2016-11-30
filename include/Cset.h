@@ -198,6 +198,51 @@ public:
     {
         return !equal(set);
     }
+	
+//*************************************************
+    Cset operator|(const Cset& set) const
+    {
+		Cset tmp(*this);
+		tmp._union(set);
+		
+        return Cset(tmp);
+    }
+	
+    Cset operator&(const Cset& set) const
+    {
+		Cset tmp(*this);
+		tmp.intersect(set);
+		
+        return Cset(tmp);
+    }
+	
+    Cset operator-(const Cset& set) const
+    {
+		Cset tmp(*this);
+		tmp.sub(set);
+		
+        return Cset(tmp);
+    }
+	
+//*************************************************
+    Cset& operator|=(const Cset& set)
+    {
+		_union(set);
+        return *this;
+    }
+	
+    Cset& operator&=(const Cset& set)
+    {
+		intersect(set);
+        return *this;
+    }
+	
+    Cset& operator-=(const Cset& set)
+    {
+		sub(set);
+        return *this;
+    }
+	
 
 protected:
     void push_back(const U& u)

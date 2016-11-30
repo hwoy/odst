@@ -7,10 +7,14 @@ example:
 	make -C array -f Makefile.gcc
 	make -C base -f Makefile.gcc
 	make -C set -f Makefile.gcc
+	make -C list -f Makefile.gcc
+	make -C vector -f Makefile.gcc
 
 
 clean:
 	make -C array -f Makefile.gcc clean
 	make -C base -f Makefile.gcc clean
 	make -C set -f Makefile.gcc clean
+	make -C list clean -f Makefile.gcc clean
+	make -C vector clean -f Makefile.gcc clean
 

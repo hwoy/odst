@@ -44,5 +44,37 @@ int main()
 		std::cout << set1 << std::endl;
 
 	}
+	
+
+	std::cout << "======union======\n";
+	std::cout << (odst::set<int>{1,2,3} | odst::set<int>{1,4,2,5,6}) << std::endl;
+	
+	std::cout << "======intersect======\n";
+	std::cout << (odst::set<int>{1,2,3} & odst::set<int>{1,4,2,5,6}) << std::endl;
+	
+	std::cout << "======sub======\n";
+	std::cout << (odst::set<int>{1,2,3} - odst::set<int>{1,4,2,5,6}) << std::endl;
+	
+	{
+		odst::set<int> set1={1,2,3,4,5,6};
+		set1|={1,5,8};
+		std::cout << "======union======\n";
+		std::cout << set1 << std::endl;		
+	}
+	
+	{
+		odst::set<int> set1={1,2,3,4,5,6};
+		set1&={1,5,8};
+		std::cout << "======intersect======\n";
+		std::cout << set1 << std::endl;		
+	}
+	
+	{
+		odst::set<int> set1={1,2,3,4,5,6};
+		set1-={1,5,8};
+		std::cout << "======sub======\n";
+		std::cout << set1 << std::endl;		
+	}
+
  	return 0;
 }
