@@ -157,5 +157,29 @@ struct gt {
         return _gt(a, b);
     }
 };
+
+template <typename T>
+struct lte {
+    bool operator()(const T& a, const T& b) const
+    {
+        return _lte(a, b);
+    }
+};
+
+template <typename T>
+struct gte {
+    bool operator()(const T& a, const T& b) const
+    {
+        return _gte(a, b);
+    }
+};
+
+template <typename T>
+struct eq {
+    bool operator()(const T& a, const T& b) const
+    {
+        return _eq(a, b);
+    }
+};
 }
 #endif
