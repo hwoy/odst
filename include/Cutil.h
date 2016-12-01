@@ -72,7 +72,7 @@ findm(const T& t, unsigned int begin, unsigned int end, U u)
 }
 
 template <typename T, typename U>
-void arrang(const T& t, unsigned int begin, unsigned int end, U u)
+void sort(T& t, unsigned int begin, unsigned int end, U u)
 {
     unsigned int i, j;
     if (begin > end)
@@ -85,13 +85,13 @@ void arrang(const T& t, unsigned int begin, unsigned int end, U u)
     }
 }
 
-/* ISO C++14 auto parameter lamda express
+#if __cplusplus > 201103L
 auto _lagt = [](auto &a,auto &b) {return a>b;};
 auto _lagte = [](auto &a,auto &b) {return a>=b;};
 auto _lamlt = [](auto &a,auto &b) {return a<b;};
 auto _lamlte = [](auto &a,auto &b) {return a<=b;};
 auto _lameq = [](auto &a,auto &b) {return a==b;};
-*/
+#endif
 
 template <typename T>
 constexpr bool
