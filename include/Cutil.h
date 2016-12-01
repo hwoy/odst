@@ -86,11 +86,11 @@ void sort(T& t, unsigned int begin, unsigned int end, U u)
 }
 
 #if __cplusplus > 201103L
-auto _lagt = [](auto &a,auto &b) {return a>b;};
-auto _lagte = [](auto &a,auto &b) {return a>=b;};
-auto _lamlt = [](auto &a,auto &b) {return a<b;};
-auto _lamlte = [](auto &a,auto &b) {return a<=b;};
-auto _lameq = [](auto &a,auto &b) {return a==b;};
+auto _lagt = [](auto& a, auto& b) { return a > b; };
+auto _lagte = [](auto& a, auto& b) { return a >= b; };
+auto _lamlt = [](auto& a, auto& b) { return a < b; };
+auto _lamlte = [](auto& a, auto& b) { return a <= b; };
+auto _lameq = [](auto& a, auto& b) { return a == b; };
 #endif
 
 template <typename T>
@@ -141,5 +141,21 @@ _min(const T& a, const T& b)
 {
     return (a < b);
 }
+
+template <typename T>
+struct lt {
+    bool operator()(const T& a, const T& b) const
+    {
+        return _lt(a, b);
+    }
+};
+
+template <typename T>
+struct gt {
+    bool operator()(const T& a, const T& b) const
+    {
+        return _gt(a, b);
+    }
+};
 }
 #endif

@@ -47,9 +47,9 @@ struct Clinklist_interface : public T {
 
     const U& operator[](unsigned int index) const { return T::getNode(index).data; }
 
-    U& getobj(unsigned int index)  { return T::getNode(index).data; }
+    U& getobj(unsigned int index) { return T::getNode(index).data; }
 
-    U& operator[](unsigned int index)  { return T::getNode(index).data; }
+    U& operator[](unsigned int index) { return T::getNode(index).data; }
 
     /*
     void reserve(unsigned int length)

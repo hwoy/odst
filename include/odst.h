@@ -32,7 +32,7 @@ template <typename U>
 using queue = Cqueue<U, Cdynamicarray<U> >;
 
 template <typename U>
-using set = Cset<U, Cdynamicarray<U> >;
+using set = Cset<U, Cdynamicarray<U>, lt<U> >;
 
 //****************** Static Array ****************
 
@@ -49,7 +49,7 @@ template <typename U, unsigned int N>
 using squeue = Cqueue<U, Cstaticarray<U, N> >;
 
 template <typename U, unsigned int N>
-using sset = Cset<U, Cstaticarray<U, N> >;
+using sset = Cset<U, Cstaticarray<U, N>, lt<U> >;
 
 //****************** Linklist ****************
 

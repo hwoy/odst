@@ -6,6 +6,7 @@
 
 int main()
 {
+
 	{
 		odst::set<odst::set<int>> set1={{1,2,3},{4}};
 		odst::set<odst::set<int>> set2={{1,2,3},{4}};
@@ -74,6 +75,18 @@ int main()
 		set1-={1,5,8};
 		std::cout << "======sub======\n";
 		std::cout << set1 << std::endl;		
+	}
+	
+	{
+		odst::set<int> set1={6,1,2,3,4,5,6},set2={3,2,3};
+		std::cout << "====== < ======\n";
+		std::cout << std::boolalpha << (set1<set2) << std::endl;		
+	}
+
+	{
+		odst::set<int> set1={6,1,2,3,4,5,6},set2={3,2,3,0,0};
+		std::cout << "====== < ======\n";
+		std::cout << std::boolalpha << (set1<set2) << std::endl;		
 	}
 
  	return 0;

@@ -7,10 +7,13 @@ namespace odst {
 
 //===================================================== Cset_interface
 //=====================================================
-template <typename U, typename T>
+template <typename U, typename T, typename V>
 class Cset : public T {
 
 public:
+    typedef V key_compare;
+    typedef V value_compare;
+
     Cset() = default;
 
     Cset(const Cset& t)
@@ -85,7 +88,7 @@ public:
         T::remove(T::size() - 1);
     }
 
-    Cset<U, T>& operator<<(const U& u)
+    Cset& operator<<(const U& u)
     {
         add(u);
         return *this;
@@ -116,7 +119,7 @@ public:
         return count;
     }
 
-    unsigned int _union(const Cset<U, T>& set)
+    unsigned int _union(const Cset& set)
     {
         unsigned int count;
         count = 0;
@@ -131,7 +134,7 @@ public:
         return count;
     }
 
-    unsigned int intersect(const Cset<U, T>& set)
+    unsigned int intersect(const Cset& set)
     {
         unsigned int count = 0;
 
@@ -164,7 +167,7 @@ public:
         return true;
     }
 
-    unsigned int sub(const Cset<U, T>& set)
+    unsigned int sub(const Cset& set)
     {
         unsigned int count = 0;
 
@@ -240,6 +243,64 @@ public:
         return *this;
     }
 
+    //******************************************************************//
+
+    bool operator<(const Cset& vec) const
+    {
+        unsigned int i, j;
+        Cset set1(*this), set2(vec);
+
+        set1.pack();
+        sort(set1, 0, set1.size(), V());
+
+        set2.pack();
+        sort(set2, 0, set2.size(), V());
+
+        for (i = 0, j = 0; i < set1.size() && j < set2.size(); ++i, ++j) {
+            if (set1[i] < set2[j])
+                return true;
+            else if (set1[i] > set2[j])
+                return false;
+        }
+
+        return (i == set1.size() && j != set2.size());
+    }
+
+    bool operator>=(const Cset& vec) const
+    {
+
+        return !operator<(vec);
+    }
+
+    bool operator>(const Cset& vec) const
+    {
+        unsigned int i, j;
+        Cset set1(*this), set2(vec);
+
+        set1.pack();
+        sort(set1, 0, set1.size(), V());
+
+        set2.pack();
+        sort(set2, 0, set2.size(), V());
+
+        for (i = 0, j = 0; i < set1.size() && j < set2.size(); ++i, ++j) {
+            if (set1[i] > set2[j])
+                return true;
+            else if (set1[i] < set2[j])
+                return false;
+        }
+
+        return (i != set1.size() && j == set2.size());
+    }
+
+    bool operator<=(const Cset& vec) const
+    {
+
+        return !operator>(vec);
+    }
+
+    //******************************************************************//
+
 protected:
     void push_back(const U& u)
     {
@@ -248,8 +309,8 @@ protected:
 };
 }
 
-template <typename Char, typename CharT, typename U, typename T>
-std::basic_ostream<Char, CharT>& operator<<(std::basic_ostream<Char, CharT>& out, const odst::Cset<U, T>& set)
+template <typename Char, typename CharT, typename U, typename T, typename V>
+std::basic_ostream<Char, CharT>& operator<<(std::basic_ostream<Char, CharT>& out, const odst::Cset<U, T, V>& set)
 {
     out << '{';
     for (unsigned int i = 0; i < set.size(); i++) {
