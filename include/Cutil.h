@@ -144,7 +144,7 @@ _min(const T& a, const T& b)
 
 template <typename T>
 struct lt {
-    bool operator()(const T& a, const T& b) const
+    constexpr bool operator()(const T& a, const T& b) const
     {
         return _lt(a, b);
     }
@@ -152,7 +152,7 @@ struct lt {
 
 template <typename T>
 struct gt {
-    bool operator()(const T& a, const T& b) const
+    constexpr bool operator()(const T& a, const T& b) const
     {
         return _gt(a, b);
     }
@@ -160,7 +160,7 @@ struct gt {
 
 template <typename T>
 struct lte {
-    bool operator()(const T& a, const T& b) const
+    constexpr bool operator()(const T& a, const T& b) const
     {
         return _lte(a, b);
     }
@@ -168,7 +168,7 @@ struct lte {
 
 template <typename T>
 struct gte {
-    bool operator()(const T& a, const T& b) const
+    constexpr bool operator()(const T& a, const T& b) const
     {
         return _gte(a, b);
     }
@@ -176,7 +176,7 @@ struct gte {
 
 template <typename T>
 struct eq {
-    bool operator()(const T& a, const T& b) const
+    constexpr bool operator()(const T& a, const T& b) const
     {
         return _eq(a, b);
     }
