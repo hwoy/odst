@@ -34,9 +34,10 @@ A.K.A Adaptor class/struct
 - Cdeque
 - Cset
 
-#### High-level structure
--Citerator
--Citerator_linklist
+#### Iterator support
+- Citerator
+- Citerator_linklist
+- Citerator_doublylinklist
 
 #### Predefined structure
 - vector
