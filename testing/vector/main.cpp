@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <iostream>
 #include <odst.h>
-#include <vector>
 
 int main()
 {

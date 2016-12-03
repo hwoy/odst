@@ -1,7 +1,7 @@
-#include <ctime>
 #include <iostream>
 #include <odst.h>
 #include <random>
+#include <chrono>
 
 #define BASE 16
 #define RANG_MIN 1
@@ -41,7 +41,7 @@ int main(void)
     unsigned int i, j;
     base_t list;
 
-    std::mt19937 gen(time(nullptr));
+    std::mt19937 gen(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
     std::uniform_int_distribution<> dis(RANG_MIN, RANG_MAX);
 
     for (j = 0; j < 10; j++) {
